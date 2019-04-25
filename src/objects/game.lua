@@ -13,11 +13,7 @@ function game.newGame(name)
 end
 
 function game.path()
-  if game.name() == not nil then
-    return "games." .. game.game .. ".init"
-  else
-    return "games.menu.init"
-  end
+  return "games." .. game.game .. ".init"
 end
 
 return game

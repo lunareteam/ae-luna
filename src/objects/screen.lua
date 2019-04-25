@@ -4,7 +4,6 @@ local screen = {}
 function screen.initialize(loaderObj, gameObj)
   loader = loaderObj
   game = gameObj
-  screen.setDefaultMode()
   -- Set window title --
   love.window.setTitle("Magnavox")
   -- Screen size --
@@ -15,16 +14,11 @@ end
 
 function screen.setDefaultMode()
   -- Set default size --
-  love.window.setMode(640, 480)
+
 end
 
 function screen.setFullscreen(mode)
-  if screen.isFullscreen() then
-    love.window.setFullscreen(mode)
-    screen.setDefaultMode()
-  else
-    love.window.setFullscreen(mode)
-  end
+  love.window.setFullscreen(mode)
 end
 
 function screen.isGame()
@@ -46,9 +40,8 @@ function screen.draw()
 end
 
 function screen.update()
-  -- Variables that receive constant change --
-  screen.width = love.graphics.getWidth()
-  screen.height = love.graphics.getHeight()
+  -- Screen size --
+  screen.width, screen.height = love.graphics.getDimensions()
 end
 
 return screen
