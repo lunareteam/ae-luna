@@ -17,7 +17,7 @@ end
 
 -- Function to draw ball --
 function ball.draw()
-  love.graphics.circle("fill", ball.posx, ball.posy, ball.size/2)
+  love.graphics.circle("line", ball.posx, ball.posy, ball.size/2)
   love.graphics.print(ball.size, 100, 100)
 end
 
