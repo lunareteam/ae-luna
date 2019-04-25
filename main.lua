@@ -1,6 +1,7 @@
 -- Headers --
 local screen = require("objects.screen")
 local audio = require("objects.audio")
+local input = require("objects.input")
 
 -- Module loader --
 function love.load()
@@ -8,7 +9,7 @@ function love.load()
   audio.initialize()
 end
 
--- Love function to draw objects inside --
+-- Function to draw objects --
 function love.draw()
   screen.draw()
 end
@@ -16,5 +17,6 @@ end
 -- Function to update engine --
 function love.update()
   screen.update()
-  keyboard.update(screen)
+  input.update(screen)
+  audio.update()
 end

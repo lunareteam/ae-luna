@@ -12,7 +12,7 @@ function keyboard.update(screen)
     else
       status = true
     end
-    love.window.setFullscreen(status)
+    screen.setFullscreen(status)
     screen.fullscreen = status
   end
 end
