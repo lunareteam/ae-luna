@@ -18,11 +18,11 @@ end
 function baston.draw(windowWidth, player1, player2)
   -- Makes coordinates for player 1 and draws him --
   baston.pos1 = 35
-  love.graphics.rectangle("fill", baston.pos1, player1.pos, baston.width, baston.height)
+  love.graphics.rectangle("line", baston.pos1, player1.pos, baston.width, baston.height)
 
   -- Makes coordinates for player 2 and draws him --
   baston.pos2 = windowWidth - (35 + baston.width)
-  love.graphics.rectangle("fill", baston.pos2, player2.pos, baston.width, baston.height)
+  love.graphics.rectangle("line", baston.pos2, player2.pos, baston.width, baston.height)
 end
 
 -- Update function within baston --
