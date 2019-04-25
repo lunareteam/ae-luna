@@ -1,8 +1,9 @@
 local screen = {}
-local loader = require("games.loader")
-local menu = require("games.menu")
 
-function screen.initialize()
+
+function screen.initialize(loaderObj, gameObj)
+  loader = loaderObj
+  game = gameObj
   screen.setDefaultMode()
   -- Set window title --
   love.window.setTitle("Magnavox")
@@ -10,8 +11,6 @@ function screen.initialize()
   screen.width, screen.height = love.graphics.getDimensions()
   -- Screen mode --
   screen.fullscreen = false
-  -- Game loaded --
-  screen.game = nil
 end
 
 function screen.setDefaultMode()
@@ -29,7 +28,7 @@ function screen.setFullscreen(mode)
 end
 
 function screen.isGame()
-  if screen.game == nil then
+  if game.name() == nil then
     return false
   end
   return true
@@ -43,11 +42,7 @@ function screen.isFullscreen()
 end
 
 function screen.draw()
-  if screen.isGame() then
-    loader.draw()
-  else
-    menu.draw()
-  end
+  loader.draw(screen)
 end
 
 function screen.update()

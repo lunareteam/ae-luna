@@ -1,10 +1,16 @@
-local keyboard = {}
+local input = {}
 
-function keyboard.initialize()
-
+function input.initialize(screenObj, loaderObj)
+  screen = screenObj
+  loader = loaderObj
 end
 
-function keyboard.update(screen)
+function input.update()
+  -- Esc ends game --
+  if love.keyboard.isDown("f4") then
+    love.event.quit(0)
+  end
+
   -- F11 to go fullscreen --
   if love.keyboard.isDown("f11") then
     if screen.isFullscreen() then
@@ -17,4 +23,4 @@ function keyboard.update(screen)
   end
 end
 
-return keyboard
+return input

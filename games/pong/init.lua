@@ -24,6 +24,9 @@ function init.draw()
 end
 
 function init.update()
+  if love.keyboard.isDown("escape") then
+    loader.changeGame("menu")
+  end
   baston.update(screen.height, player)
   ball.update(screen.width, screen.height, baston, player)
 end
