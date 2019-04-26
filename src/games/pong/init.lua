@@ -30,6 +30,7 @@ function init.update()
   end
   baston.update()
   ball.update()
+  player.update()
 end
 
 return init
