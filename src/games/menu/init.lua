@@ -1,26 +1,20 @@
 local init = {}
+local options = require("games.menu.options")
 
 function init.initialize(gameObj, loaderObj, screenObj)
   game = gameObj
   loader = loaderObj
   screen = screenObj
-
-  init.updating = false
+  options.initialize(loader)
 end
 
 function init.update()
-  init.updating = true
-  if love.keyboard.isDown("q") then
-    loader.changeGame("pong")
-  end
-  init.updating = false
+  options.update()
 end
 
 function init.draw()
-  love.graphics.print("Menu - Press q to start", screen.width/2-65, screen.height/2-5)
-  if game.name() == not nil then
-    love.graphics.print(game.name(), screen.width/2-20, screen.height/2+5)
-  end
+  love.graphics.print("MES - Magnavox Entertainment System", screen.width/2-365, screen.height/2/2, 0, 3)
+  options.draw()
 end
 
 return init
