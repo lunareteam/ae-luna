@@ -12,10 +12,10 @@ end
 
 -- Function to draw score --
 function player.draw()
-  love.graphics.printf("Score: ", (screen.width/2)/2, 30, screen.width*0.15)
-  love.graphics.printf(player.score1, (screen.width/2)/2+40, 30, screen.width*0.15)
-  love.graphics.print("Score: ", (screen.width/2)+(screen.width/2)/2, 30)
-  love.graphics.print(player.score2, (screen.width/2)+((screen.width/2)/2)+40, 30)
+  love.graphics.print("Score: ", (screen.width/2)/2-65, 30, 0, 2)
+  love.graphics.print(player.score1, (screen.width/2)/2+15, 30, 0, 2)
+  love.graphics.print("Score: ", (screen.width/2)+(screen.width/2)/2-65, 30, 0, 2)
+  love.graphics.print(player.score2, (screen.width/2)+((screen.width/2)/2)+15, 30, 0, 2)
 end
 
 function player.update()
