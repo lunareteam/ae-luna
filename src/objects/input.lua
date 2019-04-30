@@ -14,12 +14,12 @@ function input.update()
   -- F11 to go fullscreen --
   if love.keyboard.isDown("f11") then
     if screen.isFullscreen() then
-      status = false
+      screen.fullscreen = false
+      love.window.setMode(800,600, {fullscreen = screen.fullscreen})
     else
-      status = true
+      screen.fullscreen = true
+      love.window.setMode(1280, 720, {fullscreen = screen.fullscreen})
     end
-    screen.setFullscreen(status)
-    screen.fullscreen = status
   end
 end
 
