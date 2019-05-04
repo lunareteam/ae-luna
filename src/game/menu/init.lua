@@ -9,6 +9,8 @@ function menu.initialize(screenObj, audioObj, inputObj, loaderObj)
   audio = audioObj
   input = inputObj
   loader = loaderObj
+
+  press = 0
 end
 
 -- Menu's draw function --
@@ -18,8 +20,9 @@ end
 
 -- Menu's update function --
 function menu.update()
-  if love.keyboard.isDown("return") then
-    loader.changeGame("pleaser", 0)
+  if love.keyboard.isDown("return") and love.timer.getTime() >= press+0.5 then
+    loader.changeGame("text_txt", 1)
+    press = love.timer.getTime()
   end
 end
 
