@@ -26,4 +26,5 @@ function menu.update()
   end
 end
 
+-- Returns itself --
 return menu

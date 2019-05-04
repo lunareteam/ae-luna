@@ -12,10 +12,11 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, scene)
   audio = audioObj
   input = inputObj
   loader = loaderObj
-  alpha = 0
-  press = 0
-  dfi = 0
+  alpha = 0       -- Alpha value
+  pressTime = 0   -- Keypress time
+  fadeInTime = 0  -- Fade in time
 
+  -- Initializes script reader --
   reader.initialize(scene)
 end
 
@@ -30,24 +31,29 @@ function vn.draw()
   vn.fadeIn()
 end
 
+-- Fades text --
 function vn.fadeIn()
-  if love.timer.getTime() <= dfi+0.35 then
+  if love.timer.getTime() <= fadeInTime+0.35 then
     alpha = alpha+0.05
   else
-    dfi = love.timer.getTime()
+    fadeInTime = love.timer.getTime()
   end
 end
 
 -- VN's update function --
 function vn.update()
-  if love.keyboard.isDown("return") and love.timer.getTime() >= press+0.5 then
+  -- Action to go to next scene with delay --
+  if love.keyboard.isDown("return") and love.timer.getTime() >= pressTime+0.5 then
+    -- Ends game when script ends --
     if (scene == #reader.scriptStr) then
       loader.changeGame("menu")
     end
-    reader.nextScene()
-    alpha = 0
-    press = love.timer.getTime()
+
+    reader.nextScene()                -- Goes to next scene
+    alpha = 0                         -- Resets alpha value
+    pressTime = love.timer.getTime()  -- Gets keypress time
   end
 end
 
+-- Returns itself --
 return vn
