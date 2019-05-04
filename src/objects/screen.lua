@@ -1,47 +1,29 @@
+--[[Main screen object]]--
+-- Makes itself an object --
 local screen = {}
 
-
-function screen.initialize(loaderObj, gameObj)
+-- Initialization function --
+function screen.initialize(loaderObj)
   loader = loaderObj
-  game = gameObj
-  -- Set window title --
-  love.window.setTitle("Magnavox")
-  -- Screen size --
-  screen.width, screen.height = love.graphics.getDimensions()
-  -- Screen mode --
-  screen.fullscreen = false
+  screen.getDimensions()
 end
 
-function screen.setDefaultMode()
-  -- Set default size --
-
-end
-
-function screen.setFullscreen(mode)
-  love.window.setFullscreen(mode)
-end
-
-function screen.isGame()
-  if game.name() == nil then
-    return false
-  end
-  return true
-end
-
-function screen.isFullscreen()
-  if screen.fullscreen == true then
-    return true
-  end
-  return false
-end
-
+-- Drawing function --
 function screen.draw()
-  loader.draw(screen)
+  -- Draws simple overlay --
+  love.graphics.rectangle("line", 0, 0, 800, 600)
 end
 
-function screen.update()
-  -- Screen size --
+-- Dimension updating function --
+function screen.getDimensions()
   screen.width, screen.height = love.graphics.getDimensions()
+end
+
+-- Update function --
+function screen.update()
+  love.graphics.scale(screen.width, screen.height)
+  screen.getDimensions()
+  love.window.setTitle(loader.game)
 end
 
 return screen

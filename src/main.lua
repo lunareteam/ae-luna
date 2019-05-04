@@ -1,27 +1,33 @@
--- Headers --
-local screen = require("objects.screen")
-local audio = require("objects.audio")
-local input = require("objects.input")
-local loader = require("games.loader")
-local game = require("objects.game")
+--[[This file calls the main objects]]--
+-- Creates objects --
+local loader = {}
+local input = {}
+local audio = {}
+local screen = {}
 
--- Module loader --
+-- Main loader function --
 function love.load()
-  loader.initialize(game)
-  screen.initialize(loader, game)
-  input.initialize(screen, loader)
-  audio.initialize()
+  -- Main objects and initialization --
+  screen = require("objects.screen")
+  audio = require("objects.audio")
+  input = require("objects.input")
+  loader = require("objects.loader")
+  screen.initialize(loader)
+  audio.initialize(loader)
+  input.initialize(loader)
+  loader.initialize(screen, audio, input)
 end
 
--- Function to draw objects --
+-- Main draw function --
 function love.draw()
   screen.draw()
+  loader.draw()
 end
 
--- Function to update engine --
+-- Main update function --
 function love.update()
   screen.update()
-  input.update()
   audio.update()
+  input.update()
   loader.update()
 end
