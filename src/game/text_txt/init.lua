@@ -13,10 +13,11 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, scene)
   input = inputObj
   loader = loaderObj
   alpha = 0       -- Alpha value
-  pressTime = 0   -- Keypress time
+  pressionado =0  -- Keypress limit
   fadeInTime = 0  -- Fade in time
 
   -- Initializes script reader --
+
   reader.initialize(scene)
 end
 
@@ -43,17 +44,26 @@ end
 -- VN's update function --
 function vn.update()
   -- Action to go to next scene with delay --
-  if love.keyboard.isDown("return") and love.timer.getTime() >= pressTime+0.5 then
+  if love.keyboard.isDown("return") and love.timer.getTime()  and pressionado==0 then
     -- Ends game when script ends --
+
     if (scene == #reader.scriptStr) then
       loader.changeGame("menu")
+    elseif pressionado==0 then
+      reader.nextScene()                -- Goes to next scene
+      alpha = 0
+                   -- Resets alpha value
     end
-
-    reader.nextScene()                -- Goes to next scene
-    alpha = 0                         -- Resets alpha value
-    pressTime = love.timer.getTime()  -- Gets keypress time
+    pressionado=1
   end
+
 end
+
+  function love.keyreleased(k)
+    if k== "return" then
+      pressionado=0
+    end
+  end
 
 -- Returns itself --
 return vn

@@ -12,6 +12,8 @@ function option.initialize(loaderObj)
   option.min = 0
   option.max = 3
   press = 0
+  pressionado = 0
+
 end
 
 -- Options draw function --
@@ -43,18 +45,20 @@ end
 
 -- Options update function --
 function option.update()
-  if love.keyboard.isDown("return") and option.selected==0 and love.timer.getTime() >= press+0.5 then
+  if love.keyboard.isDown("return") and option.selected==0 and love.timer.getTime() >= press+0.5 and pressionado == 0 then
     loader.changeGame("text_txt", 1)
     press = love.timer.getTime()
+    pressionado=1
   end
 
-  if love.keyboard.isDown("left") and love.timer.getTime() >= press+0.5 then
+  if love.keyboard.isDown("left") and love.timer.getTime() >= press+0.5  then
     if option.selected == option.min then
       option.selected = option.max
     else
       option.selected = option.selected-1
     end
     press = love.timer.getTime()
+
   end
 
   if love.keyboard.isDown("right") and love.timer.getTime() >= press+0.5 then

@@ -16,6 +16,7 @@ end
 -- Goes to next scene --
 function reader.nextScene()
   scene=scene+1
+  pressionado=1
 end
 
 -- Returns itself --
