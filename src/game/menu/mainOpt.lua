@@ -28,18 +28,12 @@ end
 function option.name()
   if option.selected == 0 then
     return "Start"
-  else
-    if option.selected == 1 then
-      return "Load"
-    else
-      if option.selected == 2 then
-        return "Options"
-      else
-        if option.selected == 3 then
-          return "Quit"
-        end
-      end
-    end
+  elseif option.selected == 1 then
+    return "Load"
+  elseif option.selected == 2 then
+    return "Options"
+  elseif option.selected == 3 then
+    return "Quit"
   end
 end
 
