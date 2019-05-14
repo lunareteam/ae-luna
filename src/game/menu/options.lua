@@ -66,7 +66,6 @@ function options.update()
 
   -- Does action on button --
   if love.keyboard.isDown("return") and pressed == 0 then
-    print(options.optActions[options.selected])
     currentAction()
     pressed=1
     press = love.timer.getTime()
