@@ -13,7 +13,8 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, scene)
   input = inputObj
   loader = loaderObj
   alpha = 0       -- Alpha value
-  pressed =0  -- Keypress limit
+  press = 0
+  pressed = 0  -- Keypress limit
   fadeInTime = 0  -- Fade in time
 
   -- Initializes script reader --
@@ -43,6 +44,11 @@ end
 
 -- VN's update function --
 function vn.update()
+
+  if love.timer.getTime() >= press+0.3 and pressed == 1 then
+    pressed = 0;
+  end
+
   -- Action to go to next scene with delay --
   if love.keyboard.isDown("return") and pressed==0 then
     -- Ends game when script ends --
@@ -55,16 +61,9 @@ function vn.update()
     end
     --return was pressed,so it is unable to be pressed again--
     pressed=1
+    press = love.timer.getTime()
   end
-
 end
-
-  function love.keyreleased(k)
-    --if return is released, will enable to be pressed again--
-    if k== "return" then
-      pressed=0
-    end
-  end
 
 -- Returns itself --
 return vn

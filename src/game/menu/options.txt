@@ -1,2 +1,2 @@
-Resolution:
+Go Fullscreen/Windowed:toggleFullscreen()
 Go Back:parser("start")

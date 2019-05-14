@@ -3,9 +3,10 @@
 local options = {}
 
 -- Initializer function --
-function options.initialize(loaderObj)
-  -- Makes the loader an object --
+function options.initialize(loaderObj, screenObj)
+  -- Makes an object of pointer --
   loader = loaderObj
+  screen = screenObj
 
   -- Constants to know the current selection --
   press = 0
@@ -13,6 +14,11 @@ function options.initialize(loaderObj)
 
   -- Parser function --
   parser("start")
+end
+
+-- Fullscreen toggle --
+function toggleFullscreen()
+  screen.toggleFullscreen()
 end
 
 -- Parser called via loadstring --
@@ -54,30 +60,39 @@ function options.update()
   -- Loads action --
   currentAction = loadstring(options.optActions[options.selected])
 
+  if love.timer.getTime() >= press+0.3 and pressed == 1 then
+    pressed = 0;
+  end
+
   -- Does action on button --
   if love.keyboard.isDown("return") and pressed == 0 then
+    print(options.optActions[options.selected])
     currentAction()
     pressed=1
+    press = love.timer.getTime()
   end
 
   -- Move menu left --
-  if love.keyboard.isDown("left") and love.timer.getTime() >= press+0.5  then
+  if love.keyboard.isDown("left") and pressed == 0  then
     if options.selected == options.min then
       options.selected = options.max
     else
       options.selected = options.selected-1
     end
-    press = love.timer.getTime()
 
+    pressed=1
+    press = love.timer.getTime()
   end
 
   -- Move menu right --
-  if love.keyboard.isDown("right") and love.timer.getTime() >= press+0.5 then
+  if love.keyboard.isDown("right") and pressed == 0 then
     if options.selected == options.max then
       options.selected = options.min
     else
       options.selected = options.selected+1
     end
+
+    pressed=1
     press = love.timer.getTime()
   end
 end

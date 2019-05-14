@@ -15,7 +15,7 @@ function menu.initialize(screenObj, audioObj, inputObj, loaderObj)
 
   press = 0
 
-  options.initialize(loader)
+  options.initialize(loader, screen)
 end
 
 -- Menu's draw function --
