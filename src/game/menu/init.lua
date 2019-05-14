@@ -2,7 +2,8 @@
 -- Makes itself an object --
 local menu = {}
 
-local mainOpt = require("game.menu.mainOpt")
+-- Calls objects --
+local options = require("game.menu.options")
 
 -- Initializer function --
 function menu.initialize(screenObj, audioObj, inputObj, loaderObj)
@@ -14,18 +15,18 @@ function menu.initialize(screenObj, audioObj, inputObj, loaderObj)
 
   press = 0
 
-  mainOpt.initialize(loader)
+  options.initialize(loader)
 end
 
 -- Menu's draw function --
 function menu.draw()
   love.graphics.print("Lunare", 800/2-60, 600/2/2, 0, 3)
-  mainOpt.draw()
+  options.draw()
 end
 
 -- Menu's update function --
 function menu.update()
-  mainOpt.update()
+  options.update()
 end
 
 -- Returns itself --
