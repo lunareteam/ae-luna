@@ -1,4 +1,4 @@
-Personagem 1:This is a test text:1:mc_happy
-Personagem 2:This is a reply:2:aura
-Personagem 1:The reply actually hurt the MC (-100 HP):1:mc_sad
-nil:End:1,2:nil,nil
+Personagem 1:Olá:char1_happy,nil
+Personagem 1:Como vai?:char1_happy,nil
+Personagem 1:Esse é um teste do jogo:char1_happy,nil
+nil:End:nil,nil
