@@ -30,9 +30,13 @@ function vn.draw()
   pos = string.find(reader.scriptImg[scene], ",", 1, true)
   if not(string.sub(reader.scriptImg[scene], 1, pos-1) == "nil") then
     char1 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(reader.scriptImg[scene], 1, pos-1).. ".png")
+  else
+    char1 = nil
   end
   if not(string.sub(reader.scriptImg[scene], pos+1) == "nil") then
     char2 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(reader.scriptImg[scene], pos+1).. ".png")
+  else
+    char2 = nil
   end
 
   -- Draw Chars --
@@ -43,8 +47,9 @@ function vn.draw()
     love.graphics.draw(char2, 800/2/2*2+800/2/2/2 , 600/2/2, 0, 3)
   end
 
-  -- Draw Rectangles --
-  love.graphics.rectangle("fill", 800*0.05, 600/2/2*3-30, 800-600*0.15, 600*0.25-600*0.25*0.1)
+  -- Draw textbox --
+  textbox = love.graphics.newImage("game/text_txt/bg/textbox.jpg")
+  love.graphics.draw(textbox, 800*0.05, 600/2/2*3-30, 0, 1)
 
   -- Draws vn text --
   if not (reader.scriptNames[scene] == "nil") then
@@ -54,7 +59,7 @@ function vn.draw()
   vn.fadeIn()
 
   -- Draws text space and prints text asking for input --
-  love.graphics.print({{0, 255, 0, 1},"<Press Return>"}, 800-175, 600-70, 0, 1.2)
+  love.graphics.print({{0, 255, 0, 1},"<Press Return>"}, 800-185, 600-80, 0, 1.2)
 end
 
 -- Fades text --
@@ -77,8 +82,9 @@ function vn.update()
   if love.keyboard.isDown("return") and pressed==0 then
     -- Ends game when script ends --
 
-    if (scene == #reader.scriptImg) then
-      loader.changeGame("pong")
+    if (scene == #reader.scriptImg-1) then
+      action = loadstring(reader.scriptImg[scene+1])
+      action()
     elseif pressed==0 then
       reader.nextScene()    -- Goes to next scene
       alpha = 0             -- Resets alpha value

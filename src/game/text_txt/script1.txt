@@ -5,4 +5,7 @@ Você:De qualquer maneira, o que eu deveria jogar hoje?:char1_happy,nil
 nil:Você coloca a mão no fundo de sua caixa de jogos:char1_happy,nil
 Você:Eu deveria arrumar isso, tanta estante e eu tratando essas caixinhas assim:char1_happy,nil
 Você:Esse parece bom, tanto tempo que não jogo:char1_happy,nil
-Jogo:GAME START:nil,nil
+Jogo:GAME START, MAKE 10 POINTS:nil,nil
+Você:Esse console tem caixa de som?:char1_happy,nil
+Você:AAAAaaaa:nil,nil
+loader.changeGame("pong")
