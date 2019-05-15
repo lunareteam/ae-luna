@@ -8,7 +8,7 @@ function audio.initialize(loaderObj)
 end
 
 -- Starts BGM --
-function audio.startBGM()
+function audio.startBGM(name)
   audio.bgm = love.audio.newSource(name, "stream")
   love.audio.play(audio.bgm)
 end

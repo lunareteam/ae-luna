@@ -1,24 +1,40 @@
-local pong = {}
-local ball = require("game.pong.ball")
-local bar = require("game.pong.bar")
+-- Makes the method --
+local init = {}
 
-function pong.initialize(screenObj, audioObj, inputObj, loaderObj, scene)
-  -- Loads main objects --
+-- Calls --
+local bar = require("game.pong.bar")
+local ball = require("game.pong.ball")
+local player = require("game.pong.player")
+
+-- Initializer --
+function init.initialize(screenObj, audioObj, inputObj, loaderObj)
+  loader = loaderObj
   screen = screenObj
   audio = audioObj
   input = inputObj
-  loader = loaderObj
 
-  ball.initialize(bar)
-  bar.initialize()
+  player.initialize()
+  bar.initialize(screenObj, player)
+  ball.initialize(screenObj, bar, player)
 end
 
-function pong.draw()
---{tudo o que você quiser colocar}
+-- Drawer --
+function init.draw()
+  bar.draw()
+  ball.draw()
+  player.draw()
 end
 
-function pong.update()
---{tudo o que você quiser colocar}
+function init.update()
+  if player.score1 == 10 then
+    loader.changeGame("text_txt", 2)
+  elseif player.score2 == 10 then
+    loader.changeGame("text_txt", 0)
+  end
+
+  bar.update()
+  ball.update()
+  player.update()
 end
 
-return pong
+return init

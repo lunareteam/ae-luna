@@ -1,0 +1,4 @@
+Você:Onde é que eu estou?:char1_happy,nil
+Você:Ia começar a jogar agora, mas que droga!:char1_happy,nil
+nil:Continua:nil,nil
+loader.changeGame("menu")
