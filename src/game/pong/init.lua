@@ -26,6 +26,12 @@ function init.draw()
 end
 
 function init.update()
+  if player.score1 == 10 then
+    loader.changeGame("text_txt", 2)
+  elseif player.score2 == 10 then
+    loader.changeGame("text_txt", 0)
+  end
+
   bar.update()
   ball.update()
   player.update()
