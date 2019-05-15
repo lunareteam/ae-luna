@@ -35,9 +35,6 @@ function vn.draw()
     char2 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(reader.scriptImg[scene], pos+1).. ".png")
   end
 
-  print(char1)
-  print(char2)
-
   -- Draw Chars --
   if not(char1 == nil) then
     love.graphics.draw(char1, 800/2/2/2 , 600/2/2, 0, 3)
@@ -51,9 +48,9 @@ function vn.draw()
 
   -- Draws vn text --
   if not (reader.scriptNames[scene] == "nil") then
-    love.graphics.print({{255, 0, 255,alpha},reader.scriptNames[scene]}, 800*0.07, 600/2/2*3-10, 0, 1.2)
+    love.graphics.print({{255, 0, 0,alpha},reader.scriptNames[scene]}, 800*0.07, 600/2/2*3-10, 0, 1.2)
   end
-  love.graphics.print({{0, 0, 0,alpha},reader.scriptText[scene]}, 800*0.3, 600/2/2*3-10, 0, 1.2)
+  love.graphics.printf({{0, 0, 0,alpha}, reader.scriptText[scene]}, 800*0.3, 600/2/2*3-10, 250, "center", 0, 1.2)
   vn.fadeIn()
 
   -- Draws text space and prints text asking for input --
