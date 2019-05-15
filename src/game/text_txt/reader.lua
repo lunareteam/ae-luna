@@ -23,11 +23,15 @@ function reader.parser(option)
   reader.scriptText = {}
   for i=1, #reader.scriptImg do
     pos = string.find(reader.scriptImg[i], ":", 1, true)
-    table.insert(reader.scriptNames, string.sub(reader.scriptImg[i], 1, pos-1) )
-    reader.scriptImg[i] = string.sub(reader.scriptImg[i], pos+1)
+    if not(pos == nil) then
+      table.insert(reader.scriptNames, string.sub(reader.scriptImg[i], 1, pos-1) )
+      reader.scriptImg[i] = string.sub(reader.scriptImg[i], pos+1)
+    end
     pos = string.find(reader.scriptImg[i], ":", 1, true)
-    table.insert(reader.scriptText, string.sub(reader.scriptImg[i], 1, pos-1) )
-    reader.scriptImg[i] = string.sub(reader.scriptImg[i], pos+1)
+    if not(pos == nil) then
+      table.insert(reader.scriptText, string.sub(reader.scriptImg[i], 1, pos-1) )
+      reader.scriptImg[i] = string.sub(reader.scriptImg[i], pos+1)
+    end
   end
 end
 
