@@ -15,7 +15,7 @@ function menu.initialize(screenObj, audioObj, inputObj, loaderObj)
 
   press = 0
 
-  audio.startBGM("game/menu/bgm/menu.wav", "stream")
+  audio.startBGM("game/menu/bgm/menu.wav")
 
   options.initialize(loader, screen)
 end

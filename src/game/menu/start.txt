@@ -1,4 +1,4 @@
-New Game:loader.changeGame("text_txt", 1)
+New Game:loader.changeGame("text_txt", 1); audio.stopBGM();
 Load:
 Options:parser("options")
 Quit:love.event.quit()
