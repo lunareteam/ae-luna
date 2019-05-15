@@ -6,6 +6,9 @@ local screen = {}
 function screen.initialize(loaderObj)
   loader = loaderObj
   screen.getDimensions()
+
+  press = 0
+  pressed = 0
   
   screen.fullscreen = false
 end
@@ -42,6 +45,18 @@ end
 function screen.update()
   screen.getDimensions()
   love.window.setTitle(loader.game)
+
+  if love.timer.getTime() >= press+0.3 and pressed == 1 then
+    pressed = 0;
+  end
+
+  -- Does action on button --
+  if love.keyboard.isDown("escape") and pressed == 0 then
+    loader.changeGame("menu")
+    audio.stopBGM()
+    pressed=1
+    press = love.timer.getTime()
+  end
 end
 
 return screen
