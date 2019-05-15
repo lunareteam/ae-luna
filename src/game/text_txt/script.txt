@@ -1,4 +1,0 @@
-Personagem 1:Olá:char1_happy,nil
-Personagem 1:Como vai?:char1_happy,nil
-Personagem 1:Esse é um teste do jogo:char1_happy,nil
-nil:End:nil,nil

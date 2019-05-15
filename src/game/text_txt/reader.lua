@@ -3,8 +3,9 @@
 local reader = {}
 
 -- Initializer function
-function reader.initialize(nof)
-  scene = nof
+function reader.initialize(fileName)
+  file = fileName
+  scene = 1
   
   reader.parser()
 end
@@ -13,7 +14,7 @@ end
 function reader.parser(option)
   -- Reads script and inserts into table --
   reader.scriptImg = {}
-  for line in love.filesystem.lines("game/text_txt/script.txt") do
+  for line in love.filesystem.lines("game/text_txt/script".. file ..".txt") do
     table.insert(reader.scriptImg, line)
   end
 

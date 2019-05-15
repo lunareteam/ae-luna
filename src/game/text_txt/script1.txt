@@ -1,0 +1,8 @@
+nil:Você resolve jogar:nil,nil
+nil:Como todas as outras vezes isso te anima de uma maneira anormal:nil,nil
+Você:Mais um dia mais uma 'gameplis':char1_happy,nil
+Você:De qualquer maneira, o que eu deveria jogar hoje?:char1_happy,nil
+nil:Você coloca a mão no fundo de sua caixa de jogos:char1_happy,nil
+Você:Eu deveria arrumar isso, tanta estante e eu tratando essas caixinhas assim:char1_happy,nil
+Você:Esse parece bom, tanto tempo que não jogo:char1_happy,nil
+Jogo:GAME START:nil,nil
