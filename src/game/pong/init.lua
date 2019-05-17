@@ -13,9 +13,11 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
   audio = audioObj
   input = inputObj
 
+  audio.startBGM("game/pong/bgm/maintheme.ogg")
+
   player.initialize()
   bar.initialize(screenObj, player)
-  ball.initialize(screenObj, bar, player)
+  ball.initialize(screenObj, bar, player, audio)
 end
 
 -- Drawer --
@@ -27,8 +29,10 @@ end
 
 function init.update()
   if player.score1 == 10 then
+    audio.stopBGM()
     loader.changeGame("text_txt", 2)
   elseif player.score2 == 10 then
+    audio.stopBGM()
     loader.changeGame("text_txt", 0)
   end
 
