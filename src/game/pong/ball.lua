@@ -40,7 +40,7 @@ function ball.update()
   ball.posx = ball.posx + math.cos(ball.ang)*ball.velx
   ball.posy = ball.posy + math.sin(ball.ang)*ball.vely
 
-  --[[-- Makes the ball go back when hit --
+  -- Makes the ball go back when hit --
   if ((ball.posx+ball.velx <= bar.pos1+bar.width+ball.size/2) and
      ((ball.posy<=player.pos1+bar.height) and (ball.posy>=player.pos1)))
   or ((ball.posx+ball.velx >= bar.pos2-ball.size/2) and
@@ -49,19 +49,8 @@ function ball.update()
     -- Collision sound --
     audio.playSFX("game/pong/sfx/pop.ogg")
 
-    ball.velx=ball.velx*ball.constVel
-    ball.vely=ball.vely*ball.constVel
-    -- Inverts velocity --
-    ball.velx = -ball.velx
-    ball.vely = -ball.vely
   end
 
-  -- Reverts ball when it touches the extremities
-  if(ball.posy+ball.velx-ball.size/2<=10 or (ball.posy+ball.velx+ball.size/2)>600-10) then
-    ball.velx=ball.velx*ball.constVel
-    ball.vely=ball.vely*ball.constVel
-    ball.vely = -ball.vely
-  end]]--
 --vertical Collision--
 --wall--
   if ball.posy>=600-ball.size/2 then
