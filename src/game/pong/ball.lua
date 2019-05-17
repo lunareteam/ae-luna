@@ -1,6 +1,6 @@
 local ball = {}
 
-function ball.initialize(screenObj, barObj, playerObj)
+function ball.initialize(screenObj, barObj, playerObj, audioObj)
   screen = screenObj
   bar = barObj
   player = playerObj
@@ -43,7 +43,7 @@ function ball.update()
      ((ball.posy<=player.pos2+bar.height) and (ball.posy>=player.pos2))) then
 
     -- Collision sound --
-    --love.audio.play(pop)
+    audio.playSFX("game/pong/sfx/pop.ogg")
 
     ball.velx=ball.velx*ball.constVel
     ball.vely=ball.vely*ball.constVel

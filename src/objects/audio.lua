@@ -10,18 +10,19 @@ end
 -- Starts BGM --
 function audio.startBGM(name)
   audio.bgm = love.audio.newSource(name, "stream")
-  love.audio.play(audio.bgm)
+  audio.bgm:setLooping(true)
+  audio.bgm:play()
 end
 
 -- Ends BGM --
 function audio.stopBGM()
-  love.audio.stop(audio.bgm)
+  audio.bgm:stop()
 end
 
 -- Plays sfx when called --
 function audio.playSFX(name)
   audio.sfx = love.audio.newSource(name, "static")
-  love.audio.play(audio.sfx)
+  audio.sfx:play()
 end
 
 -- Main audio update function --
