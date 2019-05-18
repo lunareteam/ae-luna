@@ -7,7 +7,7 @@ nil:Não saindo de casa a menos que fosse necessário assinar os papeis de suas 
 Você:Merda, preciso jogar:char1_happy,nil
 Você:Tem varios jogos nipponicos e duvidosos para eu me deliciar no meu computador, porém...:char1_happy,nil
 Você:A realidade é que o vazio me impossibilita de jogar no momento, preciso de algo mais agitado:char1_happy,nil
-Você:Linda internet, não me decepcione hoje como fez depois daquelas imagens do 'Astolpho':char1_happy,nil
+Você:Linda internet, não me decepcione hoje como fez depois daquelas imagens do trapzinho:char1_happy,nil
 Você:Por que a barreira de genêro tem que ser tão cruel com meus desenhos lee-park'eanos:char1_happy,nil
 nil:Mais uma aventura por canais de pirataria online parecia se aproximar:char1_happy,nil
 Você:Oh god, olha esse mafia boss nesse ad:char1_happy,nil
