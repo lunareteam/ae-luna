@@ -33,7 +33,7 @@ function init.update()
     loader.changeGame("text_txt", 2)
   elseif player.score2 == 10 then
     audio.stopBGM()
-    loader.changeGame("text_txt", 0)
+    loader.gameover()
   end
 
   bar.update()

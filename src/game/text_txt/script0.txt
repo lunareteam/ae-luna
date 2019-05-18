@@ -1,2 +1,2 @@
 nil:GAME OVER YEAH:nil,nil
-audio.playSFX("game/sfx/gameover.ogg"); loader.changeGame("menu")
+loader.changeGame("menu")
