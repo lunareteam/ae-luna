@@ -16,7 +16,7 @@ Você:*cof**cof*:char1_happy,nil
 Você:HAHA:char1_happy,nil
 nil:Ok, pare, já deu né amigo:char1_happy,nil
 Você:Espero ter uns dating sims aqui, aí será meu fim:char1_happy,nil
-nil:Nota - Não haveŕa dating sims, o protagonista não merece:char1_happy,nil
+nil:Nota - Não haverá dating sims, o protagonista não merece:char1_happy,nil
 nil:Enquanto você saltitava à procura do próximo jogo, algo se aproxima:char1_happy,nil
 nil:Se você não fosse assim poderia até se pensar que era um stalker:char1_happy,nil
 nil:Ele se aproxima porém você não percebe, há coisas mais importantes para você no momento:char1_happy,nil

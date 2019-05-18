@@ -6,7 +6,7 @@ nil:Não que ele fosse bom o suficiente para te proporcionar dinheiro para viver
 nil:Não saindo de casa a menos que fosse necessário assinar os papeis de suas encomendas de jogos importados, um dia enquanto você escolhia um jogo:nil,nil
 Você:Merda, preciso jogar:char1_happy,nil
 Você:Tem varios jogos nipponicos e duvidosos para eu me deliciar no meu computador, porém...:char1_happy,nil
-Você:A realidade é que o vazio me impossibilita de jogar no momento, preciso de algo mais agitado:char1_happy,nil
+Você:A realidade é que o vazio me impossibilita de jogar esses agora, preciso de algo novo:char1_happy,nil
 Você:Linda internet, não me decepcione hoje como fez depois daquelas imagens do trapzinho:char1_happy,nil
 Você:Por que a barreira de genêro tem que ser tão cruel com meus desenhos lee-park'eanos:char1_happy,nil
 nil:Mais uma aventura por canais de pirataria online parecia se aproximar:char1_happy,nil
@@ -15,9 +15,9 @@ Você:Como se eu fosse clicar, ha, você perdeu hoje jogo aleatório da internet
 nil:Após hesitar 0.2ms depois de dizer isso você acaba clicando no ad:char1_happy,nil
 Você:Mas o que.. O jogo é para consoles?:char1_happy,nil
 Você:Que empresa sem principios é essa que aprovou isso?:char1_happy,nil
-nil:Como você tem o item 'console que esse jogo foi lançado' de nivel 'unknown' com todas as habilidades secretas habilitadas você baixa a 'demonstração' completa do jogo e coloca nele:char1_happy,nil
+nil:Como você tem o item 'console que esse jogo foi lançado' com habilidades secretas você baixa a 'demonstração' completa do jogo e coloca nele:char1_happy,nil
 nil:Ao bootar o jogo seu console começa a fazer baralho, como se algo estivesse travado dentro do console:char1_happy,nil
-Você:Mas não tem disco nesse console, ele é nas nuvens meuamigo, será esse um daqueles homebrew que bricka o sistema? Decepcionante:char1_happy,nil
+Você:Mas não tem disco nesse console, ele é nas nuvens meuamigo, será esse um daqueles homebrew que bricka o sistema? Surpreendente:char1_happy,nil
 nil:Você já começa a pensar o que deveria fazer ao perder seu precioso amigo porém, algo acontece:char1_happy,nil
 nil:O console começa a brilhar e lhe avisa:char1_happy,nil
 Console:INICIO DO JOGO:char1_happy,nil
