@@ -3,12 +3,12 @@
 local screen = {}
 
 -- Initialization function --
-function screen.initialize(loaderObj)
+function screen.initialize(loaderObj, inputObj)
+  -- Loads called objects --
   loader = loaderObj
-  screen.getDimensions()
+  input = inputObj
 
-  press = 0
-  pressed = 0
+  screen.getDimensions()
   
   screen.fullscreen = false
 end
@@ -43,19 +43,17 @@ end
 
 -- Update function --
 function screen.update()
+  -- Get pixel height/width --
   screen.getDimensions()
+  -- Set title for each screen --
   love.window.setTitle(loader.game)
 
-  if love.timer.getTime() >= press+0.3 and pressed == 1 then
-    pressed = 0;
-  end
-
-  -- Does action on button --
-  if love.keyboard.isDown("escape") and pressed == 0 then
-    loader.changeGame("menu")
-    audio.stopBGM()
-    pressed=1
-    press = love.timer.getTime()
+  if not (loader.game == "menu") then
+    -- Goes back to menu --
+    if input.getKey("escape") then
+      audio.stopBGM()
+      loader.changeGame("menu")
+    end
   end
 end
 
