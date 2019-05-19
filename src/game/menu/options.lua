@@ -59,7 +59,7 @@ function love.keyreleased(k)
   end
 end
 function options.update()
-  if released<0.5 then
+  if released<=0.5 then
     released=released+0.5
   end
   -- Loads action --

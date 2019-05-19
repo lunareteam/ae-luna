@@ -29,7 +29,7 @@ end
 
 -- Menu's update function --
 function menu.update()
-  print(pressed," ",released)
+
   options.update()
 end
 

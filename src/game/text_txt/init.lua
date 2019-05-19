@@ -76,7 +76,7 @@ end
 -- VN's update function --
 function vn.update()
   -- Action to go to next scene with delay --
-  if input.getKey("return") then
+  if input.getKey("return") or input.getClick() then
     -- Ends game when script ends, else goes to next scene --
     if (scene == #reader.scriptImg-1) then
       audio.stopBGM()
