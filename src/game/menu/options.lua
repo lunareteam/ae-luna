@@ -58,7 +58,7 @@ function options.update()
   currentAction = loadstring(options.optActions[options.selected])
 
   -- Does action on button --
-  if input.getKey("return") then
+  if input.getKey("return") or input.getClick() then
     currentAction()
   end
 
