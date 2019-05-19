@@ -1,2 +1,3 @@
 Go Fullscreen/Windowed:toggleFullscreen()
-Go Back:parser("start")
+Mute/Unmute:audio.toggleSound()
+Go Back/Save Settings:loader.saveSettings(); parser("start");
