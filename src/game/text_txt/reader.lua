@@ -7,6 +7,7 @@ function reader.initialize(fileName)
   file = fileName
   scene = 1
   
+  -- Parse file --
   reader.parser()
 end
 

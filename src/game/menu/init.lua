@@ -7,7 +7,7 @@ local options = require("game.menu.options")
 
 -- Initializer function --
 function menu.initialize(screenObj, audioObj, inputObj, loaderObj)
-  -- Loads main objects --
+  -- Loads called objects --
   screen = screenObj
   audio = audioObj
   input = inputObj
@@ -17,7 +17,7 @@ function menu.initialize(screenObj, audioObj, inputObj, loaderObj)
   
   press = 0
 
-  options.initialize(loader, screen)
+  options.initialize(loader, screen, input)
 end
 
 -- Menu's draw function --

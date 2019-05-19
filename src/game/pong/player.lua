@@ -1,11 +1,18 @@
+--[[Player inside game]]--
+-- Makes itself an object --
 local player = {}
 
 -- Initializer --
 function player.initialize(screenObj, barObj)
+  -- Loads called objects --
   screen = screenObj
   bar = barObj
+
+  -- Score vars --
   player.score1 = 0
   player.score2 = 0
+
+  -- Player pos --
   player.pos1 = nil
   player.pos2 = nil
 end
