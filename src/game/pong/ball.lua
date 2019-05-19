@@ -141,7 +141,7 @@ end
     ball.velx=-ball.velx
     ball.posx=ball.posx-5
     ball.posy=ball.posy-5
-
+end
   -- Player 1 loss --
   if ball.posx<=ball.size/2 then
     ball.setStart()
@@ -157,5 +157,4 @@ end
   end
 
 end
-
 return ball
