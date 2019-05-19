@@ -17,8 +17,9 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, scene)
   pressed = 0  -- Keypress limit
   fadeInTime = 0  -- Fade in time
 
-  -- Initializes script reader --
+  audio.startBGM("game/text_txt/bgm/main.xm")
 
+  -- Initializes script reader --
   reader.initialize(scene)
 end
 
@@ -83,6 +84,7 @@ function vn.update()
     -- Ends game when script ends --
 
     if (scene == #reader.scriptImg-1) then
+      audio.stopBGM()
       action = loadstring(reader.scriptImg[scene+1])
       action()
     elseif pressed==0 then

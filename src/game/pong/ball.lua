@@ -7,7 +7,10 @@ function ball.initialize(screenObj, barObj, playerObj, audioObj)
   -- Ball Position --
   ball.size = (800+600)/2*0.05
   ball.constVel = 1.001
+  ball.angles={0, 30, 60, 120, 150, 180, 210, 240, 300, 330}
+  ball.ang=ball.angles[math.random(1,10)]
   ball.setStart()
+
 end
 
 -- Function to draw ball --
@@ -32,9 +35,10 @@ end
 function ball.update()
   ball.velx=ball.velx*ball.constVel
   ball.vely=ball.vely*ball.constVel
+
   -- Ball movement --
-  ball.posx = ball.posx + ball.velx
-  ball.posy = ball.posy + ball.vely
+  ball.posx = ball.posx + math.cos(ball.ang)*ball.velx
+  ball.posy = ball.posy + math.sin(ball.ang)*ball.vely
 
   -- Makes the ball go back when hit --
   if ((ball.posx+ball.velx <= bar.pos1+bar.width+ball.size/2) and
@@ -45,20 +49,90 @@ function ball.update()
     -- Collision sound --
     audio.playSFX("game/pong/sfx/pop.ogg")
 
-    ball.velx=ball.velx*ball.constVel
-    ball.vely=ball.vely*ball.constVel
-    -- Inverts velocity --
-    ball.velx = -ball.velx
-    ball.vely = -ball.vely
   end
 
-  -- Reverts ball when it touches the extremities
-  if(ball.posy+ball.velx-ball.size/2<=10 or (ball.posy+ball.velx+ball.size/2)>600-10) then
-    ball.velx=ball.velx*ball.constVel
-    ball.vely=ball.vely*ball.constVel
-    ball.vely = -ball.vely
-  end
+--vertical Collision--
+--wall--
+  if ball.posy>=600-ball.size/2 then
+    ball.vely=-ball.vely
+    ball.posy=600-ball.size/2 -1
+  elseif ball.posy<=ball.size/2 then
+    ball.vely=-ball.vely
+    ball.posy=ball.size/2 +1
 
+--bar horizontal Collision1--
+  elseif ball.posy<=player.pos1+bar.height and ball.posy>=player.pos1 and ball.posx<=bar.pos1+bar.width+ball.size/2 and ball.posx>=bar.pos1+bar.width then
+    ball.velx=-ball.velx
+    ball.posx=bar.pos1+bar.width+ball.size/2+1
+  elseif ball.posy<=player.pos1+bar.height and ball.posy>=player.pos1 and ball.posx>=bar.pos1-ball.size/2 and ball.posx<=bar.pos1 then
+    ball.velx=-ball.velx
+    ball.posx=bar.pos1-ball.size/2
+--bar vertical Collision1--
+  elseif ball.posy<=player.pos1-ball.size/2 and ball.posy>=player.pos1 and ball.posx>=bar.posx and ball.posx<=bar.posx+bar.width then
+    ball.posy=player.pos1-ball.size/2
+    ball.vely=-ball.vely
+  elseif ball.posy<=player.pos1+bar.height+ball.size/2 and ball.posy>=player.pos1+bar.height and ball.posx>=bar.pos1 and  ball.posx<=bar.pos1+bar.width then
+    ball.posy=player.pos1+bar.height+ball.size/2
+    ball.vely=-ball.vely
+--bar edge Collision1--
+  elseif (bar.pos1+bar.width-ball.posx)^2+(player.pos1-ball.posy)^2<=(ball.size/2)^2 then
+    ball.vely=-ball.vely
+    ball.velx=-ball.velx
+    ball.posx=ball.posx+2
+    ball.poyx=ball.posy-2
+  elseif ((bar.pos1+bar.width)-ball.posx)^2+(player.pos1+bar.height-ball.posy)^2<=(ball.size/2)^2 then
+    ball.vely=-ball.vely
+    ball.velx=-ball.velx
+    ball.posx=ball.posx+2
+    ball.poyx=ball.posy+2
+  elseif ((bar.pos1)-ball.posx)^2+(player.pos1+bar.height-ball.posy)^2<=(ball.size/2)^2 then
+    ball.vely=-ball.vely
+    ball.velx=-ball.velx
+    ball.posx=ball.posx-2
+    ball.poyx=ball.posy+2
+  elseif ((bar.pos1)-ball.posx)^2+(player.pos1-ball.posy)^2<=(ball.size/2)^2 then
+    ball.vely=-ball.vely
+    ball.velx=-ball.velx
+    ball.posx=ball.posx-2
+    ball.poyx=ball.posy-2
+-------the same, but for bar 2-bar------
+--bar2 horizontal Collision--
+  elseif ball.posy<=player.pos2+bar.height and ball.posy>=player.pos2 and ball.posx<=bar.pos2+bar.width+ball.size/2 and ball.posx>=bar.pos2+bar.width then
+    ball.velx=-ball.velx
+    ball.posx=bar.pos2+bar.width+ball.size/2+2
+  elseif ball.posy<=player.pos2+bar.height and ball.posy>=player.pos2 and ball.posx>=bar.pos2-ball.size/2 and ball.posx<=bar.pos2 then
+    ball.velx=-ball.velx
+    ball.posx=bar.pos2-ball.size/2
+--bar2 vertical Collision--
+  elseif ball.posy<=player.pos2-ball.size/2 and ball.posy>=player.pos2 and ball.posx>=bar.posx and ball.posx<=bar.posx+bar.width then
+    ball.posy=player.pos2-ball.size/2
+    ball.vely=-ball.vely
+  elseif ball.posy<=player.pos2+bar.height+ball.size/2 and ball.posy>=player.pos2+bar.height and ball.posx>=bar.pos2 and  ball.posx<=bar.pos2+bar.width then
+    ball.posy=player.pos2+bar.height+ball.size/2
+    ball.vely=-ball.vely
+--bar2 edge Collision--
+  elseif (bar.pos2+bar.width-ball.posx)^2+(player.pos2-ball.posy)^2<=(ball.size/2)^2 then
+    ball.vely=-ball.vely
+    ball.velx=-ball.velx
+    ball.posx=ball.posx+2
+    ball.poyx=ball.posy-2
+  elseif ((bar.pos2+bar.width)-ball.posx)^2+(player.pos2+bar.height-ball.posy)^2<=(ball.size/2)^2 then
+    ball.vely=-ball.vely
+    ball.velx=-ball.velx
+    ball.posx=ball.posx+2
+    ball.poyx=ball.posy+2
+  elseif ((bar.pos2)-ball.posx)^2+(player.pos2+bar.height-ball.posy)^2<=(ball.size/2)^2 then
+    ball.vely=-ball.vely
+    ball.velx=-ball.velx
+    ball.posx=ball.posx-2
+    ball.poyx=ball.posy+2
+  elseif ((bar.pos2)-ball.posx)^2+(player.pos2-ball.posy)^2<=(ball.size/2)^2 then
+    ball.vely=-ball.vely
+    ball.velx=-ball.velx
+    ball.posx=ball.posx-2
+    ball.poyx=ball.posy-2
+
+end
   -- Player 1 loss --
   if ball.posx<=0 then
     ball.setStart()
