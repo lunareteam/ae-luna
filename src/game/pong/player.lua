@@ -61,7 +61,7 @@ function player.update()
       player.direction=0
     end
   end
-  print(player.direction)
+
   ---------------
 
 end

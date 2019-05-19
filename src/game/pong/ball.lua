@@ -41,6 +41,21 @@ end
   -- Ball movement --
   ball.posx = ball.posx + math.cos(ball.ang)*ball.velx
   ball.posy = ball.posy + math.sin(ball.ang)*ball.vely
+<<<<<<< HEAD
+=======
+
+  -- Makes the ball go back when hit --
+  if ((ball.posx+ball.velx <= bar.pos1+bar.width+ball.size/2) and
+     ((ball.posy<=player.pos1+bar.height) and (ball.posy>=player.pos1)))
+  or ((ball.posx+ball.velx >= bar.pos2-ball.size/2) and
+     ((ball.posy<=player.pos2+bar.height) and (ball.posy>=player.pos2))) then
+
+    -- Collision sound --
+    audio.playSFX("game/pong/sfx/pop.ogg")
+
+  end
+
+>>>>>>> 121a5569e00c6d6f4a776ba270dcda01e3a675be
 --vertical Collision--
 --wall--
   if ball.posy>=600-ball.size/2 then
