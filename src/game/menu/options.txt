@@ -1,2 +1,2 @@
 Go Fullscreen/Windowed:toggleFullscreen()
-Go Back:parser("start")
+Go Back:parser("start");

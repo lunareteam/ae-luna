@@ -24,6 +24,7 @@ end
 function loader.gameover()
   audio.playSFX("game/text_txt/sfx/gameover.ogg")
   loader.changeGame("text_txt", 0)
+
 end
 
 -- Changes game object --
@@ -31,6 +32,7 @@ function loader.changeGame(name)
   loader.game = name
   game = require(loader.gamePath())
   game.initialize(screen, audio, input, loader)
+
 end
 
 -- Changes game object --
@@ -38,6 +40,7 @@ function loader.changeGame(name, nof)
   loader.game = name
   game = require(loader.gamePath())
   game.initialize(screen, audio, input, loader, nof)
+
 end
 
 -- Game's draw function --

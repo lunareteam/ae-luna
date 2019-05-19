@@ -12,9 +12,10 @@ function menu.initialize(screenObj, audioObj, inputObj, loaderObj)
   audio = audioObj
   input = inputObj
   loader = loaderObj
-
+  pressed=0
+  released=0
   audio.startBGM("game/menu/bgm/menu.wav")
-  
+
   press = 0
 
   options.initialize(loader, screen, input)
@@ -28,6 +29,7 @@ end
 
 -- Menu's update function --
 function menu.update()
+  print(pressed," ",released)
   options.update()
 end
 

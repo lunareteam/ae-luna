@@ -7,9 +7,10 @@ function screen.initialize(loaderObj, inputObj)
   -- Loads called objects --
   loader = loaderObj
   input = inputObj
+  x=0
 
   screen.getDimensions()
-  
+
   screen.fullscreen = false
 end
 
@@ -50,7 +51,7 @@ function screen.update()
 
   if not (loader.game == "menu") then
     -- Goes back to menu --
-    if input.getKey("escape") then
+    if input.getKey("escape") or x==1 then
       audio.stopBGM()
       loader.changeGame("menu")
     end
