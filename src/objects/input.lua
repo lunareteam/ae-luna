@@ -23,6 +23,20 @@ function input.getKey(string)
     return false
 end
 
+-- Function to get key easier --
+function input.getClick()
+    -- Gets string --
+    if love.keyboard.isDown("l") and input.pressed==false then
+        -- Return was pressed,so it is unable to be pressed again --
+        input.pressed = true
+        press = love.timer.getTime()
+
+        return true
+    end
+
+    return false
+end
+
 -- Reset vars when needed --
 function input.reset()
     press = 0
