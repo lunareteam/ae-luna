@@ -1,4 +1,5 @@
--- Makes the method --
+--[[Pong main file]]--
+-- Makes itself an object --
 local init = {}
 
 -- Calls --
@@ -8,6 +9,7 @@ local player = require("game.pong.player")
 
 -- Initializer --
 function init.initialize(screenObj, audioObj, inputObj, loaderObj)
+  -- Loads called objects --
   loader = loaderObj
   screen = screenObj
   audio = audioObj
