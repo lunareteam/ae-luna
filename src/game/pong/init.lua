@@ -1,4 +1,5 @@
--- Makes the method --
+--[[Pong main file]]--
+-- Makes itself an object --
 local init = {}
 
 -- Calls --
@@ -8,6 +9,7 @@ local player = require("game.pong.player")
 
 -- Initializer --
 function init.initialize(screenObj, audioObj, inputObj, loaderObj)
+  -- Loads called objects --
   loader = loaderObj
   screen = screenObj
   audio = audioObj
@@ -33,7 +35,7 @@ function init.update()
     loader.changeGame("text_txt", 2)
   elseif player.score2 == 10 then
     audio.stopBGM()
-    loader.changeGame("text_txt", 0)
+    loader.gameover()
   end
 
   bar.update()

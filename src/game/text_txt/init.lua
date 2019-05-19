@@ -7,25 +7,27 @@ local reader = require("game.text_txt.reader")
 
 -- Initializer function --
 function vn.initialize(screenObj, audioObj, inputObj, loaderObj, scene)
-  -- Loads main objects --
+  -- Loads called objects --
   screen = screenObj
   audio = audioObj
   input = inputObj
   loader = loaderObj
+
+  -- Properties variables --
   alpha = 0       -- Alpha value
-  press = 0
-  pressed = 0  -- Keypress limit
-  fadeInTime = 0  -- Fade in time
+  fadeInTime = 0  -- Fade in timer
+
+  -- Song initializer
+  audio.startBGM("game/text_txt/bgm/main.xm")
 
   -- Initializes script reader --
-
   reader.initialize(scene)
 end
 
 -- VN's draw function --
 function vn.draw()
 
-  -- Draws characters --
+  --[[ Draws characters ]]--
   -- Parse chars --
   pos = string.find(reader.scriptImg[scene], ",", 1, true)
   if not(string.sub(reader.scriptImg[scene], 1, pos-1) == "nil") then
@@ -53,9 +55,9 @@ function vn.draw()
 
   -- Draws vn text --
   if not (reader.scriptNames[scene] == "nil") then
-    love.graphics.print({{255, 0, 0,alpha},reader.scriptNames[scene]}, 800*0.07, 600/2/2*3-10, 0, 1.2)
+    love.graphics.print({{255, 0, 0,alpha},reader.scriptNames[scene]}, 800*0.075, 600/2/2*3-10, 0, 1.2)
   end
-  love.graphics.printf({{0, 0, 0,alpha}, reader.scriptText[scene]}, 800*0.3, 600/2/2*3-10, 250, "center", 0, 1.2)
+  love.graphics.printf({{0, 0, 0,alpha}, reader.scriptText[scene]}, 800*0.25, 600/2/2*3-10, 350, "center", 0, 1.2)
   vn.fadeIn()
 
   -- Draws text space and prints text asking for input --
@@ -73,25 +75,17 @@ end
 
 -- VN's update function --
 function vn.update()
-
-  if love.timer.getTime() >= press+0.3 and pressed == 1 then
-    pressed = 0;
-  end
-
   -- Action to go to next scene with delay --
-  if love.keyboard.isDown("return") and pressed==0 then
-    -- Ends game when script ends --
-
+  if input.getKey("return") then
+    -- Ends game when script ends, else goes to next scene --
     if (scene == #reader.scriptImg-1) then
+      audio.stopBGM()
       action = loadstring(reader.scriptImg[scene+1])
       action()
-    elseif pressed==0 then
+    elseif input.pressed == true then
       reader.nextScene()    -- Goes to next scene
       alpha = 0             -- Resets alpha value
     end
-    --return was pressed,so it is unable to be pressed again--
-    pressed=1
-    press = love.timer.getTime()
   end
 end
 

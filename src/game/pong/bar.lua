@@ -2,6 +2,7 @@ local bar = {}
 
 -- Initializer --
 function bar.initialize(screenObj, playerObj)
+  -- Loads called objects --
   screen = screenObj
   player = playerObj
   -- Self Variables --
