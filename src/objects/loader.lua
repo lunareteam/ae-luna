@@ -19,8 +19,6 @@ function loader.initialize(screenObj, audioObj, inputObj)
     end
   end
 
-  loader.game = "menu"
-
   -- Starts the menu at the start --
   loader.changeGame("menu")
 end
@@ -28,6 +26,7 @@ end
 -- Loads game from save --
 function loader.loadGame()
   if love.filesystem.getInfo("save") then
+    audio.stopBGM()
     save = love.filesystem.read("save")
     gamePos  = string.find(save, "game=", 1, true)
     nofPos   = string.find(save, "nof=", 1, true)
@@ -35,8 +34,6 @@ function loader.loadGame()
     game  = string.sub(save, gamePos+5, nofPos-2)
     nof   = string.sub(save, nofPos+4, scenePos-2)
     scene = string.sub(save, scenePos+6, save:len()-1)
-
-
     if nof == "\n" then
       loader.changeGame(game)
     elseif scene == "\n"  then
@@ -77,11 +74,23 @@ function loader.saveGame(name, nof, scene)
   end
 end
 
+-- Saves game --
+function loader.saveGame(name, nof, scene)
+  if not (name == "menu" and (name == "text_txt" and nof == "0")) then
+    if nof == nil then
+      love.filesystem.write("save", "game=" .. name .. "\nnof=" .. "nil" .. "\nscene=" .. "nil")
+    elseif scene == nil then 
+      love.filesystem.write("save", "game=" .. name .. "\nnof=" .. nof .. "\nscene=" .. "nil")
+    else
+      love.filesystem.write("save", "game=" .. name .. "\nnof=" .. nof .. "\nscene=" .. scene)
+    end
+  end
+end
+
 -- Changes game object --
 function loader.changeGame(name)
   loader.saveGame(name)
   loader.game = name
-  print(loader.gamePath())
   game = require(loader.gamePath())
   game.initialize(screen, audio, input, loader)
 
@@ -91,10 +100,17 @@ end
 function loader.changeGame(name, nof)
   loader.saveGame(name,nof)
   loader.game = name
-  print(loader.gamePath())
   game = require(loader.gamePath())
   game.initialize(screen, audio, input, loader, nof)
 
+end
+
+-- Changes game object --
+function loader.changeGame(name, nof, scene)
+  loader.saveGame(name,nof,scene)
+  loader.game = name
+  game = require(loader.gamePath())
+  game.initialize(screen, audio, input, loader, nof, scene)
 end
 
 -- Changes game object --
