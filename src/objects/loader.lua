@@ -58,6 +58,20 @@ end
 function loader.gameover()
   audio.playSFX("game/text_txt/sfx/gameover.ogg")
   loader.changeGame("text_txt", 0)
+
+end
+
+-- Saves game --
+function loader.saveGame(name, nof, scene)
+  if not (name == "menu") then
+    if nof == nil then
+      love.filesystem.write("save", "game=" .. name .. "\nnof=" .. "nil" .. "\nscene=" .. "nil")
+    elseif scene == nil then
+      love.filesystem.write("save", "game=" .. name .. "\nnof=" .. nof .. "\nscene=" .. "nil")
+    else
+      love.filesystem.write("save", "game=" .. name .. "\nnof=" .. nof .. "\nscene=" .. scene)
+    end
+  end
 end
 
 -- Saves game --
@@ -79,6 +93,7 @@ function loader.changeGame(name)
   loader.game = name
   game = require(loader.gamePath())
   game.initialize(screen, audio, input, loader)
+
 end
 
 -- Changes game object --
@@ -87,6 +102,15 @@ function loader.changeGame(name, nof)
   loader.game = name
   game = require(loader.gamePath())
   game.initialize(screen, audio, input, loader, nof)
+
+end
+
+-- Changes game object --
+function loader.changeGame(name, nof, scene)
+  loader.saveGame(name,nof,scene)
+  loader.game = name
+  game = require(loader.gamePath())
+  game.initialize(screen, audio, input, loader, nof, scene)
 end
 
 -- Changes game object --

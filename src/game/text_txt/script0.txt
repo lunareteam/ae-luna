@@ -1,2 +1,2 @@
 nil:GAME OVER YEAH:nil,nil
-loader.changeGame("menu")
+loader.changeGame("menu");

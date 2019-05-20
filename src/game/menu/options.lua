@@ -53,17 +53,27 @@ function options.draw()
 end
 
 -- options update function --
+function love.keyreleased(k)
+  if k==  'return' then
+    released=1
+  end
+end
 function options.update()
+  if released<=0.5 then
+    released=released+0.5
+  end
   -- Loads action --
   currentAction = loadstring(options.optActions[options.selected])
 
   -- Does action on button --
+
   if input.getKey("return") or input.getClick() then
     currentAction()
   end
 
   -- Move menu left --
   if input.getKey("left")  then
+    released=1
     if options.selected == options.min then
       options.selected = options.max
     else
@@ -73,6 +83,7 @@ function options.update()
 
   -- Move menu right --
   if input.getKey("right") then
+    released=1
     if options.selected == options.max then
       options.selected = options.min
     else

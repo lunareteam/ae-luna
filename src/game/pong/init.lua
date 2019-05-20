@@ -33,10 +33,12 @@ function init.update()
   if player.score1 == 5 then
     audio.stopBGM()
     loader.changeGame("text_txt", 2)
-  elseif player.score2 == 5 then
+  elseif player.score2 == 5 or love.keyboard.isDown('k') then
     audio.stopBGM()
     loader.gameover()
+    parser("start")
   end
+
 
   bar.update()
   ball.update()
