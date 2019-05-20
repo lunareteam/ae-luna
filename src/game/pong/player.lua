@@ -28,7 +28,6 @@ function player.draw()
 end
 
 function player.update()
-
   ---delay
   player.delay=player.delay+1
   if player.delay>5 then
@@ -59,10 +58,8 @@ function player.update()
       player.pos2 = player.pos2 - 10
     end
 
-
   -- l to go down as player 2 --
   elseif player.direction==0  then
-
     -- This condition makes the bar not pass the border limits --
     if player.pos2+bar.height+10 <= 600- ball.size then
       player.pos2 = player.pos2 + 10
@@ -70,11 +67,9 @@ function player.update()
   else
     player.pos2=player.pos2
   end
-
-  --player2 """"a.i."""" --
+  
   if ball.posx>300 and player.delay==1  then
     if ball.posy<player.pos2+ball.size+math.abs(ball.vely) then
-
       player.direction=1
     elseif ball.posy-math.abs(ball.vely)>player.pos2+bar.height*0.6 then
         player.direction=0

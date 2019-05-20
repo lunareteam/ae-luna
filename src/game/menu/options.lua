@@ -66,9 +66,9 @@ function options.update()
   currentAction = loadstring(options.optActions[options.selected])
 
   -- Does action on button --
-  if input.getKey("return") and released ==1 then
-    currentAction()
 
+  if input.getKey("return") or input.getClick() then
+    currentAction()
   end
 
   -- Move menu left --
