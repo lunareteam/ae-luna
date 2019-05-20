@@ -30,10 +30,10 @@ function init.draw()
 end
 
 function init.update()
-  if player.score1 == 10 then
+  if player.score1 == 5 then
     audio.stopBGM()
     loader.changeGame("text_txt", 2)
-  elseif player.score2 == 10 or love.keyboard.isDown( 'k') then
+  elseif player.score2 == 5 or love.keyboard.isDown('k') then
     audio.stopBGM()
     loader.gameover()
     parser("start")

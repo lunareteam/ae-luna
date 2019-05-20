@@ -19,8 +19,6 @@ function loader.initialize(screenObj, audioObj, inputObj)
     end
   end
 
-  loader.game = "menu"
-
   -- Starts the menu at the start --
   loader.changeGame("menu")
 end
@@ -28,6 +26,7 @@ end
 -- Loads game from save --
 function loader.loadGame()
   if love.filesystem.getInfo("save") then
+    audio.stopBGM()
     save = love.filesystem.read("save")
     gamePos  = string.find(save, "game=", 1, true)
     nofPos   = string.find(save, "nof=", 1, true)
@@ -77,7 +76,7 @@ end
 
 -- Saves game --
 function loader.saveGame(name, nof, scene)
-  if not (name == "menu") then
+  if not (name == "menu" and (name == "text_txt" and nof == "0")) then
     if nof == nil then
       love.filesystem.write("save", "game=" .. name .. "\nnof=" .. "nil" .. "\nscene=" .. "nil")
     elseif scene == nil then 
@@ -92,7 +91,6 @@ end
 function loader.changeGame(name)
   loader.saveGame(name)
   loader.game = name
-  print(loader.gamePath())
   game = require(loader.gamePath())
   game.initialize(screen, audio, input, loader)
 
@@ -102,7 +100,6 @@ end
 function loader.changeGame(name, nof)
   loader.saveGame(name,nof)
   loader.game = name
-  print(loader.gamePath())
   game = require(loader.gamePath())
   game.initialize(screen, audio, input, loader, nof)
 
