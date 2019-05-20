@@ -43,10 +43,10 @@ function vn.draw()
 
   -- Draw Chars --
   if not(char1 == nil) then
-    love.graphics.draw(char1, 800/2/2/2 , 600/2/2, 0, 3)
+    love.graphics.draw(char1, 800/2/2/2/2 , 600/2/2/2, 0, 3)
   end
   if not(char2 == nil) then
-    love.graphics.draw(char2, 800/2/2*2+800/2/2/2 , 600/2/2, 0, 3)
+    love.graphics.draw(char2, 800/2/2/2*2+800/2/2/2/2 , 600/2/2/2, 0, 3)
   end
 
   -- Draw textbox --
