@@ -5,6 +5,7 @@ local vn = {}
 -- Calls opbjects --
 local reader = require("game.text_txt.reader")
 
+
 -- Initializer function --
 function vn.initialize(screenObj, audioObj, inputObj, loaderObj, scene)
   -- Loads called objects --
@@ -12,7 +13,6 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, scene)
   audio = audioObj
   input = inputObj
   loader = loaderObj
-
   -- Properties variables --
   alpha = 0       -- Alpha value
   fadeInTime = 0  -- Fade in timer
@@ -26,9 +26,9 @@ end
 
 -- VN's draw function --
 function vn.draw()
-
   --[[ Draws characters ]]--
   -- Parse chars --
+
   pos = string.find(reader.scriptImg[scene], ",", 1, true)
   if not(string.sub(reader.scriptImg[scene], 1, pos-1) == "nil") then
     char1 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(reader.scriptImg[scene], 1, pos-1).. ".png")

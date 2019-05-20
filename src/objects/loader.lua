@@ -35,7 +35,6 @@ function loader.loadGame()
     game  = string.sub(save, gamePos+5, nofPos-2)
     nof   = string.sub(save, nofPos+4, scenePos-2)
     scene = string.sub(save, scenePos+6, save:len()-1)
-    print(game)
     if nof == "\n" then
       loader.changeGame(game)
     elseif scene == "\n"  then
@@ -60,6 +59,20 @@ end
 function loader.gameover()
   audio.playSFX("game/text_txt/sfx/gameover.ogg")
   loader.changeGame("text_txt", 0)
+
+end
+
+-- Saves game --
+function loader.saveGame(name, nof, scene)
+  if not (name == "menu") then
+    if nof == nil then
+      love.filesystem.write("save", "game=" .. name .. "\nnof=" .. "nil" .. "\nscene=" .. "nil")
+    elseif scene == nil then
+      love.filesystem.write("save", "game=" .. name .. "\nnof=" .. nof .. "\nscene=" .. "nil")
+    else
+      love.filesystem.write("save", "game=" .. name .. "\nnof=" .. nof .. "\nscene=" .. scene)
+    end
+  end
 end
 
 -- Saves game --
@@ -82,6 +95,7 @@ function loader.changeGame(name)
   print(loader.gamePath())
   game = require(loader.gamePath())
   game.initialize(screen, audio, input, loader)
+
 end
 
 -- Changes game object --
@@ -91,6 +105,15 @@ function loader.changeGame(name, nof)
   print(loader.gamePath())
   game = require(loader.gamePath())
   game.initialize(screen, audio, input, loader, nof)
+
+end
+
+-- Changes game object --
+function loader.changeGame(name, nof, scene)
+  loader.saveGame(name,nof,scene)
+  loader.game = name
+  game = require(loader.gamePath())
+  game.initialize(screen, audio, input, loader, nof, scene)
 end
 
 -- Changes game object --
