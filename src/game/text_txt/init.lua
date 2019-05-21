@@ -57,7 +57,7 @@ function vn.draw()
   if not (reader.scriptNames[scene] == "nil") then
     love.graphics.print({{255, 0, 0,alpha},reader.scriptNames[scene]}, 800*0.075, 600/2/2*3-10, 0, 1.2)
   end
-  love.graphics.printf({{0, 0, 0,alpha}, reader.scriptText[scene]}, 800*0.25, 600/2/2*3-10, 350, "center", 0, 1.2)
+  love.graphics.printf({{0, 0, 0,alpha}, reader.scriptText[scene]}, 800*0.25, 600/2/2*3-10, 320, "center", 0, 1.2)
   vn.fadeIn()
 
   -- Draws text space and prints text asking for input --
@@ -76,9 +76,10 @@ end
 -- VN's update function --
 function vn.update()
   -- Action to go to next scene with delay --
-  if input.getKey("return") or input.getClick() then
+  if input.getKey("return") or input.getClick() or input.toggle("lctrl") then
     -- Ends game when script ends, else goes to next scene --
     if (scene == #reader.scriptImg-1) then
+      input.toggled = false
       audio.stopBGM()
       action = loadstring(reader.scriptImg[scene+1])
       action()
