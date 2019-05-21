@@ -4,13 +4,11 @@ nil:Infelizmente em uma época em que o mundo não havia sido bom com você:nil,
 nil:Por isso você passa os dias como NEET, jogando vários jogos, até um canal no youtube foi aberto com suas jogatinas:nil,nil
 nil:Não que ele fosse bom o suficiente para te proporcionar dinheiro para viver, você ainda usa o dinheiro de seus pais:nil,nil
 nil:Não saindo de casa a menos que fosse necessário assinar os papeis de suas encomendas de jogos importados, um dia enquanto você escolhia um jogo:nil,nil
-Você:Merda, preciso jogar:char1_happy,nil
-Você:Tem varios jogos nipponicos e duvidosos para eu me deliciar no meu computador, porém...:char1_happy,nil
-Você:A realidade é que o vazio me impossibilita de jogar esses agora, preciso de algo novo:char1_happy,nil
-Você:Linda internet, não me decepcione hoje como fez depois daquelas imagens do trapzinho:char1_happy,nil
-Você:Por que a barreira de genêro tem que ser tão cruel com meus desenhos lee-park'eanos:char1_happy,nil
+Você:Argh, esses anuncios estão mais irritantes que o normal hoje:char1_happy,nil
+Você:Pena que é um mal necessário pra achar algum jogo pra hoje:char1_happy,nil
+Você:Após me deliciar com 'fique a noite/destino' e todas suas rotas, vou pegar um kusoge muito bom em algum site aleatório:char1_happy,nil
 nil:Mais uma aventura por canais de pirataria online parecia se aproximar:char1_happy,nil
-Você:Oh god, olha esse mafia boss nesse ad:char1_happy,nil
+Você:Oh god, olha esse ad horrivel que apareceu, seria isso um jogo de rede social, lmao:char1_happy,nil
 Você:Como se eu fosse clicar, ha, você perdeu hoje jogo aleatório da internet:char1_happy,nil
 nil:Após hesitar 0.2ms depois de dizer isso você acaba clicando no ad:char1_happy,nil
 Você:Mas o que.. O jogo é para consoles?:char1_happy,nil
