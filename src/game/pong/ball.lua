@@ -39,9 +39,9 @@ end
 
 function ball.update()
   if ball.vely<=30 and ball.vely>=-30 then
-  ball.velx=ball.velx*ball.constVel
-  ball.vely=ball.vely*ball.constVel
-end
+    ball.velx=ball.velx*ball.constVel
+    ball.vely=ball.vely*ball.constVel
+  end
 
   -- Ball movement --
   ball.posx = ball.posx + math.cos(ball.ang)*ball.velx

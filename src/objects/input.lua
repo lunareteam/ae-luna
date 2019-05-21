@@ -7,6 +7,26 @@ function input.initialize()
     -- Key press variables --
     press = 0
     input.pressed = false
+    input.toggled = false
+end
+
+-- Toggles keypress --
+function input.toggle(string)
+    -- Gets string --
+    if love.keyboard.isDown(string) and input.pressed==false and input.toggled then
+        input.toggled = false
+        input.pressed = true
+        press = love.timer.getTime()
+    elseif (love.keyboard.isDown(string) and input.pressed==false) or input.toggled then
+        -- Return was pressed,so it is unable to be pressed again --
+        input.pressed = true
+        press = love.timer.getTime()
+        input.toggled = true
+
+        return true
+    end
+
+    return false
 end
 
 -- Function to get key easier --
