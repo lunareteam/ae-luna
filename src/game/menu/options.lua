@@ -9,8 +9,7 @@ function options.initialize(loaderObj, screenObj, inputObj)
   screen = screenObj
   input = inputObj
 
-  -- Parser function --
-  parser("start")
+  mainParse()
 end
 
 -- Fullscreen toggle --
@@ -21,6 +20,15 @@ end
 -- Parser called via loadstring --
 function parser(option)
   options.parser(option)
+end
+
+function mainParse()
+  -- Parser function --
+  if loader.hasSave() then
+    parser("continue")
+  else
+    parser("newgame")
+  end
 end
 
 -- Parser --
@@ -52,16 +60,8 @@ function options.draw()
   love.graphics.print(options.optNames[options.selected], 800/2-string.len(options.optNames[options.selected])*7, 600/2/2*3-50, 0, 2)
 end
 
--- options update function --
-function love.keyreleased(k)
-  if k==  'return' then
-    released=1
-  end
-end
+-- Options update function --
 function options.update()
-  if released<=0.5 then
-    released=released+0.5
-  end
   -- Loads action --
   currentAction = loadstring(options.optActions[options.selected])
 

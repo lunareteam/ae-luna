@@ -29,20 +29,18 @@ function init.draw()
   player.draw()
 end
 
+-- Pong Updater --
 function init.update()
-  if player.score1 == 5 then
-    audio.stopBGM()
+  if player.score1 == 5 or love.keyboard.isDown('l') then
     loader.changeGame("text_txt", 2)
   elseif player.score2 == 5 or love.keyboard.isDown('k') then
-    audio.stopBGM()
     loader.gameover()
-    parser("start")
   end
-
 
   bar.update()
   ball.update()
   player.update()
 end
 
+-- Returns itself --
 return init
