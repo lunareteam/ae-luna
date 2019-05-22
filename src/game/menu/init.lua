@@ -30,9 +30,9 @@ function menu.initialize(screenObj, audioObj, inputObj, loaderObj)
 end
 
 -- Menu's draw function --
-function menu.draw()
-  love.graphics.print("Lunare", 800/2-60, 600/2/2, 0, 3)
-  love.graphics.print(eeUsed, 800/2+20, 600/2/2+50,-0.2, 1.2)
+function menu.draw() 
+  love.graphics.print("Lunare", 800/2-110, 600/2/2)
+  love.graphics.print(eeUsed, 800/2+20, 600/2/2+50,-0.2, 0.3)
   options.draw()
 end
 

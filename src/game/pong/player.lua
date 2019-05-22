@@ -21,10 +21,10 @@ end
 
 -- Function to draw score --
 function player.draw()
-  love.graphics.print("Score: ", (800/2)/2-65, 30, 0, 2)
-  love.graphics.print(player.score1, (800/2)/2+15, 30, 0, 2)
-  love.graphics.print("Score: ", (800/2)+(800/2)/2-65, 30, 0, 2)
-  love.graphics.print(player.score2, (800/2)+((800/2)/2)+15, 30, 0, 2)
+  love.graphics.print(player.score1, (800/2)/2-30, 30, 0, 0.4)
+  love.graphics.print("braço", (800/2)/2-10, 30, 0, 0.4)
+  love.graphics.print(player.score2, (800/2)+(800/2)/2-30, 30, 0, 0.4)
+  love.graphics.print("braço", (800/2)+((800/2)/2)-10, 30, 0, 0.4)
 end
 
 function player.update()

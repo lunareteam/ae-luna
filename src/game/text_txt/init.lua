@@ -55,13 +55,13 @@ function vn.draw()
 
   -- Draws vn text --
   if not (reader.scriptNames[scene] == "nil") then
-    love.graphics.print({{255, 0, 0,alpha},reader.scriptNames[scene]}, 800*0.075, 600/2/2*3-10, 0, 1.2)
+    love.graphics.print({{255, 0, 0,alpha},reader.scriptNames[scene]}, 800*0.075, 600/2/2*3-10, 0, 0.3)
   end
-  love.graphics.printf({{0, 0, 0,alpha}, reader.scriptText[scene]}, 800*0.25, 600/2/2*3-10, 320, "center", 0, 1.2)
+  love.graphics.printf({{0, 0, 0,alpha}, reader.scriptText[scene]}, 800*0.25, 600/2/2*3-10, 1400, "center", 0, 0.3)
   vn.fadeIn()
 
   -- Draws text space and prints text asking for input --
-  love.graphics.print({{0, 255, 0, 1},"<Press Return>"}, 800-185, 600-80, 0, 1.2)
+  love.graphics.print({{0, 255, 0, 1},"<Press Return>"}, 800-185, 600-80, 0, 0.3)
 end
 
 -- Fades text --

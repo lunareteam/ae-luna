@@ -57,7 +57,7 @@ end
 -- options draw function --
 function options.draw()
   -- Prints current option --
-  love.graphics.print(options.optNames[options.selected], 800/2-string.len(options.optNames[options.selected])*7, 600/2/2*3-50, 0, 2)
+  love.graphics.print(options.optNames[options.selected], 800/2-string.len(options.optNames[options.selected])*7, 600/2/2*3-50, 0, 0.5)
 end
 
 -- Options update function --

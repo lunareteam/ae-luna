@@ -16,6 +16,8 @@ function love.load()
   audio.initialize(loader)
   input.initialize(loader)
   loader.initialize(screen, audio, input)
+  font = love.graphics.newFont("font/pc98.ttf", 50)
+  love.graphics.setFont(font)
 end
 
 -- Main draw function --
