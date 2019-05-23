@@ -35,10 +35,10 @@ end
 function player.update()
   ---delay
   player.delay=player.delay+1
-  if player.delay>11 then
+  if player.delay>11.2 then
     player.delay=0
   end
-  deltat=( (bar.pos2-ball.posx)/(ball.velx*(math.cos(ball.ang))))-5
+  player.deltat=( (bar.pos2-ball.posx)/(ball.velx*(math.cos(ball.ang))))-5
   --[[Player movement]]--
 
   -- q to go up as player 1 --
@@ -47,7 +47,7 @@ function player.update()
 
     if love.keyboard.isDown("w") and player.pos1>=600-bar.height-ball.size/2-chao then
         player.direction1=1
-    elseif (deltat>0 and not love.keyboard.isDown("w")) or player.pos1 <= ball.size/2 then
+    elseif (player.deltat>0 and not love.keyboard.isDown("w")) or player.pos1 <= ball.size/2 then
         player.direction1=0
     end
 
@@ -84,9 +84,9 @@ function player.update()
   end
 
   if ball.posx>300 and player.delay==1  then
-    if deltat<0 then
+    if player.deltat<0 then
       player.direction2=0
-    elseif ball.posy+math.sin(ball.ang)*ball.vely*deltat<player.pos2+bar.height/2-10*deltat then
+    elseif ball.posy+math.sin(ball.ang)*ball.vely*player.deltat<player.pos2+bar.height/2-10*player.deltat then
        player.direction2=1
     elseif player.pos2<ball.size/2  then-- ball.posy-math.abs(ball.vely)>player.pos2+bar.height*0.6 then
       player.direction2=0

@@ -19,7 +19,13 @@ end
 
 -- Function to draw ball --
 function ball.draw()
+  if (( (bar.pos2-ball.posx)/(ball.velx*(math.cos(ball.ang))))-5)<0 then
+    love.graphics.setColor(255,0,0,255)
+  else
+    love.graphics.setColor( 255,255,255,255)
+  end
   love.graphics.circle("line", ball.posx, ball.posy, ball.size/2)
+  love.graphics.setColor( 255,255,255,255)
 end
 
 function ball.setStart()

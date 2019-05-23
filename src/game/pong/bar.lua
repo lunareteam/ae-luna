@@ -25,7 +25,9 @@ function bar.draw()
 
   -- Makes coordinates for player 2 and draws him --
   bar.pos2 = 800 - (35 + bar.width)
+  love.graphics.setColor(255,0,0,255)
   love.graphics.rectangle("line", bar.pos2, player.pos2, bar.width, bar.height)
+  love.graphics.setColor( 255,255,255,255)
 end
 
 -- Update function within bar --
