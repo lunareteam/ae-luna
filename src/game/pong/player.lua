@@ -18,7 +18,7 @@ function player.initialize(screenObj, barObj, ballObj)
   player.direction1=0
   player.direction2=0
   player.delay=0
-  chao=200
+  floor=120
 
 end
 
@@ -29,7 +29,7 @@ function player.draw()
   love.graphics.print(player.score2, (800/2)+(800/2)/2-30, 30, 0, 0.4)
   love.graphics.print("braço", (800/2)+((800/2)/2)-10, 30, 0, 0.4)
   
-  love.graphics.rectangle("fill", 0, 600-chao, 800, chao)
+  love.graphics.rectangle("fill", 0, 600-floor, 800, floor)
 end
 
 function player.update()
@@ -45,7 +45,7 @@ function player.update()
 
     -- This condition makes the bar not pass the border limits --
 
-    if love.keyboard.isDown("w") and player.pos1>=600-bar.height-ball.size/2-chao then
+    if love.keyboard.isDown("w") and player.pos1>=600-bar.height-ball.size/2-floor then
         player.direction1=1
     elseif (deltat>0 and not love.keyboard.isDown("w")) or player.pos1 <= ball.size/2 then
         player.direction1=0
@@ -64,7 +64,7 @@ function player.update()
   -- l to go down as player 2 --
   else --player.direction2==0  then
     -- This condition makes the bar not pass the border limits --
-    if player.pos2+bar.height+10 <= 600-chao then
+    if player.pos2+bar.height+10 <= 600-floor then
       player.pos2 = player.pos2 + 10
     end
   end
@@ -78,7 +78,7 @@ function player.update()
   -- l to go down as player 2 --
   else --player.direction2==0  then
     -- This condition makes the bar not pass the border limits --
-    if player.pos1+bar.height+10 <= 600-chao then
+    if player.pos1+bar.height+10 <= 600-floor then
       player.pos1 = player.pos1 + 10
     end
   end
