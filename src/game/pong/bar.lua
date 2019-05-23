@@ -7,8 +7,8 @@ function bar.initialize(screenObj, playerObj)
   player = playerObj
   -- Self Variables --
   -- Baston size (monitor dependant) --
-  bar.height = 600*0.25
-  bar.width = 40
+  bar.height = 550*0.25
+  bar.width = 60
   -- Baston x position --
   bar.pos1 = 0
   bar.pos2 = 0

@@ -21,7 +21,7 @@ end
 
 -- Menu's draw function --
 function menu.draw()
-  love.graphics.print("Lunare", 800/2-60, 600/2/2, 0, 3)
+  love.graphics.print("Lunare", 750/2-60, 600/2/2, 0, 3)
   options.draw()
 end
 
