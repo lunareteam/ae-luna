@@ -11,7 +11,7 @@ function bar.initialize(screenObj, playerObj)
   -- Self Variables --
   -- Baston size (monitor dependant) --
   bar.height = 128
-  bar.width = 60
+  bar.width = 46
   -- Baston x position --
   bar.pos1 = 0
   bar.pos2 = 0
@@ -26,7 +26,7 @@ end
 function bar.draw()
   -- Makes coordinates for player 1 and draws him --
   bar.pos1 = 35
-  animation:draw(image, bar.pos1, player.pos1, bar.width, bar.height)
+  animation:draw(image, bar.pos1, player.pos1)
 
   -- Makes coordinates for player 2 and draws him --
   bar.pos2 = 800 - (35 + bar.width)
