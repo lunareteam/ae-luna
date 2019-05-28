@@ -61,7 +61,7 @@ function ball.angleMaker(pos)
   if ball.posx>400 or (ball.velx<0 and pos==player.pos1) then
     ball.velx=-ball.velx
   end
-  print(ball.velx)
+
   return ball.ang
 
 end
@@ -107,9 +107,9 @@ function ball.update()
   --[[Vertical Collision]]--
   -- Borders
 
-  if ball.posy>=600-ball.size/2 -chao then
+  if ball.posy>=600-ball.size/2 -floor then
     ball.vely=-ball.vely
-    ball.posy=600-ball.size/2 - 1-chao
+    ball.posy=600-ball.size/2 - 1-floor
   elseif ball.posy<=ball.size/2 then
     ball.vely=-ball.vely
     ball.posy=ball.size/2 + 1

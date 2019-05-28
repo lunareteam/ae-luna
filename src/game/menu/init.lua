@@ -24,6 +24,9 @@ function menu.initialize(screenObj, audioObj, inputObj, loaderObj)
   eeUsed = ee[math.random(1, #ee)]
   if eeUsed == "Coma brocollis!" then
     audio.playSFX("game/menu/sfx/brocollis.ogg")
+  elseif eeUsed == "nico nico ni" then
+    audio.playSFX("game/menu/sfx/nico.ogg")
+
   end
 
   options.initialize(loader, screen, input)

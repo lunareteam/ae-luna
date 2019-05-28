@@ -18,36 +18,47 @@ function player.initialize(screenObj, barObj, ballObj)
   player.direction1=0
   player.direction2=0
   player.delay=0
-  chao=200
-
+  floor=160
 end
 
 -- Function to draw score --
 function player.draw()
-  love.graphics.print(player.score1, (800/2)/2-30, 30, 0, 0.4)
-  love.graphics.print("braço", (800/2)/2-10, 30, 0, 0.4)
-  love.graphics.print(player.score2, (800/2)+(800/2)/2-30, 30, 0, 0.4)
-  love.graphics.print("braço", (800/2)+((800/2)/2)-10, 30, 0, 0.4)
+
+  if player.score1==2 then
+    love.graphics.print("braço", (800/2)/2-10, 30, 0, 0.4)
+    love.graphics.print(player.score1, (800/2)/2-30, 30, 0, 0.4)
+  else
+    love.graphics.print("score", (800/2)/2-10-30, 30, 0, 0.4)
+    love.graphics.print(player.score1, (800/2)/2+50-30, 30, 0, 0.4)
+  end
+ 
+  if player.score2==2 then
+    love.graphics.print("braço", 20+(800/2)+((800/2)/2)-10, 30, 0, 0.4)
+    love.graphics.print(player.score2, 20+(800/2)+(800/2)/2-30, 30, 0, 0.4)
+  else
+    love.graphics.print("score", (800/2)+((800/2)/2)-10, 30, 0, 0.4)
+    love.graphics.print(player.score2,(800/2)+((800/2)/2)+50, 30, 0, 0.4)
+  end
   
-  love.graphics.rectangle("fill", 0, 600-chao, 800, chao)
+  love.graphics.rectangle("fill", 0, 600-floor, 800, floor)
 end
 
 function player.update()
   ---delay
   player.delay=player.delay+1
-  if player.delay>11.2 then
+  if player.delay>9 then
     player.delay=0
   end
   player.deltat=( (bar.pos2-ball.posx)/(ball.velx*(math.cos(ball.ang))))-5
   --[[Player movement]]--
 
-  -- q to go up as player 1 --
+  -- w to go up as player 1 --
 
     -- This condition makes the bar not pass the border limits --
 
-    if love.keyboard.isDown("w") and player.pos1>=600-bar.height-ball.size/2-chao then
+    if love.keyboard.isDown("w") and player.pos1>=600-bar.height-ball.size/2-floor then
         player.direction1=1
-    elseif (player.deltat>0 and not love.keyboard.isDown("w")) or player.pos1 <= ball.size/2 then
+    elseif ((player.deltat>0 and (ball.posx<=ball.size/2+bar.pos1+bar.width+5)) or player.pos1 <= ball.size/2 )or(not love.keyboard.isDown("w") )then
         player.direction1=0
     end
 
@@ -62,9 +73,9 @@ function player.update()
     end
 
   -- l to go down as player 2 --
-  else --player.direction2==0  then
+  else 
     -- This condition makes the bar not pass the border limits --
-    if player.pos2+bar.height+10 <= 600-chao then
+    if player.pos2+bar.height+10 <= 600-floor then
       player.pos2 = player.pos2 + 10
     end
   end
@@ -78,7 +89,7 @@ function player.update()
   -- l to go down as player 2 --
   else --player.direction2==0  then
     -- This condition makes the bar not pass the border limits --
-    if player.pos1+bar.height+10 <= 600-chao then
+    if player.pos1+bar.height+10 <= 600-floor then
       player.pos1 = player.pos1 + 10
     end
   end
