@@ -27,8 +27,8 @@ function love.draw()
 end
 
 -- Main update function --
-function love.update()
-  screen.update()
+function love.update(dt)
+  screen.update(dt)
   audio.update()
   input.update()
   loader.update()
