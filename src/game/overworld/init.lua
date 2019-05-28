@@ -5,7 +5,7 @@ local init = {}
 -- Calls --
 
 local player = require("game.overworld.player")
-local warudo = require("game.overworld.warudo")
+local world = require("game.overworld.world")
 
 -- Initializer --
 function init.initialize(screenObj, audioObj, inputObj, loaderObj)
@@ -17,21 +17,20 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
 
   audio.startBGM("game/pong/bgm/maintheme.ogg")
 
-  player.initialize(screenObj, warudo, audio)
-  warudo.initialize(screenObj, player)
+  player.initialize(screenObj, world, audio)
+  world.initialize(screenObj, player)
 end
 
 -- Drawer --
 function init.draw()
   player.draw()
-  warudo.draw()
+  world.draw()
 end
 
 -- Pong Updater --
 function init.update()
-
   player.update()
-  warudo.update()
+  world.update()
 
   if input.getKey("return") then
     loader.changeGame("pong")

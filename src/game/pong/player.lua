@@ -19,6 +19,8 @@ function player.initialize(screenObj, barObj, ballObj)
   player.direction2=0
   player.delay=0
   floor=160
+
+  changed = true
 end
 
 -- Function to draw score --
@@ -58,8 +60,16 @@ function player.update()
 
     if love.keyboard.isDown("w") and player.pos1>=600-bar.height-ball.size/2-floor then
         player.direction1=1
+        if not changed then
+          changed = true
+          player.parseChar("game/pong/char/charjump.png")
+        end
     elseif ((player.deltat>0 and (ball.posx<=ball.size/2+bar.pos1+bar.width+5)) or player.pos1 <= ball.size/2 )or(not love.keyboard.isDown("w") )then
         player.direction1=0
+        if changed then
+          changed = false
+          player.parseChar("game/pong/char/charbar.png")
+        end
     end
 
 

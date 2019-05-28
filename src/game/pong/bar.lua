@@ -1,5 +1,8 @@
 local bar = {}
 
+local anim8 = require 'anim8'
+local image, animation
+
 -- Initializer --
 function bar.initialize(screenObj, playerObj)
   -- Loads called objects --
@@ -15,19 +18,31 @@ function bar.initialize(screenObj, playerObj)
   -- Player position --
   player.pos1 = (600/2-bar.height/2)
   player.pos2 = (600/2-bar.height/2)
+
+  bar.parseChar("game/pong/char/charbar.png")  
 end
 
 -- Function to draw player bars --
 function bar.draw()
   -- Makes coordinates for player 1 and draws him --
   bar.pos1 = 35
-  love.graphics.rectangle("line", bar.pos1, player.pos1, bar.width, bar.height)
+  animation:draw(image, bar.pos1, player.pos1, bar.width, bar.height)
 
   -- Makes coordinates for player 2 and draws him --
   bar.pos2 = 800 - (35 + bar.width)
   love.graphics.setColor(255,0,0,255)
   love.graphics.rectangle("line", bar.pos2, player.pos2, bar.width, bar.height)
   love.graphics.setColor( 255,255,255,255)
+end
+
+function bar.parseChar(string)
+  image = love.graphics.newImage(string)
+  local g = anim8.newGrid(46, 128, image:getWidth(), image:getHeight())
+  animation = anim8.newAnimation(g('1-5',1), 0.1)
+end
+
+function love.update(dt)
+  animation:update(dt)
 end
 
 -- Update function within bar --
