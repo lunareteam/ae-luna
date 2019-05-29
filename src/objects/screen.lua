@@ -18,15 +18,15 @@ function screen.initialize(loaderObj, inputObj)
   screen.fullscreen = false
 end
 
-function screen.parseAnimation(string, nof)
+function screen.parseAnimation(string, imgX, imgY, nof)
   if nof == nil then
     image[#image+1] = love.graphics.newImage(string)
-    local g = anim8.newGrid(46, 128, image[#image+1]:getWidth(), image[#image+1]:getHeight())
-    animation[#animation+1] = anim8.newAnimation(g('2-5',1), 0.1)
+    local g = anim8.newGrid(imgX, imgY, image[#image+1]:getWidth(), image[#image+1]:getHeight())
+    animation[#animation+1] = anim8.newAnimation(g('1-'..image[nof]:getWidth()/imgX,1), 0.1)
   else
     image[nof] = love.graphics.newImage(string)
-    local g = anim8.newGrid(46, 128, image[nof]:getWidth(), image[nof]:getHeight())
-    animation[nof] = anim8.newAnimation(g('2-5',1), 0.1)
+    local g = anim8.newGrid(imgX, imgY, image[nof]:getWidth(), image[nof]:getHeight())
+    animation[nof] = anim8.newAnimation(g('1-'..image[nof]:getWidth()/imgX,1), 0.1)
   end
 end
 
@@ -64,8 +64,8 @@ end
 
 -- Update function --
 function screen.update(dt)
-  if (#animation == nil) then
-    for i=0, i<#animation do
+  if not (#animation == nil) then
+    for i=1, #animation do
       animation[i]:update(dt)
     end
   end

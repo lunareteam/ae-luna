@@ -62,13 +62,13 @@ function player.update()
         player.direction1=1
         if not changed then
           changed = true
-          screen.parseAnimation("game/pong/char/charjump.png", 1)
+          screen.parseAnimation("game/pong/char/charjump.png", 46, 128, 1)
         end
     elseif ((player.deltat>0 and (ball.posx<=ball.size/2+bar.pos1+bar.width+5)) or player.pos1 <= ball.size/2 )or(not love.keyboard.isDown("w") )then
         player.direction1=0
         if changed then
           changed = false
-          screen.parseAnimation("game/pong/char/charbar.png", 1)
+          screen.parseAnimation("game/pong/char/charbar.png", 46, 128, 1)
         end
     end
 
