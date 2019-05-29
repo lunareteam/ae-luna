@@ -21,6 +21,8 @@ function player.initialize(screenObj, barObj, ballObj)
 
   floor=160
 
+  changed = true
+
 end
 
 -- Function to draw score --
@@ -62,10 +64,20 @@ function player.update()
         player.direction1=1
     elseif ((player.deltat>0 and (ball.posx<=ball.size/2+bar.pos1+bar.width+5)) or player.pos1 <= ball.size/2 )or(not love.keyboard.isDown("w") )then
         player.direction1=0
+        
     end
 
-
-
+    if player.pos1==306 then
+      if changed then
+        changed = false
+        screen.parseAnimation("game/pong/sprites/charbar.png", 46, 128, 1)
+      end
+    else
+      if not changed then
+        changed = true
+        screen.parseAnimation("game/pong/sprites/charjump.png", 46, 128, 1)
+      end
+    end
 
   -- Player 2 "A.I." --
   if player.direction2==1 then

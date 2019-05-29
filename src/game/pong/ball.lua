@@ -15,6 +15,8 @@ function ball.initialize(screenObj, barObj, playerObj, audioObj)
   pi= 3.14159265359
   ball.angles={pi,pi,pi,pi}
   ball.setStart()
+
+  screen.parseAnimation("game/pong/sprites/ball.png", 53, 53, 2)
 end
 
 -- Function to draw ball --
@@ -24,7 +26,7 @@ function ball.draw()
   else
     love.graphics.setColor( 255,255,255,255)
   end
-  love.graphics.circle("line", ball.posx, ball.posy, ball.size/2)
+  screen.drawAnimation(2, ball.posx, ball.posy)
   love.graphics.setColor( 255,255,255,255)
 end
 

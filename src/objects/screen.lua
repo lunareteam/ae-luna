@@ -2,6 +2,10 @@
 -- Makes itself an object --
 local screen = {}
 
+local anim8 = require 'anim8'
+local image = {}
+local animation = {}
+
 -- Initialization function --
 function screen.initialize(loaderObj, inputObj)
   -- Loads called objects --
@@ -12,6 +16,22 @@ function screen.initialize(loaderObj, inputObj)
   screen.getDimensions()
 
   screen.fullscreen = false
+end
+
+function screen.parseAnimation(string, imgX, imgY, nof)
+  if nof == nil then
+    image[#image+1] = love.graphics.newImage(string)
+    local g = anim8.newGrid(imgX, imgY, image[#image+1]:getWidth(), image[#image+1]:getHeight())
+    animation[#animation+1] = anim8.newAnimation(g('1-'..image[nof]:getWidth()/imgX,1), 0.1)
+  else
+    image[nof] = love.graphics.newImage(string)
+    local g = anim8.newGrid(imgX, imgY, image[nof]:getWidth(), image[nof]:getHeight())
+    animation[nof] = anim8.newAnimation(g('1-'..math.floor(image[nof]:getWidth()/imgX),1), 0.1)
+  end
+end
+
+function screen.drawAnimation(nof, posx, posy)
+  animation[nof]:draw(image[nof], posx, posy)
 end
 
 -- Drawing function --
@@ -43,7 +63,12 @@ function screen.getDimensions()
 end
 
 -- Update function --
-function screen.update()
+function screen.update(dt)
+  if not (#animation == nil) then
+    for i=1, #animation do
+      animation[i]:update(dt)
+    end
+  end
   -- Get pixel height/width --
   screen.getDimensions()
   -- Set title for each screen --
