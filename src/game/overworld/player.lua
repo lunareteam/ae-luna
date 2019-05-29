@@ -37,23 +37,29 @@ function player.update()
     player.posx=800-(1600-world.posx)
   end
 
-  if love.keyboard.isDown("w") and player.posy>=600-player.height-floor then
+  if love.keyboard.isDown("w") and player.posy>=430 then
     player.direction1=1
-  else
-    player.direction1=0
+
+  elseif player.posy<=320 then
+      player.direction1=0
+
   end
 
-
+  print(600-floor-10-player.height," ", player.posy)
   if player.direction1==1 then
     -- This condition makes the player not pass the border limits --
-    if player.posy-10 >= 0 then
-      player.posy = player.posy - 10    
-    end
 
-    -- l to go down as player 2 -- 
-    -- This condition makes the player not pass the border limits --
-  elseif player.posy+player.height+10 <= 600-floor then
-    player.posy = player.posy + 10
+    if player.posy>=600-floor+10-player.height then
+      player.posy = player.posy - 10
+    end
+    -- l to go down as player 2 --
+  else 
+
+      if player.posy<=430-10 then
+        player.posy = player.posy + 10
+  
+      end
+
   end
 end
 

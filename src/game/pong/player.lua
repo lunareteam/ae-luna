@@ -18,9 +18,11 @@ function player.initialize(screenObj, barObj, ballObj)
   player.direction1=0
   player.direction2=0
   player.delay=0
+
   floor=160
 
   changed = true
+
 end
 
 -- Function to draw score --
