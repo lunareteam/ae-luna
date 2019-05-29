@@ -60,16 +60,21 @@ function player.update()
 
     if love.keyboard.isDown("w") and player.pos1>=600-bar.height-ball.size/2-floor then
         player.direction1=1
-        if not changed then
-          changed = true
-          screen.parseAnimation("game/pong/char/charjump.png", 46, 128, 1)
-        end
     elseif ((player.deltat>0 and (ball.posx<=ball.size/2+bar.pos1+bar.width+5)) or player.pos1 <= ball.size/2 )or(not love.keyboard.isDown("w") )then
         player.direction1=0
-        if changed then
-          changed = false
-          screen.parseAnimation("game/pong/char/charbar.png", 46, 128, 1)
-        end
+        
+    end
+
+    if player.pos1==306 then
+      if changed then
+        changed = false
+        screen.parseAnimation("game/pong/char/charbar.png", 46, 128, 1)
+      end
+    else
+      if not changed then
+        changed = true
+        screen.parseAnimation("game/pong/char/charjump.png", 46, 128, 1)
+      end
     end
 
   -- Player 2 "A.I." --
