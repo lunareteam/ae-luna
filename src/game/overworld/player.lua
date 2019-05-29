@@ -24,9 +24,9 @@ end
 -- Function to draw score --
 function player.draw()
   if world.walking then
-    screen.drawAnimation(2,player.posx, player.posy-player.height+5)
+    screen.drawAnimation(2,player.posx, player.posy-player.height+10)
   else
-    screen.drawAnimation(1,player.posx, player.posy-player.height+5)
+    screen.drawAnimation(1,player.posx, player.posy-player.height+10)
   end
 end
 
