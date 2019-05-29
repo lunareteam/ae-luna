@@ -26,7 +26,7 @@ function screen.parseAnimation(string, imgX, imgY, nof)
   else
     image[nof] = love.graphics.newImage(string)
     local g = anim8.newGrid(imgX, imgY, image[nof]:getWidth(), image[nof]:getHeight())
-    animation[nof] = anim8.newAnimation(g('1-'..image[nof]:getWidth()/imgX,1), 0.1)
+    animation[nof] = anim8.newAnimation(g('1-'..math.floor(image[nof]:getWidth()/imgX),1), 0.1)
   end
 end
 

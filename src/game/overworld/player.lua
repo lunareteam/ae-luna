@@ -17,11 +17,17 @@ function player.initialize(screenObj,worldObj, audioObj)
   player.j=0
   player.posx= 400
   player.posy = 600-160-10
+
+  screen.parseAnimation("game/overworld/sprites/stillR.png", 46, 126, 1)
 end
 
 -- Function to draw score --
 function player.draw()
-  love.graphics.rectangle("line",player.posx, player.posy-player.height+5, player.width, player.height)
+  if world.walking then
+    screen.drawAnimation(2,player.posx, player.posy-player.height+5)
+  else
+    screen.drawAnimation(1,player.posx, player.posy-player.height+5)
+  end
 end
 
 function player.update()
@@ -41,8 +47,7 @@ function player.update()
   if player.direction1==1 then
     -- This condition makes the player not pass the border limits --
     if player.posy-10 >= 0 then
-      player.posy = player.posy - 10
-      
+      player.posy = player.posy - 10    
     end
 
     -- l to go down as player 2 -- 

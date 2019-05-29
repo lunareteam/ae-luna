@@ -68,12 +68,12 @@ function player.update()
     if player.pos1==306 then
       if changed then
         changed = false
-        screen.parseAnimation("game/pong/char/charbar.png", 46, 128, 1)
+        screen.parseAnimation("game/pong/sprites/charbar.png", 46, 128, 1)
       end
     else
       if not changed then
         changed = true
-        screen.parseAnimation("game/pong/char/charjump.png", 46, 128, 1)
+        screen.parseAnimation("game/pong/sprites/charjump.png", 46, 128, 1)
       end
     end
 
