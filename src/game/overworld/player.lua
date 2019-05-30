@@ -51,7 +51,7 @@ function player.update()
     player.jumping = false
   end
 
-  print(600-floor-10-player.height," ", player.posy)
+
   if player.direction1==1 then
     -- This condition makes the player not pass the border limits --
 
