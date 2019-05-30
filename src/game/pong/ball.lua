@@ -10,11 +10,16 @@ function ball.initialize(screenObj, barObj, playerObj, audioObj)
   player = playerObj
 
   -- Ball Position --
-  ball.size = (800+600)/2*0.05
+  ball.size = 54
   ball.constVel = 1.001
   pi= 3.14159265359
   ball.angles={pi,pi,pi,pi}
   ball.setStart()
+  shieldv=0
+  shieldw=10
+  shieldh=10
+  shieldx=bar.pos1+bar.width+1
+  shieldt=0
 
   screen.parseAnimation("game/pong/sprites/ball.png", 53, 53, 2)
 end
@@ -26,8 +31,11 @@ function ball.draw()
   else
     love.graphics.setColor( 255,255,255,255)
   end
-  screen.drawAnimation(2, ball.posx, ball.posy)
+  screen.drawAnimation(2, ball.posx-ball.size/2, ball.posy-ball.size/2)
   love.graphics.setColor( 255,255,255,255)
+  if shieldv==1 then
+    love.graphics.rectangle("fill", shieldx,ball.posy-shieldh/2, shieldw, shieldh)
+  end
 end
 
 function ball.setStart()
@@ -69,6 +77,18 @@ function ball.angleMaker(pos)
 end
 
 function ball.update()
+  if shieldv==1 and shieldt<3 then
+    shieldt=shieldt+1
+  else
+    shieldv=0
+    shieldt=0
+
+  end
+  if  ball.posx<=bar.pos1+bar.width+20+ball.size/2 then
+    shieldh=10
+    shieldw=10
+    shieldx=bar.pos1+bar.width+3
+  end
   if ball.vely<=30 and ball.vely>=-30 then
     ball.velx=ball.velx*ball.constVel
     ball.vely=ball.vely*ball.constVel
@@ -87,13 +107,13 @@ function ball.update()
     audio.playSFX("game/pong/sfx/pop.ogg")
       -------NEW COLISION----------
        --------HORIZONTAL-----------
-    if ball.posx<400 then-------bar1----------------------
+    if ball.posx<bar.pos1+bar.width+30 then-------bar1----------------------
       -------------------------y test---------------------
       if ball.posy+math.sin(ball.ang)*ball.vely<=player.pos1+bar.height+ball.size/2 and ball.posy+math.sin(ball.ang)*ball.vely>=player.pos1-ball.size/2 then
         pos=player.pos1
         ball.angleMaker(pos)
         ball.posx=ball.posx+1
-      
+        shieldv=1
       end
     else  ----------------------bar2----------------------
       -------------------------y test---------------------
@@ -101,6 +121,7 @@ function ball.update()
         pos=player.pos2
         ball.angleMaker(pos)
         ball.posx=ball.posx-1
+
 
       end
     end
@@ -112,6 +133,7 @@ function ball.update()
   if ball.posy>=600-ball.size/2 -floor then
     ball.vely=-ball.vely
     ball.posy=600-ball.size/2 - 1-floor
+    
   elseif ball.posy<=ball.size/2 then
     ball.vely=-ball.vely
     ball.posy=ball.size/2 + 1
@@ -121,10 +143,12 @@ function ball.update()
 
     ball.vely=-ball.vely
     ball.velx=-ball.velx
+    shieldx=bar.pos1+bar.width+3
   elseif ball.posy<=player.pos1+bar.height+ball.size/2 and ball.posy>=player.pos1+bar.height and  ball.posx<=1+bar.pos1+bar.width-1 then
     ball.posy=player.pos1+bar.height+ball.size/2+10
     ball.vely=-ball.vely
     ball.velx=-ball.velx
+    shieldx=bar.pos1+bar.width+3
    --bar2 vertical Collision--
   elseif ball.posy>=player.pos2-ball.size/2 and ball.posy<=player.pos2 and ball.posx>=bar.pos2 then
     ball.posy=player.pos2-ball.size/2-10
