@@ -19,15 +19,9 @@ function screen.initialize(loaderObj, inputObj)
 end
 
 function screen.parseAnimation(string, imgX, imgY, nof)
-  if nof == nil then
-    image[#image+1] = love.graphics.newImage(string)
-    local g = anim8.newGrid(imgX, imgY, image[#image+1]:getWidth(), image[#image+1]:getHeight())
-    animation[#animation+1] = anim8.newAnimation(g('1-'..image[nof]:getWidth()/imgX,1), 0.1)
-  else
-    image[nof] = love.graphics.newImage(string)
-    local g = anim8.newGrid(imgX, imgY, image[nof]:getWidth(), image[nof]:getHeight())
-    animation[nof] = anim8.newAnimation(g('1-'..math.floor(image[nof]:getWidth()/imgX),1), 0.1)
-  end
+  image[nof] = love.graphics.newImage(string)
+  local g = anim8.newGrid(imgX, imgY, image[nof]:getWidth(), image[nof]:getHeight())
+  animation[nof] = anim8.newAnimation(g('1-'..math.floor(image[nof]:getWidth()/imgX),1), 0.1)
 end
 
 function screen.drawAnimation(nof, posx, posy)
