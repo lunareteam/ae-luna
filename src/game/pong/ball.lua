@@ -168,7 +168,9 @@ function ball.update()
     ball.setStart()
     -- Score + 1 --
     player.score2 = player.score2 + 1
-    audio.playSFX("game/pong/sfx/itai.ogg")
+    if not (player.score2 == 5) then
+      audio.playSFX("game/pong/sfx/itai.ogg")
+    end
   end
 
   -- Player 2 loss --
