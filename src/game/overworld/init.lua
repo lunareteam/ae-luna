@@ -15,7 +15,7 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
   audio = audioObj
   input = inputObj
 
-  audio.startBGM("game/pong/bgm/maintheme.ogg")
+  audio.startBGM("game/text_txt/bgm/main.xm")
 
   player.initialize(screenObj, world, audio)
   world.initialize(screenObj, player)
