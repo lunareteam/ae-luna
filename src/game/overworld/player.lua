@@ -27,18 +27,16 @@ end
 
 -- Function to draw score --
 function player.draw()
-  if world.walking then
-    screen.drawAnimation(2,player.posx, player.posy-player.height+10)
-  elseif player.jumping then
+  if player.jumping then
     screen.drawAnimation(3,player.posx, player.posy-player.height+10)
+  elseif world.walking then
+    screen.drawAnimation(2,player.posx, player.posy-player.height+10)
   else
     screen.drawAnimation(1,player.posx, player.posy-player.height+10)
   end
 end
 
 function player.update()
-  player.jumping = false
-
   if world.posx<400 then
     player.posx=world.posx
   elseif world.posx>1200 then
@@ -47,19 +45,10 @@ function player.update()
 
   if love.keyboard.isDown("w") and player.posy>=430 then
     player.direction1=1
-    if changed then
-      changed = false
-      screen.parseAnimation("game/overworld/sprites/charjumpr.png", 46, 128, 3)
-    end
     player.jumping = true
   elseif player.posy<=320 then
     player.direction1=0
-  
-    if not changed then
-      changed = true
-      screen.parseAnimation("game/overworld/sprites/charjumpl.png", 46, 128, 3)
-    end
-    player.jumping = true
+    player.jumping = false
   end
 
   print(600-floor-10-player.height," ", player.posy)
