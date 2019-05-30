@@ -67,7 +67,7 @@ function player.update()
         
     end
 
-    if player.pos1==306 then
+    if player.pos1==312 then
       if changed then
         changed = false
         screen.parseAnimation("game/pong/sprites/charbar.png", 46, 128, 1)
@@ -91,6 +91,10 @@ function player.update()
     -- This condition makes the bar not pass the border limits --
     if player.pos2+bar.height+10 <= 600-floor then
       player.pos2 = player.pos2 + 10
+      if player.pos2==306 then
+        player.pos2=312
+      end
+      print(player.pos2)
     end
   end
 
@@ -105,6 +109,9 @@ function player.update()
     -- This condition makes the bar not pass the border limits --
     if player.pos1+bar.height+10 <= 600-floor then
       player.pos1 = player.pos1 + 10
+      if player.pos1==306 then
+        player.pos1=312
+      end
     end
   end
 
