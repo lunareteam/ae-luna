@@ -17,6 +17,8 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, file)
   alpha = 0       -- Alpha value
   fadeInTime = 0  -- Fade in timer
 
+  textbox = love.graphics.newImage("game/text_txt/bg/textbox.jpg")
+
   -- Song initializer
   audio.startBGM("game/text_txt/bgm/main.xm")
 
@@ -32,30 +34,16 @@ end
 -- VN's draw function --
 function vn.draw()
   --[[ Draws characters ]]--
-  -- Parse chars --
-
-  pos = string.find(reader.scriptImg[scene], ",", 1, true)
-  if not(string.sub(reader.scriptImg[scene], 1, pos-1) == "nil") then
-    char1 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(reader.scriptImg[scene], 1, pos-1).. ".png")
-  else
-    char1 = nil
-  end
-  if not(string.sub(reader.scriptImg[scene], pos+1) == "nil") then
-    char2 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(reader.scriptImg[scene], pos+1).. ".png")
-  else
-    char2 = nil
-  end
 
   -- Draw Chars --
   if not(char1 == nil) then
-    love.graphics.draw(char1, 800/2/2/2/2 , 600/2/2/2, 0, 3)
+    love.graphics.draw(char1, 800/2/2/2/2 , 600/2/2/2, 0, 0.3)
   end
   if not(char2 == nil) then
-    love.graphics.draw(char2, 800/2/2/2*2+800/2/2/2/2 , 600/2/2/2, 0, 3)
+    love.graphics.draw(char2, 800/2/2/2*2+800/2/2/2/2 , 600/2/2/2, 0, 0.3)
   end
 
   -- Draw textbox --
-  textbox = love.graphics.newImage("game/text_txt/bg/textbox.jpg")
   love.graphics.draw(textbox, 800*0.05, 600/2/2*3-30, 0, 1)
 
   -- Draws vn text --
@@ -94,6 +82,18 @@ function vn.update()
 
       if love.filesystem.getInfo("game/text_txt/va/"..file.."/"..scene..".ogg") then
         audio.playSFX("game/text_txt/va/"..file.."/"..scene..".ogg")
+        
+      -- Parse chars --
+      pos = string.find(reader.scriptImg[scene], ",", 1, true)
+      if not(string.sub(reader.scriptImg[scene], 1, pos-1) == "nil") then
+        char1 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(reader.scriptImg[scene], 1, pos-1).. ".png")
+      else
+        char1 = nil
+      end
+      if not(string.sub(reader.scriptImg[scene], pos+1) == "nil") then
+        char2 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(reader.scriptImg[scene], pos+1).. ".png")
+      else
+        char2 = nil
       end
     end
   end

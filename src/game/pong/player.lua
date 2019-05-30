@@ -60,14 +60,14 @@ function player.update()
 
     -- This condition makes the bar not pass the border limits --
 
-    if love.keyboard.isDown("w") and player.pos1>=600-bar.height-ball.size/2-floor then
+    if love.keyboard.isDown("w") and player.pos1>=600-bar.height-floor then
         player.direction1=1
     elseif ((player.deltat>0 and (ball.posx<=ball.size/2+bar.pos1+bar.width+5)) or player.pos1 <= ball.size/2 )or(not love.keyboard.isDown("w") )then
         player.direction1=0
         
     end
 
-    if player.pos1==306 then
+    if player.pos1==312 then
       if changed then
         changed = false
         screen.parseAnimation("game/pong/sprites/charbar.png", 46, 128, 1)
@@ -91,6 +91,10 @@ function player.update()
     -- This condition makes the bar not pass the border limits --
     if player.pos2+bar.height+10 <= 600-floor then
       player.pos2 = player.pos2 + 10
+      if player.pos2==306 then
+        player.pos2=312
+      end
+      print(player.pos2)
     end
   end
 
@@ -105,6 +109,9 @@ function player.update()
     -- This condition makes the bar not pass the border limits --
     if player.pos1+bar.height+10 <= 600-floor then
       player.pos1 = player.pos1 + 10
+      if player.pos1==306 then
+        player.pos1=312
+      end
     end
   end
 
