@@ -64,7 +64,6 @@ function loader.gameover()
   if not (audio.bgm == nil) then
     audio.stopBGM()
   end 
-  audio.playSFX("game/text_txt/sfx/gameover.ogg")
   loader.game = "text_txt"
   game = require(loader.gamePath())
 

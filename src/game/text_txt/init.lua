@@ -7,7 +7,7 @@ local reader = require("game.text_txt.reader")
 
 
 -- Initializer function --
-function vn.initialize(screenObj, audioObj, inputObj, loaderObj, scene)
+function vn.initialize(screenObj, audioObj, inputObj, loaderObj, file)
   -- Loads called objects --
   screen = screenObj
   audio = audioObj
@@ -20,8 +20,13 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, scene)
   -- Song initializer
   audio.startBGM("game/text_txt/bgm/main.xm")
 
+  scene = 1
+  if love.filesystem.getInfo("game/text_txt/va/"..file.."/"..scene..".ogg") then
+    audio.playSFX("game/text_txt/va/"..file.."/"..scene..".ogg")
+  end
+
   -- Initializes script reader --
-  reader.initialize(scene)
+  reader.initialize(file)
 end
 
 -- VN's draw function --
@@ -84,8 +89,12 @@ function vn.update()
       action = loadstring(reader.scriptImg[scene+1])
       action()
     elseif input.pressed == true then
-      reader.nextScene()    -- Goes to next scene
+      scene = reader.nextScene()    -- Goes to next scene
       alpha = 0             -- Resets alpha value
+
+      if love.filesystem.getInfo("game/text_txt/va/"..file.."/"..scene..".ogg") then
+        audio.playSFX("game/text_txt/va/"..file.."/"..scene..".ogg")
+      end
     end
   end
 end

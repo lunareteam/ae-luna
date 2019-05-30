@@ -39,6 +39,7 @@ end
 -- Goes to next scene --
 function reader.nextScene()
   scene=scene+1
+  return scene
 end
 
 -- Returns itself --
