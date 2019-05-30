@@ -82,7 +82,8 @@ function vn.update()
 
       if love.filesystem.getInfo("game/text_txt/va/"..file.."/"..scene..".ogg") then
         audio.playSFX("game/text_txt/va/"..file.."/"..scene..".ogg")
-        
+      end
+      
       -- Parse chars --
       pos = string.find(reader.scriptImg[scene], ",", 1, true)
       if not(string.sub(reader.scriptImg[scene], 1, pos-1) == "nil") then
