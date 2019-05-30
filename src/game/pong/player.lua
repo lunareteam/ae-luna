@@ -60,7 +60,7 @@ function player.update()
 
     -- This condition makes the bar not pass the border limits --
 
-    if love.keyboard.isDown("w") and player.pos1>=600-bar.height-ball.size/2-floor then
+    if love.keyboard.isDown("w") and player.pos1>=600-bar.height-floor then
         player.direction1=1
     elseif ((player.deltat>0 and (ball.posx<=ball.size/2+bar.pos1+bar.width+5)) or player.pos1 <= ball.size/2 )or(not love.keyboard.isDown("w") )then
         player.direction1=0
