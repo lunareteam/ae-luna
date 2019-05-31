@@ -22,7 +22,8 @@ function player.initialize(screenObj, barObj, ballObj)
   floor=160
 
   changed = true
-
+  place = 160
+  floorImg = love.graphics.newImage("game/overworld/sprites/floor.png")
 end
 
 -- Function to draw score --
@@ -43,8 +44,10 @@ function player.draw()
     love.graphics.print("score", (800/2)+((800/2)/2)-10, 30, 0, 0.4)
     love.graphics.print(player.score2,(800/2)+((800/2)/2)+50, 30, 0, 0.4)
   end
-  
-  love.graphics.rectangle("fill", 0, 600-floor, 800, floor)
+
+  for i=0, 6 do
+    love.graphics.draw(floorImg, place*i-world.posx, 600-floor, 0, 0.38)
+  end
 end
 
 function player.update()
@@ -94,7 +97,6 @@ function player.update()
       if player.pos2==306 then
         player.pos2=312
       end
-      print(player.pos2)
     end
   end
 

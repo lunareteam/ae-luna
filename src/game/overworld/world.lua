@@ -10,12 +10,16 @@ function world.initialize(screenObj,playerObj)
   world.width=160
 
   world.walking = false
+  floorImg = love.graphics.newImage("game/overworld/sprites/floor.png")
+  place = 160
 end
   
 -- Function to draw score --
-function world.draw()    
-  love.graphics.rectangle("fill", 0, 600-floor, 800, floor)
+function world.draw()
   love.graphics.rectangle("line",800-world.posx,600-floor-10,10,10)
+  for i=0, 14 do
+    love.graphics.draw(floorImg, place*i-world.posx, 600-floor, 0, 0.38)
+  end
 end
   
 function world.update()
