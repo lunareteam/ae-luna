@@ -22,8 +22,9 @@ end
 
 -- Main draw function --
 function love.draw()
-  screen.draw()
+  love.graphics.scale(screen.width/800, screen.height/600)
   loader.draw()
+  screen.draw()
 end
 
 -- Main update function --

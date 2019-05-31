@@ -34,7 +34,6 @@ end
 
 -- Drawing function --
 function screen.draw()
-  love.graphics.scale(screen.width/800, screen.height/600)
   -- Draws simple overlay --
   love.graphics.rectangle("line", 0, 0, 800, 600)
 end
