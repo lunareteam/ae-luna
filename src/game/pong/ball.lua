@@ -11,7 +11,7 @@ function ball.initialize(screenObj, barObj, playerObj, audioObj)
 
   -- Ball Position --
 
-  ball.size = 55
+  ball.size = 32
 
   ball.constVel = 1.001
   pi= 3.14159265359
@@ -23,7 +23,8 @@ function ball.initialize(screenObj, barObj, playerObj, audioObj)
   shieldx=bar.pos1+bar.width+1
   shieldt=0
 
-  screen.parseAnimation("game/pong/sprites/ball.png", 55, 55, 2)
+  screen.parseAnimation("game/pong/sprites/ball.png", 42, 32, 2)
+  screen.flip(2)
 end
 
 -- Function to draw ball --
@@ -107,6 +108,7 @@ function ball.update()
      ((ball.posy<=player.pos2+bar.height+ball.size) and (ball.posy>=player.pos2-ball.size))) then
     -- Collision sound --
     audio.playSFX("game/pong/sfx/pop.ogg")
+    screen.flip(2)
       -------NEW COLISION----------
        --------HORIZONTAL-----------
     if ball.posx<bar.pos1+bar.width+30 then-------bar1----------------------
@@ -166,6 +168,7 @@ function ball.update()
   -- Player 1 loss --
   if ball.posx<=ball.size then
     ball.setStart()
+    screen.flip(2)
     -- Score + 1 --
     player.score2 = player.score2 + 1
     if not (player.score2 == 5) then

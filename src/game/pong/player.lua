@@ -46,7 +46,7 @@ function player.draw()
   end
 
   for i=0, 6 do
-    love.graphics.draw(floorImg, place*i-world.posx, 600-floor, 0, 0.38)
+    love.graphics.draw(floorImg, place*i, 600-floor, 0, 0.38)
   end
 end
 

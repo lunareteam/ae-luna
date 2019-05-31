@@ -28,7 +28,7 @@ function screen.drawAnimation(nof, posx, posy)
   animation[nof]:draw(image[nof], posx, posy)
 end
 
-function screen.flip(nof)
+  function screen.flip(nof)
   animation[nof]:flipH()
 end
 
