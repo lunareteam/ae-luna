@@ -7,6 +7,7 @@ function world.initialize(screenObj,playerObj)
 
   -- world pos --
   world.posx=0
+  jogo=1
   world.width=160
 
   world.walking = false
@@ -51,39 +52,44 @@ function world.draw()
 end
   
 function world.update()
-  world.walking = false
 
-  if input.getKey("return") and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 then
-    if not pressed then
-      screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
-      audio.playSFX("game/overworld/sfx/quak.ogg")
-      pressed = true
+    world.walking = false
+    if input.getKey("return") and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 then
+      if not pressed then
+        screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
+        audio.playSFX("game/overworld/sfx/quak.ogg")
+        pressed = true
+
+      end
+      jogo=0
     end
+  if screen.getLoop(5) == 1 and pressed and jogo==0 then
+      loader.changeGame("pong")
+      closer=1
   end
+  if jogo==1 then
+    --print(screen.getLoop(5))
 
-  --print(screen.getLoop(5))
-  if screen.getLoop(5) == 1 and pressed then
-    loader.changeGame("pong")
-  end
 
-  if love.keyboard.isDown("d") and world.posx<1600-player.vely-player.width then
-    world.posx=world.posx+player.vely
-    if changed then
-      changed = false
-      screen.parseAnimation("game/overworld/sprites/andandor.png", 46, 126, 2)
-      screen.parseAnimation("game/overworld/sprites/stillR.png", 46, 126, 1)
-      screen.parseAnimation("game/overworld/sprites/charjumpr.png", 46, 128, 3)
+    if love.keyboard.isDown("d") and world.posx<1600-player.vely-player.width then
+      world.posx=world.posx+player.vely
+      if changed then
+        changed = false
+        screen.parseAnimation("game/overworld/sprites/andandor.png", 46, 126, 2)
+        screen.parseAnimation("game/overworld/sprites/stillR.png", 46, 126, 1)
+        screen.parseAnimation("game/overworld/sprites/charjumpr.png", 46, 128, 3)
+      end
+      world.walking = true
+    elseif love.keyboard.isDown("a") and world.posx>player.vely then
+      world.posx=world.posx-player.vely
+      if not changed then
+        changed = true
+        screen.parseAnimation("game/overworld/sprites/andandol.png", 46, 126, 2)
+        screen.parseAnimation("game/overworld/sprites/stillL.png", 46, 126, 1)
+        screen.parseAnimation("game/overworld/sprites/charjumpl.png", 46, 128, 3)
+      end
+      world.walking = true
     end
-    world.walking = true
-  elseif love.keyboard.isDown("a") and world.posx>player.vely then
-    world.posx=world.posx-player.vely
-    if not changed then
-      changed = true
-      screen.parseAnimation("game/overworld/sprites/andandol.png", 46, 126, 2)
-      screen.parseAnimation("game/overworld/sprites/stillL.png", 46, 126, 1)
-      screen.parseAnimation("game/overworld/sprites/charjumpl.png", 46, 128, 3)
-    end
-    world.walking = true
   end
 end
 

@@ -141,7 +141,7 @@ function ball.update()
   --[[Vertical Collision]]--
   -- Borders
 
-  if ball.posy>=600-ball.size -floor then
+  if ball.posy>=600-ball.size/2 -floor then
     ball.vely=-ball.vely
     ball.posy=600-ball.size/2 - 1-floor
     
