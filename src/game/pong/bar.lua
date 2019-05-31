@@ -16,7 +16,8 @@ function bar.initialize(screenObj, playerObj)
   player.pos1 = (600/2-bar.height/2)
   player.pos2 = (600/2-bar.height/2)
 
-  screen.parseAnimation("game/pong/sprites/charbar.png", 46, 128, 1)  
+  screen.parseAnimation("game/pong/sprites/charbar.png", 46, 128, 1) 
+  screen.parseAnimation("game/pong/sprites/gansojump.png", 46,128, 3) 
 end
 
 -- Function to draw player bars --
@@ -27,9 +28,7 @@ function bar.draw()
 
   -- Makes coordinates for player 2 and draws him --
   bar.pos2 = 800 - (35 + bar.width)
-  love.graphics.setColor(255,0,0,255)
-  love.graphics.rectangle("line", bar.pos2, player.pos2, bar.width, bar.height)
-  love.graphics.setColor( 255,255,255,255)
+  screen.drawAnimation(3, bar.pos2, player.pos2)
 end
 
 -- Update function within bar --

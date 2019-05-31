@@ -17,13 +17,29 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
 
   audio.startBGM("game/pong/bgm/maintheme.ogg")
 
+  treeImg = love.graphics.newImage("game/sprites/tree.png")
   player.initialize(screen, bar, ball)
   bar.initialize(screenObj, player)
   ball.initialize(screenObj, bar, player, audio)
+
+  screen.parseAnimation("game/sprites/cloud.png", 512, 512, 6)
+  screen.parseAnimation("game/sprites/sun.png", 96, 96, 7)
 end
 
 -- Drawer --
 function init.draw()
+  -- Blue sky --
+  love.graphics.setColor( 0,255,230,255)
+  love.graphics.rectangle("fill", 0, 0, 800, 600)
+
+  -- Normal colors --
+  love.graphics.setColor( 255,255,255,255)
+
+  screen.drawAnimation(7, 400, 5)
+  screen.drawAnimation(6, 350, -160)
+  for i=0, 5 do
+    love.graphics.draw(treeImg, i*100, 600-floor-260)
+  end
   bar.draw()
   ball.draw()
   player.draw()
