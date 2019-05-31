@@ -24,6 +24,7 @@ function world.initialize(screenObj,playerObj)
 
   set = false
   time = 0
+  pressed = false
 end
   
 -- Function to draw score --
@@ -57,8 +58,12 @@ function world.update()
   end
 
   if input.getKey("return") then
-    screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
-    set = true
+    if not pressed then
+      screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
+      pressed = true
+      set = true
+      time = 0
+    end
   end
 
   if time>10000000/4 then
