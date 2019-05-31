@@ -28,6 +28,10 @@ function screen.drawAnimation(nof, posx, posy)
   animation[nof]:draw(image[nof], posx, posy)
 end
 
+  function screen.flip(nof)
+  animation[nof]:flipH()
+end
+
 -- Drawing function --
 function screen.draw()
   love.graphics.scale(screen.width/800, screen.height/600)
