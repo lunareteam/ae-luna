@@ -23,7 +23,7 @@ function player.initialize(screenObj, barObj, ballObj)
 
   changed = true
   place = 160
-  floorImg = love.graphics.newImage("game/overworld/sprites/floor.png")
+  floorImg = love.graphics.newImage("game/sprites/floor.png")
 end
 
 -- Function to draw score --

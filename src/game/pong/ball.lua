@@ -24,15 +24,23 @@ function ball.initialize(screenObj, barObj, playerObj, audioObj)
   shieldt=0
 
   screen.parseAnimation("game/pong/sprites/ball.png", 42, 32, 2)
-  screen.flip(2)
+  hitted = 2
 end
 
 -- Function to draw ball --
 function ball.draw()
   if (( (bar.pos2-ball.posx)/(ball.velx*(math.cos(ball.ang))))-5)<0 then
     love.graphics.setColor(255,0,0,255)
+    if hitted == 1 then
+      hitted = 2
+      screen.flip(2)
+    end
   else
     love.graphics.setColor( 255,255,255,255)
+    if hitted == 2 then
+      hitted = 1
+      screen.flip(2)
+    end
   end
   screen.drawAnimation(2, ball.posx-ball.size/2, ball.posy-ball.size/2)
   love.graphics.setColor( 255,255,255,255)
@@ -108,7 +116,6 @@ function ball.update()
      ((ball.posy<=player.pos2+bar.height+ball.size) and (ball.posy>=player.pos2-ball.size))) then
     -- Collision sound --
     audio.playSFX("game/pong/sfx/pop.ogg")
-    screen.flip(2)
       -------NEW COLISION----------
        --------HORIZONTAL-----------
     if ball.posx<bar.pos1+bar.width+30 then-------bar1----------------------
@@ -168,7 +175,6 @@ function ball.update()
   -- Player 1 loss --
   if ball.posx<=ball.size then
     ball.setStart()
-    screen.flip(2)
     -- Score + 1 --
     player.score2 = player.score2 + 1
     if not (player.score2 == 5) then

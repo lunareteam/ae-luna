@@ -23,18 +23,14 @@ end
 
 -- Drawer --
 function init.draw()
-  player.draw()
   world.draw()
+  player.draw()
 end
 
 -- Pong Updater --
 function init.update()
   player.update()
   world.update()
-
-  if input.getKey("return") then
-    loader.changeGame("pong")
-  end
 end
 
 -- Returns itself --
