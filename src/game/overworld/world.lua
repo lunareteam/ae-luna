@@ -53,20 +53,15 @@ end
 function world.update()
   world.walking = false
 
-  if set then
-    time = time+love.timer.getTime()
-  end
-
   if input.getKey("return") then
     if not pressed then
       screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
       pressed = true
-      set = true
-      time = 0
     end
   end
 
-  if time>10000000/4 then
+  --print(screen.getLoop(5))
+  if screen.getLoop(5) == 1 and pressed then
     loader.changeGame("pong")
   end
 
