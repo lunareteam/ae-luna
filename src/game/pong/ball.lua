@@ -73,6 +73,18 @@ function ball.setStart()
   ball.vely = 6
   ball.ang=ball.angles[math.random(1,4)]
 end
+function ball.setWait()
+  -- Resets ball position --
+
+  ball.posx = bar.pos2-ball.size/2-10
+
+  ball.posx=693
+  ball.posy = 322
+  -- Ball direction and speed --
+  ball.velx = 0
+  ball.vely = 0
+  ball.ang=ball.angles[math.random(1,4)]
+end
 
 function ball.angleMaker(pos)
   angle=ball.posy-pos
@@ -103,6 +115,7 @@ function ball.angleMaker(pos)
 end
 
 function ball.update()
+  print(ball.posy)
   if scored1>30 then
     scored1=0
   elseif scored1>0 then
@@ -118,6 +131,9 @@ function ball.update()
   else
     shieldv=0
     shieldt=0
+  end
+  if scored1==30 or scored2==30 then
+    ball.setStart()
   end
   
   if  ball.posx<=bar.pos1+bar.width+20+ball.size/2 then
@@ -199,9 +215,11 @@ function ball.update()
 
   -- Player 1 loss --
   if ball.posx<=ball.size then
-    ball.setStart()
     scored1=1
     -- Score + 1 --
+    if scored1<30 then
+      ball.setWait()
+    end
     player.score2 = player.score2 + 1
     if not (player.score2 == 5) then
       audio.playSFX("game/pong/sfx/itai.ogg")
@@ -210,8 +228,10 @@ function ball.update()
 
   -- Player 2 loss --
   if ball.posx>=800-ball.size then
-    ball.setStart()
     scored2=1
+    if scored2<30 then
+      ball.setWait()
+    end
     -- Score + 1 --
     player.score1 = player.score1 + 1
     audio.playSFX("game/pong/sfx/quak.ogg")
