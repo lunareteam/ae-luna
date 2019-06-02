@@ -22,8 +22,8 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
   bar.initialize(screenObj, player)
   ball.initialize(screenObj, bar, player, audio)
 
-  screen.parseAnimation("game/sprites/cloud.png", 512, 512, 6)
-  screen.parseAnimation("game/sprites/sun.png", 96, 96, 7)
+  screen.parseAnimation("game/sprites/cloud.png", 512, 512, 4)
+  screen.parseAnimation("game/sprites/sun.png", 96, 96, 5)
 end
 
 -- Drawer --
@@ -35,8 +35,8 @@ function init.draw()
   -- Normal colors --
   love.graphics.setColor( 255,255,255,255)
 
-  screen.drawAnimation(7, 400, 5)
-  screen.drawAnimation(6, 350, -160)
+  screen.drawAnimation(5, 400, 5)
+  screen.drawAnimation(4, 350, -160)
   for i=0, 5 do
     love.graphics.draw(treeImg, i*100, 600-floor-260)
   end

@@ -11,7 +11,6 @@ function screen.initialize(loaderObj, inputObj)
   -- Loads called objects --
   loader = loaderObj
   input = inputObj
-  x=0
 
   screen.getDimensions()
 
@@ -71,6 +70,7 @@ function screen.update(dt)
       loop[i] = animation[i]:update(dt)
     end
   end
+
   -- Get pixel height/width --
   screen.getDimensions()
   -- Set title for each screen --
@@ -78,7 +78,7 @@ function screen.update(dt)
 
   if not (loader.game == "menu") then
     -- Goes back to menu --
-    if input.getKey("escape") or x==1 then
+    if input.getKey("escape") then
       audio.stopBGM()
       loader.changeGame("menu")
     end

@@ -26,17 +26,16 @@ function ball.initialize(screenObj, barObj, playerObj, audioObj)
   screen.parseAnimation("game/pong/sprites/ball.png", 42, 32, 2)
   hitted = 2
   scored1=0
-  n=9
 
+  screen.parseAnimation("game/pong/sprites/boomL.png", 200, 440, 6)
 end
 
 -- Function to draw ball --
 function ball.draw()
   if not(scored1==0) then 
-    screen.drawAnimation(n,0,0)
-  else
-    screen.parseAnimation("game/pong/sprites/boomL.png", 200, 440, n)
+    screen.drawAnimation(6,0,0)
   end
+
   if (( (bar.pos2-ball.posx)/(ball.velx*(math.cos(ball.ang))))-5)<0 then
     love.graphics.setColor(255,0,0,255)
     if hitted == 1 then
@@ -102,13 +101,14 @@ function ball.update()
     scored1=scored1+1
   --else
   end
+
   if shieldv==1 and shieldt<3 then
     shieldt=shieldt+1
   else
     shieldv=0
     shieldt=0
-
   end
+  
   if  ball.posx<=bar.pos1+bar.width+20+ball.size/2 then
     shieldh=10
     shieldw=10
