@@ -1,0 +1,10 @@
+Você:Alou de casa, me vê esse chinelo aqui que o meu quebrou
+Mercador:Olá estranho
+Você:Olá mercador de jogo survival horror, eae, quanto por esse chinelo?
+nil:Você coloca a mão no bolso e percebe que sua carteira sumiu
+Você:CARALHOW, ROUBARAM MINHA CARTEIRAA
+Você:Ow amigo, infelizmente preciso que você aceite essas 5 moedas de fliperama por esse chinelo
+Mercador:Bom, não é exatamente dinheiro mas.. Moeda de kof tá cara então tá de boa
+Você:Ae, consegui um chinelo foguete pô
+Mercador:Also, por favor leve esse pão, tá cheio no estoque e ninguem mais vêm aqui pra comprar ele
+Você:Beleza men
