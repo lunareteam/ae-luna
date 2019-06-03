@@ -16,12 +16,17 @@ function screen.initialize(loaderObj, inputObj)
   screen.getDimensions()
 
   screen.fullscreen = false
+  loop = {0,0,0,0,0,0,0,0,0,0,0}
 end
 
 function screen.parseAnimation(string, imgX, imgY, nof)
   image[nof] = love.graphics.newImage(string)
   local g = anim8.newGrid(imgX, imgY, image[nof]:getWidth(), image[nof]:getHeight())
   animation[nof] = anim8.newAnimation(g('1-'..math.floor(image[nof]:getWidth()/imgX),1), 0.1)
+end
+
+function screen.getLoop(nof)
+  return loop[nof]
 end
 
 function screen.drawAnimation(nof, posx, posy)
@@ -34,7 +39,6 @@ end
 
 -- Drawing function --
 function screen.draw()
-  love.graphics.scale(screen.width/800, screen.height/600)
   -- Draws simple overlay --
   love.graphics.rectangle("line", 0, 0, 800, 600)
 end
@@ -64,7 +68,7 @@ end
 function screen.update(dt)
   if not (#animation == nil) then
     for i=1, #animation do
-      animation[i]:update(dt)
+      loop[i] = animation[i]:update(dt)
     end
   end
   -- Get pixel height/width --
