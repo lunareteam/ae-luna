@@ -15,20 +15,31 @@ function ball.initialize(screenObj, barObj, playerObj, audioObj)
 
   ball.constVel = 1.001
   pi= 3.14159265359
-  ball.angles={pi,pi,pi,pi}
-  ball.setStart()
+  ball.angles={2*pi,2*pi,2*pi,2*pi}
+
   shieldv=0
   shieldw=10
   shieldh=10
   shieldx=bar.pos1+bar.width+1
   shieldt=0
-
-  screen.parseAnimation("game/pong/sprites/ball.png", 42, 32, 2)
+  screen.parseAnimation("game/pong/sprites/ball.png", 32, 32, 2)
   hitted = 2
+  scored1=0
+  scored2=0
+
+  screen.parseAnimation("game/pong/sprites/boomL.png", 200, 440, 6)
+  screen.parseAnimation("game/pong/sprites/boomR.png", 200, 440, 7)
+  ball.setStart()
 end
 
 -- Function to draw ball --
 function ball.draw()
+  if not(scored1==0) then 
+    screen.drawAnimation(6,0,0)
+  end
+  if not(scored2==0) then 
+    screen.drawAnimation(7,600,0)
+  end
   if (( (bar.pos2-ball.posx)/(ball.velx*(math.cos(ball.ang))))-5)<0 then
     love.graphics.setColor(255,0,0,255)
     if hitted == 1 then
@@ -51,8 +62,12 @@ end
 
 function ball.setStart()
   -- Resets ball position --
-  ball.posx = 800/2-10
-  ball.posy = 600/2-10
+
+  ball.posx = bar.pos2-ball.size/2-10
+  if ball.posx ==-26 then
+    ball.posx=693
+  end
+  ball.posy = player.pos2+10
   -- Ball direction and speed --
   ball.velx = -6
   ball.vely = 6
@@ -88,13 +103,23 @@ function ball.angleMaker(pos)
 end
 
 function ball.update()
+  if scored1>30 then
+    scored1=0
+  elseif scored1>0 then
+    scored1=scored1+1
+  end
+  if scored2>30 then
+    scored2=0
+  elseif scored2>0 then
+    scored2=scored2+1
+  end
   if shieldv==1 and shieldt<3 then
     shieldt=shieldt+1
   else
     shieldv=0
     shieldt=0
-
   end
+  
   if  ball.posx<=bar.pos1+bar.width+20+ball.size/2 then
     shieldh=10
     shieldw=10
@@ -141,7 +166,7 @@ function ball.update()
   --[[Vertical Collision]]--
   -- Borders
 
-  if ball.posy>=600-ball.size -floor then
+  if ball.posy>=600-ball.size/2 -floor then
     ball.vely=-ball.vely
     ball.posy=600-ball.size/2 - 1-floor
     
@@ -175,6 +200,7 @@ function ball.update()
   -- Player 1 loss --
   if ball.posx<=ball.size then
     ball.setStart()
+    scored1=1
     -- Score + 1 --
     player.score2 = player.score2 + 1
     if not (player.score2 == 5) then
@@ -185,8 +211,10 @@ function ball.update()
   -- Player 2 loss --
   if ball.posx>=800-ball.size then
     ball.setStart()
+    scored2=1
     -- Score + 1 --
     player.score1 = player.score1 + 1
+    audio.playSFX("game/pong/sfx/quak.ogg")
   end
 end
 

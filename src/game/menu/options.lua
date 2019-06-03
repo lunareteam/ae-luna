@@ -72,7 +72,7 @@ function options.update()
   end
 
   -- Move menu left --
-  if input.getKey("left")  then
+  if input.getKey("a")  then
     released=1
     if options.selected == options.min then
       options.selected = options.max
@@ -82,7 +82,7 @@ function options.update()
   end
 
   -- Move menu right --
-  if input.getKey("right") then
+  if input.getKey("d") then
     released=1
     if options.selected == options.max then
       options.selected = options.min
