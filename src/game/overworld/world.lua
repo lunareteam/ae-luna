@@ -53,9 +53,10 @@ end
 function world.update()
   world.walking = false
 
-  if input.getKey("return") then
+  if input.getKey("return") and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 then
     if not pressed then
       screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
+      audio.playSFX("game/overworld/sfx/quak.ogg")
       pressed = true
     end
   end
