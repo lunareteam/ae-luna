@@ -37,10 +37,11 @@ function player.draw()
 end
 
 function player.update()
+
   if world.posx<400 then
     player.posx=world.posx
-  elseif world.posx>1200 then
-    player.posx=800-(1600-world.posx)
+  elseif world.posx>world.width-400  then
+    player.posx=800-(world.width-world.posx)
   end
 
   if love.keyboard.isDown("w") and player.posy>=430 then

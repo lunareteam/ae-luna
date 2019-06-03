@@ -76,7 +76,7 @@ function world.update()
         changed = false
         screen.parseAnimation("game/overworld/sprites/andandor.png", 46, 126, 2)
         screen.parseAnimation("game/overworld/sprites/stillR.png", 46, 126, 1)
-        screen.parseAnimation("game/overworld/sprites/charjumpr.png", 46, 128, 3)
+        screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 3)
       end
       world.walking = true
     elseif love.keyboard.isDown("a") and world.posx>player.vely then
@@ -85,7 +85,7 @@ function world.update()
         changed = true
         screen.parseAnimation("game/overworld/sprites/andandol.png", 46, 126, 2)
         screen.parseAnimation("game/overworld/sprites/stillL.png", 46, 126, 1)
-        screen.parseAnimation("game/overworld/sprites/charjumpl.png", 46, 128, 3)
+        screen.parseAnimation("game/flyganso/sprites/charjumpl.png", 46, 128, 3)
       end
       world.walking = true
     end
