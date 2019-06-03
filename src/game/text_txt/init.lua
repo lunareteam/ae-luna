@@ -3,7 +3,7 @@
 local vn = {}
 
 -- Calls opbjects --
-local reader = require("game.text_txt.reader")
+local text = require("calls.text")
 
 
 -- Initializer function --
@@ -16,19 +16,22 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, file)
   -- Properties variables --
   alpha = 0       -- Alpha value
   fadeInTime = 0  -- Fade in timer
+  inFile = file
 
-  textbox = love.graphics.newImage("game/text_txt/bg/textbox.jpg")
+  textbox = love.graphics.newImage("game/bg/textbox.jpg")
 
   -- Song initializer
   audio.startBGM("game/text_txt/bgm/main.xm")
 
   scene = 1
+
   if love.filesystem.getInfo("game/text_txt/va/"..file.."/"..scene..".ogg") then
     audio.playSFX("game/text_txt/va/"..file.."/"..scene..".ogg")
   end
 
   -- Initializes script reader --
-  reader.initialize(file)
+  text.initialize()
+  text.parser("game/text_txt/script".. file ..".txt", 1)
 end
 
 -- VN's draw function --
@@ -49,27 +52,7 @@ function vn.draw()
     love.graphics.draw(char2, 800/2/2/2*2+800/2/2/2/2 , 600/2/2/2, 0, 0.3)
   end
 
-  -- Draw textbox --
-  love.graphics.draw(textbox, 800*0.05, 600/2/2*3-30, 0, 1)
-
-  -- Draws vn text --
-  if not (reader.scriptNames[scene] == "nil") then
-    love.graphics.print({{255, 0, 0,alpha},reader.scriptNames[scene]}, 800*0.075, 600/2/2*3-10, 0, 0.3)
-  end
-  love.graphics.printf({{0, 0, 0,alpha}, reader.scriptText[scene]}, 800*0.25, 600/2/2*3-10, 1400, "center", 0, 0.3)
-  vn.fadeIn()
-
-  -- Draws text space and prints text asking for input --
-  love.graphics.print({{0, 255, 0, 1},"<Press Return>"}, 800-185, 600-80, 0, 0.3)
-end
-
--- Fades text --
-function vn.fadeIn()
-  if love.timer.getTime() <= fadeInTime+0.35 then
-    alpha = alpha+0.05
-  else
-    fadeInTime = love.timer.getTime()
-  end
+  text.draw(scene, 1)
 end
 
 -- VN's update function --
@@ -77,28 +60,27 @@ function vn.update()
   -- Action to go to next scene with delay --
   if input.getKey("return") or input.getClick() or input.toggle("lctrl") then
     -- Ends game when script ends, else goes to next scene --
-    if (scene == #reader.scriptImg-1) then
+    if (text.ended(1)) then
       input.toggled = false
       audio.stopBGM()
-      action = loadstring(reader.scriptImg[scene+1])
+      action = loadstring(text.img(1,scene+1))
       action()
     elseif input.pressed == true then
-      scene = reader.nextScene()    -- Goes to next scene
-      alpha = 0             -- Resets alpha value
+      scene = text.nextScene(scene)
 
-      if love.filesystem.getInfo("game/text_txt/va/"..file.."/"..scene..".ogg") then
-        audio.playSFX("game/text_txt/va/"..file.."/"..scene..".ogg")
+      if love.filesystem.getInfo("game/text_txt/va/"..inFile.."/"..scene..".ogg") then
+        audio.playSFX("game/text_txt/va/"..inFile.."/"..scene..".ogg")
       end
       
       -- Parse chars --
-      pos = string.find(reader.scriptImg[scene], ",", 1, true)
-      if not(string.sub(reader.scriptImg[scene], 1, pos-1) == "nil") then
-        char1 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(reader.scriptImg[scene], 1, pos-1).. ".png")
+      pos = string.find(text.img(1,scene), ",", 1, true)
+      if not(string.sub(text.img(1,scene), 1, pos-1) == "nil") then
+        char1 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(text.img(1,scene), 1, pos-1).. ".png")
       else
         char1 = nil
       end
-      if not(string.sub(reader.scriptImg[scene], pos+1) == "nil") then
-        char2 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(reader.scriptImg[scene], pos+1).. ".png")
+      if not(string.sub(text.img(1,scene), pos+1) == "nil") then
+        char2 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(text.img(1,scene), pos+1).. ".png")
       else
         char2 = nil
       end

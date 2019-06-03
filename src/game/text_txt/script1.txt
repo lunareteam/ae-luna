@@ -19,7 +19,7 @@ Você:Mas não tem disco nesse console, ele é nas nuvens meuamigo, será esse u
 nil:Você já começa a pensar o que deveria fazer ao perder seu precioso amigo porém, algo acontece:char1_happy,nil
 nil:O console começa a brilhar e lhe avisa:char1_happy,nil
 Console:INICIO DO JOGO:char1_happy,nil
-Console:PRIMEIRA MISSÃO, FAÇA 5 PONTOS:char1_happy,nil
+Console:ENVIANDO PARA O MUNDO NOVO:char1_happy,nil
 Você:Só pode ser brincadeira, alguém anda assistindo muita viagem pra outro mundo:char1_happy,nil
 nil:E assim começa o 'jogo':char1_happy,nil
 loader.changeGame("overworld")
