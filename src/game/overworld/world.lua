@@ -64,6 +64,32 @@ function world.draw()
 end
   
 function world.update()
+  world.walking = false
+  if scene==1 then
+    if love.keyboard.isDown("return")--[[input.getKey("return") --[[and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 ]] then
+      --[[if not pressed then
+       --[[ screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
+        audio.playSFX("game/overworld/sfx/quak.ogg")
+          --pressed = true
+      end]]
+
+      if world.posx>=460 and world.posx<= 520  then
+        scene=2
+        world.posx=0
+        player.posx=0
+        world.width=800
+      end
+    end
+  elseif scene==2 then
+    if input.getKey("return") then
+      if world.posx<90 and world.posx>0 then
+        scene=1
+        world.posx=445
+        player.posx=395
+        world.width=1600
+      end
+    end
+  end
   if screen.getLoop(5) == 1 and pressed and jogo==0 then
         loader.changeGame("pong")
         closer=1

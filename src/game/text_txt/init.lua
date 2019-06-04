@@ -2,9 +2,8 @@
 -- Makes itself an object --
 local vn = {}
 
--- Calls opbjects --
+-- Calls objects --
 local text = require("calls.text")
-
 
 -- Initializer function --
 function vn.initialize(screenObj, audioObj, inputObj, loaderObj, file)
@@ -58,31 +57,31 @@ end
 
 -- VN's update function --
 function vn.update()
-  if game1==0 then
-    -- Action to go to next scene with delay --
-    if input.getKey("return") or input.getClick() or input.toggle("lctrl") then
-      -- Ends game when script ends, else goes to next scene --
-      if (text.ended(1)) then
-        input.toggled = false
-        audio.stopBGM()
-        action = loadstring(text.img(1,scene+1))
-        action()
-      elseif input.pressed == true then
-        scene = text.nextScene(scene)
+  -- Action to go to next scene with delay --
+  if input.getKey("return") or input.getClick() or input.toggle("lctrl") then
+    -- Ends game when script ends, else goes to next scene --
+    if text.ended(1,scene) then
+      input.toggled = false
+      audio.stopBGM()
+      action = loadstring(text.string(1,scene+1))
+      action()
+    elseif input.pressed == true then
+      scene = text.nextScene(scene)
 
-        if love.filesystem.getInfo("game/text_txt/va/"..inFile.."/"..scene..".ogg") then
-          audio.playSFX("game/text_txt/va/"..inFile.."/"..scene..".ogg")
-        end
-        
-        -- Parse chars --
-        pos = string.find(text.img(1,scene), ",", 1, true)
-        if not(string.sub(text.img(1,scene), 1, pos-1) == "nil") then
-          char1 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(text.img(1,scene), 1, pos-1).. ".png")
+      if love.filesystem.getInfo("game/text_txt/va/"..inFile.."/"..scene..".ogg") then
+        audio.playSFX("game/text_txt/va/"..inFile.."/"..scene..".ogg")
+      end
+      
+      -- Parse chars --
+      pos = string.find(text.string(1,scene), ",", 1, true)
+      if pos ~= nil then
+        if not(string.sub(text.string(1,scene), 1, pos-1) == "nil") then
+          char1 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(text.string(1,scene), 1, pos-1).. ".png")
         else
           char1 = nil
         end
-        if not(string.sub(text.img(1,scene), pos+1) == "nil") then
-          char2 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(text.img(1,scene), pos+1).. ".png")
+        if not(string.sub(text.string(1,scene), pos+1) == "nil") then
+          char2 = love.graphics.newImage("game/text_txt/chars/" .. string.sub(text.string(1,scene), pos+1).. ".png")
         else
           char2 = nil
         end
