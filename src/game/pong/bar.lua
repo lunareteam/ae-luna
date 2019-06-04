@@ -17,7 +17,7 @@ function bar.initialize(screenObj, playerObj)
   player.pos2 = (600/2-bar.height/2)
 
   screen.parseAnimation("game/pong/sprites/charbar.png", 46, 128, 1) 
-  screen.parseAnimation("game/pong/sprites/gansojump.png", 46,128, 3) 
+  screen.parseAnimation("game/pong/sprites/gansostop.png", 46,128, 3) 
 end
 
 -- Function to draw player bars --

@@ -22,6 +22,7 @@ function player.initialize(screenObj, barObj, ballObj)
   floor=160
 
   changed = true
+  changed2 = true
   place = 160
   floorImg = love.graphics.newImage("game/sprites/floor.png")
 end
@@ -70,6 +71,17 @@ function player.update()
         if not changed then
           changed = true
           screen.parseAnimation("game/pong/sprites/charjump.png", 46, 128, 1)
+        end
+      end
+      if player.pos2==312 then
+        if changed2 then
+          changed2 = false
+          screen.parseAnimation("game/pong/sprites/gansostop.png", 46, 128, 3)
+        end
+      else
+        if not changed2 then
+          changed2 = true
+          screen.parseAnimation("game/pong/sprites/gansojump.png", 46, 128, 3)
         end
       end
 
