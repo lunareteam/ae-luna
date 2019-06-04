@@ -81,7 +81,7 @@ function world.update()
       end
     end
   elseif scene==2 then
-    if love.keyboard.isDown("return") then
+    if input.getKey("return") then
       if world.posx<90 and world.posx>0 then
         scene=1
         world.posx=445
