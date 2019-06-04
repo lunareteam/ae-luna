@@ -81,7 +81,7 @@ function text.draw(line, nof, up)
     love.graphics.printf({{0, 0, 0,alpha}, file[nof].scriptText[line]}, 800*0.25, 600/2/2*pos-10, 1400, "center", 0, 0.3)
   end
   text.fadeIn()
-
+  
   -- Draws text space and prints text asking for input --
   if up then
     love.graphics.print({{0, 255, 0, 1},"<Press Return>"}, 800-185, textbox:getHeight()+10, 0, 0.3)

@@ -6,6 +6,7 @@ local init = {}
 
 local player = require("game.overworld.player")
 local world = require("game.overworld.world")
+local text= require("calls.text")
 
 -- Calls objects --
 local text = require("calls.text")
@@ -15,12 +16,14 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
   text = {}
   -- Calls objects --
   text = require("calls.text")
-
+  
   -- Loads called objects --
   loader = loaderObj
   screen = screenObj
   audio = audioObj
   input = inputObj
+  inFile = file
+  
 
   file = fileName
   sceneNof = 1

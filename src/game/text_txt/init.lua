@@ -16,6 +16,7 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, file)
   alpha = 0       -- Alpha value
   fadeInTime = 0  -- Fade in timer
   inFile = file
+  game1=0
 
   textbox = love.graphics.newImage("game/bg/textbox.jpg")
 
