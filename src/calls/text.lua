@@ -56,7 +56,7 @@ end
 
 function text.draw(scene, nof, up)
   if up then
-    pos = 1
+    pos = 0.5
   else
     pos = 3
   end
@@ -66,14 +66,15 @@ function text.draw(scene, nof, up)
 
   -- Draws vn text --
   if not (file[nof].scriptNames[scene] == "nil") then
-    love.graphics.print({{255, 0, 0,alpha},file[nof].scriptNames[scene]}, 800*0.075, 600/2/2*3-10, 0, 0.3)
+    love.graphics.print({{255, 0, 0,alpha},file[nof].scriptNames[scene]}, 800*0.075, 600/2/2*pos-10, 0, 0.3)
   end
   love.graphics.printf({{0, 0, 0,alpha}, file[nof].scriptText[scene]}, 800*0.25, 600/2/2*pos-10, 1400, "center", 0, 0.3)
   text.fadeIn()
-
+  print(file,nof,scene)
+  
   -- Draws text space and prints text asking for input --
   if up then
-    love.graphics.print({{0, 255, 0, 1},"<Press Return>"}, 800-185, 80+textbox:getHeight(), 0, 0.3)
+    love.graphics.print({{0, 255, 0, 1},"<Press Return>"}, 800-185, textbox:getHeight()+10, 0, 0.3)
   else
     love.graphics.print({{0, 255, 0, 1},"<Press Return>"}, 800-185, 600-80, 0, 0.3)
   end

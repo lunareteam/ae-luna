@@ -9,7 +9,7 @@ function world.initialize(screenObj,playerObj)
   world.posx=0
   jogo=1
   world.width=1600
-  scene=1
+  world.scene=1
   shoes=0
 
   world.walking = false
@@ -35,7 +35,7 @@ end
 
 -- Function to draw score --
 function world.draw()
-  if scene==1 then
+  if world.scene==1 then
     -- Blue sky --
     love.graphics.setColor( 0,255,230,255)
     love.graphics.rectangle("fill", 0, 0, 800, 600)
@@ -55,7 +55,7 @@ function world.draw()
     for i=0, 14 do
       love.graphics.draw(floorImg, place*i-world.posx, 600-floor, 0, 0.38)
     end
-  elseif scene==2 then
+  elseif world.scene==2 then
     screen.drawAnimation(8,0,0)
     if shoes==0 then
       screen.drawAnimation(9,400-16,300)
@@ -65,7 +65,7 @@ end
   
 function world.update()
   world.walking = false
-  if scene==1 then
+  if world.scene==1 then
     if love.keyboard.isDown("return")--[[input.getKey("return") --[[and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 ]] then
       --[[if not pressed then
        --[[ screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
@@ -74,16 +74,16 @@ function world.update()
       end]]
 
       if world.posx>=460 and world.posx<= 520  then
-        scene=2
+        world.scene=2
         world.posx=0
         player.posx=0
         world.width=800
       end
     end
-  elseif scene==2 then
+  elseif world.scene==2 then
     if love.keyboard.isDown("return") then
       if world.posx<90 and world.posx>0 then
-        scene=1
+        world.scene=1
         world.posx=445
         player.posx=395
         world.width=1600
@@ -97,7 +97,7 @@ function world.update()
 
   if jogo==1 then
 
-    if love.keyboard.isDown("d") and world.posx<world.width-player.vely-player.width and ((not(world.posx==535 ))or (scene==2))then
+    if love.keyboard.isDown("d") and world.posx<world.width-player.vely-player.width and ((not(world.posx==535 ))or (world.scene==2))then
       world.posx=world.posx+player.vely
       if changed then
         changed = false
@@ -106,7 +106,7 @@ function world.update()
         screen.parseAnimation("game/overworld/sprites/charjumpr.png", 46, 128, 3)
       end
       world.walking = true
-    elseif love.keyboard.isDown("a") and world.posx>player.vely and( (not(world.posx==645) )or (scene==2))then
+    elseif love.keyboard.isDown("a") and world.posx>player.vely and( (not(world.posx==645) )or (world.scene==2))then
       world.posx=world.posx-player.vely
       if not changed then
         changed = true

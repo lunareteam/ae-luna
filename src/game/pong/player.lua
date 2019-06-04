@@ -29,21 +29,10 @@ end
 -- Function to draw score --
 function player.draw()
   
-  if player.score1==2 then
-    love.graphics.print("braço", (800/2)/2-10, 30, 0, 0.4)
-    love.graphics.print(player.score1, (800/2)/2-30, 30, 0, 0.4)
-  else
-    love.graphics.print("score", (800/2)/2-10-30, 30, 0, 0.4)
-    love.graphics.print(player.score1, (800/2)/2+50-30, 30, 0, 0.4)
-  end
-
-  if player.score2==2 then
-    love.graphics.print("braço", 20+(800/2)+((800/2)/2)-10, 30, 0, 0.4)
-    love.graphics.print(player.score2, 20+(800/2)+(800/2)/2-30, 30, 0, 0.4)
-  else
-    love.graphics.print("score", (800/2)+((800/2)/2)-10, 30, 0, 0.4)
-    love.graphics.print(player.score2,(800/2)+((800/2)/2)+50, 30, 0, 0.4)
-  end
+  love.graphics.setColor( 0,255,0,255)
+  love.graphics.rectangle( fill, (800/2)/2-10-30, 30, 10*(5-player.score2), 20 )
+  love.graphics.rectangle( fill, (800/2)+((800/2)/2)+50, 30, 10*(5-player.score1), 20 )
+  love.graphics.setColor( 255,255,255,255)
 
   for i=0, 6 do
     love.graphics.draw(floorImg, place*i, 600-floor, 0, 0.38)
