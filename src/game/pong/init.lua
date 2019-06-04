@@ -15,7 +15,7 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
   audio = audioObj
   input = inputObj
 
-  audio.startBGM("game/pong/bgm/maintheme.ogg")
+  audio.startBGM("game/pong/bgm/maintheme.wav")
 
   treeImg = love.graphics.newImage("game/sprites/tree.png")
   player.initialize(screen, bar, ball)

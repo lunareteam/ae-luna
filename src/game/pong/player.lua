@@ -22,6 +22,7 @@ function player.initialize(screenObj, barObj, ballObj)
   floor=160
 
   changed = true
+  changed2 = true
   place = 160
   floorImg = love.graphics.newImage("game/sprites/floor.png")
 end
@@ -29,21 +30,12 @@ end
 -- Function to draw score --
 function player.draw()
   
-  if player.score1==2 then
-    love.graphics.print("braço", (800/2)/2-10, 30, 0, 0.4)
-    love.graphics.print(player.score1, (800/2)/2-30, 30, 0, 0.4)
-  else
-    love.graphics.print("score", (800/2)/2-10-30, 30, 0, 0.4)
-    love.graphics.print(player.score1, (800/2)/2+50-30, 30, 0, 0.4)
-  end
-
-  if player.score2==2 then
-    love.graphics.print("braço", 20+(800/2)+((800/2)/2)-10, 30, 0, 0.4)
-    love.graphics.print(player.score2, 20+(800/2)+(800/2)/2-30, 30, 0, 0.4)
-  else
-    love.graphics.print("score", (800/2)+((800/2)/2)-10, 30, 0, 0.4)
-    love.graphics.print(player.score2,(800/2)+((800/2)/2)+50, 30, 0, 0.4)
-  end
+  love.graphics.setColor( 0,255,0,255)
+  love.graphics.rectangle( "fill", (800/2)/2-10-30-90, 30, 20*(5-player.score2), 20 )
+  love.graphics.rectangle( "fill", (800/2)+((800/2)/2)+50+100-20*(5-player.score1), 30, 20*(5-player.score1), 20 )
+  love.graphics.setColor( 255,0,0,255)
+  love.graphics.rectangle( "fill", (800/2)+((800/2)/2)+50, 30, 100-20*(5-player.score1), 20 )
+  love.graphics.setColor( 255,255,255,255)
 
   for i=0, 6 do
     love.graphics.draw(floorImg, place*i, 600-floor, 0, 0.38)
@@ -79,6 +71,17 @@ function player.update()
         if not changed then
           changed = true
           screen.parseAnimation("game/pong/sprites/charjump.png", 46, 128, 1)
+        end
+      end
+      if player.pos2==312 then
+        if changed2 then
+          changed2 = false
+          screen.parseAnimation("game/pong/sprites/gansostop.png", 46, 128, 3)
+        end
+      else
+        if not changed2 then
+          changed2 = true
+          screen.parseAnimation("game/pong/sprites/gansojump.png", 46, 128, 3)
         end
       end
 
