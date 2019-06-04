@@ -30,8 +30,10 @@ end
 function player.draw()
   
   love.graphics.setColor( 0,255,0,255)
-  love.graphics.rectangle( fill, (800/2)/2-10-30, 30, 10*(5-player.score2), 20 )
-  love.graphics.rectangle( fill, (800/2)+((800/2)/2)+50, 30, 10*(5-player.score1), 20 )
+  love.graphics.rectangle( "fill", (800/2)/2-10-30-90, 30, 20*(5-player.score2), 20 )
+  love.graphics.rectangle( "fill", (800/2)+((800/2)/2)+50+100-20*(5-player.score1), 30, 20*(5-player.score1), 20 )
+  love.graphics.setColor( 255,0,0,255)
+  love.graphics.rectangle( "fill", (800/2)+((800/2)/2)+50, 30, 100-20*(5-player.score1), 20 )
   love.graphics.setColor( 255,255,255,255)
 
   for i=0, 6 do

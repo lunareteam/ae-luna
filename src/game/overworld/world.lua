@@ -26,7 +26,7 @@ function world.initialize(screenObj,playerObj)
   screen.parseAnimation("game/overworld/sprites/vitrine.png",32, 32, 9)
   scaleHouse = 1
   place = 160
-
+  world.pong=0
   set = false
   time = 0
   pressed = false
@@ -64,39 +64,51 @@ function world.draw()
 end
   
 function world.update()
-  world.walking = false
-  if world.scene==1 then
-    if love.keyboard.isDown("return")--[[input.getKey("return") --[[and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 ]] then
-      --[[if not pressed then
-       --[[ screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
-        audio.playSFX("game/overworld/sfx/quak.ogg")
-          --pressed = true
-      end]]
-
-      if world.posx>=460 and world.posx<= 520  then
-        world.scene=2
-        world.posx=0
-        player.posx=0
-        world.width=800
-      end
-    end
-  elseif world.scene==2 then
-    if love.keyboard.isDown("return") then
-      if world.posx<90 and world.posx>0 then
-        world.scene=1
-        world.posx=445
-        player.posx=395
-        world.width=1600
-      end
-    end
-  end
   if screen.getLoop(5) == 1 and pressed and jogo==0 then
         loader.changeGame("pong")
         closer=1
   end
 
   if jogo==1 then
-
+    world.walking = false
+    if world.scene==1 then
+      if love.keyboard.isDown("return")--[[input.getKey("return") --[[and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 ]] then
+        if world.posx>=460 and world.posx<= 520  then
+          world.scene=2
+          world.posx=0
+          player.posx=0
+          world.width=800
+        elseif world.posx>=645 and world.posx<= 690 then
+          world.scene=2
+          world.posx=750
+          player.posx=750
+          world.width=800
+        end
+      end
+    elseif world.scene==2 then
+      if love.keyboard.isDown("return") then
+        if world.posx<90 and world.posx>0 then
+          world.scene=1
+          world.posx=445
+          player.posx=395
+          world.width=1600
+        elseif world.posx>=700 and world.posx<750 then
+          world.scene=1
+          world.posx=705
+          player.posx=405
+          world.width=1600
+          if world.pong==0 then
+            if not pressed then
+              screen.parseAnimation("game/overworld/sprites/stillR.png", 46, 126, 1)
+              screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
+              audio.playSFX("game/overworld/sfx/quak.ogg")
+              pressed = true
+              jogo=0
+            end
+          end
+        end
+      end
+    end
     if love.keyboard.isDown("d") and world.posx<world.width-player.vely-player.width and ((not(world.posx==535 ))or (world.scene==2))then
       world.posx=world.posx+player.vely
       if changed then

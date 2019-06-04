@@ -70,7 +70,6 @@ function text.draw(scene, nof, up)
   end
   love.graphics.printf({{0, 0, 0,alpha}, file[nof].scriptText[scene]}, 800*0.25, 600/2/2*pos-10, 1400, "center", 0, 0.3)
   text.fadeIn()
-  print(file,nof,scene)
   
   -- Draws text space and prints text asking for input --
   if up then
