@@ -17,20 +17,23 @@ function world.initialize(screenObj,playerObj)
   sunImg = love.graphics.newImage("game/sprites/sun.png")
   cloudImg = love.graphics.newImage("game/sprites/cloud.png")
   screen.parseAnimation("game/overworld/sprites/well.png", 80, 200, 4)
-  screen.parseAnimation("game/overworld/sprites/gansozzz.png", 46, 128, 5)
+
   screen.parseAnimation("game/sprites/cloud.png", 512, 512, 6)
   screen.parseAnimation("game/sprites/sun.png", 96, 96, 7)
   scaleHouse = 1
+  screen.parseAnimation("game/flyganso/sprites/gansodestr.png", 46, 128, 5)
   place = 160
 
   set = false
   time = 0
   floorImg = love.graphics.newImage("game/sprites/floor.png")
-  pressed = false
+
 end
   
 -- Function to draw score --
 function world.draw()
+  screen.drawAnimation(5, 400, 400)
+ -- screen.drawAnimation(8, 0, 0)
   -- Blue sky --
   love.graphics.setColor( 0,255,230,255)
   love.graphics.rectangle("fill", 0, 0, 800, 600)
@@ -47,11 +50,11 @@ function world.draw()
   for i=0, 6 do
     love.graphics.draw(floorImg, place*i, 600-floor, 0, 0.38)
   end
-  
+
+
 end
   
 function world.update()
-
     world.walking = false
     if input.getKey("return") and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 then
       if not pressed then
