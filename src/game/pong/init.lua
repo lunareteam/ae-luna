@@ -18,6 +18,7 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
   audio.startBGM("game/pong/bgm/maintheme.wav")
 
   treeImg = love.graphics.newImage("game/sprites/tree.png")
+  skyImg = love.graphics.newImage("game/sprites/sky.png")
   player.initialize(screen, bar, ball)
   bar.initialize(screenObj, player)
   ball.initialize(screenObj, bar, player, audio)
@@ -28,12 +29,7 @@ end
 
 -- Drawer --
 function init.draw()
-  -- Blue sky --
-  love.graphics.setColor( 0,255,230,255)
-  love.graphics.rectangle("fill", 0, 0, 800, 600)
-
-  -- Normal colors --
-  love.graphics.setColor( 255,255,255,255)
+  love.graphics.draw(skyImg,0,-150)
 
   screen.drawAnimation(5, 400, 5)
   screen.drawAnimation(4, 350, -160)
@@ -49,7 +45,7 @@ end
 function init.update()
   if player.score1 == 5 or love.keyboard.isDown('l') then
     player.score1 = 5
-    loader.changeGame("flyganso", 2)
+    loader.changeGame("text_txt", 2)
   elseif player.score2 == 5 or love.keyboard.isDown('k') then
     player.score2 = 5
     loader.gameover()

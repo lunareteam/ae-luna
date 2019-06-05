@@ -1,29 +1,15 @@
-Você:Parabéns a quem fez isso, de verdade:char1_happy,nil
-Você:Alguém não entende o que é limite:char1_happy,nil
-nil:PTSD de seu tempo na faculdade ataca com sua própria fala, isso que é força de vontade né protagonista:char1_happy,nil
-Você:Esquecendo isso..:char1_happy,nil
-Você:Primeiramente que isso deveria ser um mmorpg pra esse cenario fazer sentido:char1_happy,nil
-Você:No fim da vida ainda, confio que quem fez isso conseguiria a proeza de matar o próprio jogo:char1_happy,nil
-Você:Bom parece que estou dentro do jogo, ou do console se isso parecer com 'megatwenty':char1_happy,nil
-Você:Ainda assim, pong? E desse jeito que parece que estou com um sonyc vr na cara pra jogar:char1_happy,nil
-nil:Você começa a pensar sobre o que aconteceu:char1_happy,nil
-nil:O problema é que você não é muito inteligente e desiste rapidamente:char1_happy,nil
-nil:De algum jeito você fica é feliz que isso aconteceu, sua maneira de escapar da sua vida apareceu diante de seus olhos:char1_happy,nil
-nil:Ok né...:char1_happy,nil
-Você:AHAHAHAHAHA:char1_happy,nil
-Você:HAHAHAHA:char1_happy,nil
-Você:*cof**cof*:char1_happy,nil
-Você:HAHA:char1_happy,nil
-nil:Ok, pare, já deu né amigo:char1_happy,nil
-Você:Espero ter uns dating sims aqui, aí será meu fim:char1_happy,nil
-nil:Nota - Não haverá dating sims, o protagonista não merece:char1_happy,nil
-nil:Enquanto você saltitava à procura do próximo jogo, algo se aproxima:char1_happy,nil
-nil:Se você não fosse assim poderia até se pensar que era um stalker:char1_happy,nil
-nil:Ele se aproxima porém você não percebe, há coisas mais importantes para você no momento:char1_happy,nil
-Voz desconhecida:Olá estranho, não é comum ver pessoas novas por aqui:char1_happy,nil
-nil:Você pula, tipo muito forte assustado, porém ao se virar:char1_happy,nil
-Você:AJKDBGAHFDG9HA9:char1_happy,nil
-Você:NPC's de pong, meuamigo que mundo é esse:char1_happy,nil
-nil:Ei, você não devia fazer piada com isso, tudo é possivel taokei?:char1_happy,nil
-nil:Continua:nil,nil
+Você:Mano que merda foi essa de eu lutar com um ganso, o designer tá maluco?:char1_happy,nil
+Designer 1:...:char1_happy,nil
+Designer 2:Mano desculpa tá, é culpa das drogas no RU:char1_happy,nil
+Roteirista:KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK:char1_happy,nil
+Você:Tá bom, agora continuando...:char1_happy,nil
+Você:Cadê meu harem, amigo?:char1_happy,nil
+Você:Que isekai sem graça, pior que o do smartphone:char1_happy,nil
+nil:Você anda pelo mapa inicial, à procura da pessoa que te trouxe pra cá e seu poder cheat:char1_happy,nil
+nil:Por não ter muito condicionamento físico por causa do seu estado NEET, você resolve descansar daquela luta perto do poço:char1_happy,nil
+Você:Mano, nem tem gente aqui, como pode ser um mundo alternativo se não tem gente?:char1_happy,nil
+Você:AAAAAAAAAAAAAAAAAAAAAAA, DROGA DE ISEKAI!:char1_happy,nil
+nil:Ao dizer isso você se desequilibra e cai no poço:char1_happy,nil
+nil:Não há como seu dia piorar:char1_happy,nil
+nil:CONTINUA:char1_happy,nil
 loader.changeGame("menu")

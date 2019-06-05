@@ -40,6 +40,8 @@ end
 function screen.draw()
   -- Draws simple overlay --
   love.graphics.rectangle("line", 0, 0, 800, 600)
+
+  love.graphics.print("Activate Windows\nGo to Settings to activate Windows", 535, 560, 0, 0.3)
 end
 
 -- Fullscreen toggler --
