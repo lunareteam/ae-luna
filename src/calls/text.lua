@@ -52,6 +52,13 @@ end
 
 function text.ended(nof,line)
   --print(#file[nof].scriptImg, line)
+  if #file[nof].scriptImg == line-1 then
+    return true
+  end
+  return false
+end
+
+function text.endedVN(nof,line)
   if #file[nof].scriptImg == line+1 then
     return true
   end

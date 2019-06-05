@@ -60,7 +60,7 @@ function vn.update()
   -- Action to go to next scene with delay --
   if input.getKey("return") or input.getClick() or input.toggle("lctrl") then
     -- Ends game when script ends, else goes to next scene --
-    if text.ended(1,scene) then
+    if text.endedVN(1,scene) then
       input.toggled = false
       audio.stopBGM()
       action = loadstring(text.string(1,scene+1))
