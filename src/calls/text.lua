@@ -22,7 +22,6 @@ function text.parser(string, nof)
   
   -- Parses file --
   for i=1, #file[nof].scriptAll do
-    print(file[nof].scriptAll[i])
     pos = string.find(file[nof].scriptAll[i], ":", 1, true)
     if not(pos == nil) then
       table.insert(file[nof].scriptNames, string.sub(file[nof].scriptAll[i], 1, pos-1) )
@@ -32,16 +31,14 @@ function text.parser(string, nof)
     if not(pos == nil) then
       table.insert(file[nof].scriptText, string.sub(file[nof].scriptAll[i], 1, pos-1) )
       file[nof].scriptAll[i] = string.sub(file[nof].scriptAll[i], pos+1)
+    else
+      table.insert(file[nof].scriptText, string.sub(file[nof].scriptAll[i], 1) )
     end
-    if not(file[nof].scriptAll[i] == '\0') then
-      print(file[nof].scriptAll[i])
-      table.insert(file[nof].scriptImg, string.sub(file[nof].scriptAll[i], 1) )
-    end
+    --print(file[nof].scriptText[i])
   end
 end
 
 function text.string(nof, nof2)
-  print(file[nof].scriptAll[nof2])
   return file[nof].scriptAll[nof2]
 end
 
@@ -54,8 +51,8 @@ function text.textScr(nof, nof2)
 end
 
 function text.ended(nof,line)
-  --print(#file[nof].scriptImg, line)
-  if #file[nof].scriptImg == line+1 then
+  print(#file[nof].scriptAll, line)
+  if #file[nof].scriptText == line+1 then
     return true
   end
   return false
@@ -75,11 +72,8 @@ function text.draw(line, nof, up)
   if not (file[nof].scriptNames[line] == "nil") then
     love.graphics.print({{255, 0, 0,alpha},file[nof].scriptNames[line]}, 800*0.075, 600/2/2*pos-10, 0, 0.3)
   end
-  if file[nof].scriptText[line] == nil then
-    love.graphics.printf({{0, 0, 0,alpha}, file[nof].scriptImg[line]}, 800*0.25, 600/2/2*pos-10, 1400, "center", 0, 0.3)
-  else
-    love.graphics.printf({{0, 0, 0,alpha}, file[nof].scriptText[line]}, 800*0.25, 600/2/2*pos-10, 1400, "center", 0, 0.3)
-  end
+  love.graphics.printf({{0, 0, 0,alpha}, file[nof].scriptText[line]}, 800*0.25, 600/2/2*pos-10, 1400, "center", 0, 0.3)
+
   text.fadeIn()
 
   -- Draws text space and prints text asking for input --
@@ -94,7 +88,6 @@ end
 function text.nextScene(line)
   line=line+1         -- Goes to next scene
   alpha = 0             -- Resets alpha value
-  print(line)
   return line
 end
 
