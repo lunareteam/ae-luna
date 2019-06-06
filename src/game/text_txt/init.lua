@@ -6,7 +6,7 @@ local vn = {}
 local text = require("calls.text")
 
 -- Initializer function --
-function vn.initialize(screenObj, audioObj, inputObj, loaderObj, file)
+function vn.initialize(screenObj, audioObj, inputObj, loaderObj, fileObj)
   -- Loads called objects --
   screen = screenObj
   audio = audioObj
@@ -15,7 +15,7 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, file)
   -- Properties variables --
   alpha = 0       -- Alpha value
   fadeInTime = 0  -- Fade in timer
-  inFile = file
+  fileName = fileObj
   game1=0
 
   textbox = love.graphics.newImage("game/bg/textbox.jpg")
@@ -25,19 +25,21 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, file)
 
   scene = 1
 
-  if love.filesystem.getInfo("game/text_txt/va/"..file.."/"..scene..".ogg") then
-    audio.playSFX("game/text_txt/va/"..file.."/"..scene..".ogg")
+  if love.filesystem.getInfo("game/text_txt/va/"..fileName.."/"..scene..".ogg") then
+    audio.playSFX("game/text_txt/va/"..fileName.."/"..scene..".ogg")
   end
 
-  if file == 1 then
+  if fileName == 1 or fileName == "1" then
     bgImg = love.graphics.newImage("game/text_txt/bg/room.png")
+  elseif fileName == 2 or fileName == "2" then
+    bgImg = love.graphics.newImage("game/text_txt/bg/forest.png")
   else
     bgImg = nil
   end
 
   -- Initializes script reader --
   text.initialize()
-  text.parser("game/text_txt/script".. file ..".txt", 1)
+  text.parser("game/text_txt/script".. fileName ..".txt", 1)
 end
 
 -- VN's draw function --
@@ -61,7 +63,7 @@ end
 -- VN's update function --
 function vn.update()
   -- Action to go to next scene with delay --
-  if input.getKey("return") or input.getClick() or input.toggle("lctrl") then
+  if input.getKey("return") or input.getClick() or input.toggle("lctrl") or input.toggleGamepad("rightshoulder") or input.getGamepadKey("a") then
     -- Ends game when script ends, else goes to next scene --
     if text.endedVN(1,scene) then
       input.toggled = false
@@ -71,8 +73,8 @@ function vn.update()
     elseif input.pressed == true then
       scene = text.nextScene(scene)
 
-      if love.filesystem.getInfo("game/text_txt/va/"..inFile.."/"..scene..".ogg") then
-        audio.playSFX("game/text_txt/va/"..inFile.."/"..scene..".ogg")
+      if love.filesystem.getInfo("game/text_txt/va/"..fileName.."/"..scene..".ogg") then
+        audio.playSFX("game/text_txt/va/"..fileName.."/"..scene..".ogg")
       end
       
       -- Parse chars --
