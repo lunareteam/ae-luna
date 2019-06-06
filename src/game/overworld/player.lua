@@ -3,10 +3,11 @@
 local player = {}
 
 -- Initializer --
-function player.initialize(screenObj,worldObj, audioObj)
+function player.initialize(screenObj,worldObj, audioObj, inputObj)
   screen = screenObj
   world = worldObj
   audio = audioObj
+  input = inputObj
 
   -- Player pos --
   floor=160
@@ -44,7 +45,7 @@ function player.update()
     player.posx=800-(world.width-world.posx)
   end
 
-  if love.keyboard.isDown("w") and player.posy>=430 then
+  if (input.isDown("w") or input.isGamepadDown("a"))and player.posy>=430 then
     player.direction1=1
     player.jumping = true
   elseif player.posy<=320 then

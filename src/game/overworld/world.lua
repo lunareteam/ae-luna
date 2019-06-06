@@ -1,9 +1,10 @@
 local world = {}
 
 -- Initializer --
-function world.initialize(screenObj,playerObj, textObj, ended)
+function world.initialize(screenObj,playerObj, inputObj, textObj, ended)
   screen = screenObj
   player = playerObj
+  input = inputObj
   text   = textObj
 
   -- world pos --
@@ -92,7 +93,7 @@ function world.update()
   if jogo==1 then
     world.walking = false
     if world.scene==1 then
-      if love.keyboard.isDown("return")--[[input.getKey("return") --[[and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 ]] then
+      if input.isDown("return") or input.isGamepadDown("dpup")--[[input.getKey("return") --[[and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 ]] then
         if world.posx>=460 and world.posx<= 520  then
           world.changeScene(2)
           world.posx=90
@@ -124,11 +125,11 @@ function world.update()
         text.parser("game/overworld/script2.txt", 1)
         endedNow = false
         changedScene = true
-      elseif shoes==0 and player.posx == 300-30 then
+      elseif shoes==0 --[[and player.posx == 300-30]] then
         shoes = 1
       end
 
-      if love.keyboard.isDown("return") then
+      if input.isDown("return") or input.getGamepadKey("dpup") then
         if world.posx<90 then
           world.changeScene(1)
           world.posx=445
@@ -152,7 +153,7 @@ function world.update()
       end
     end
 
-    if love.keyboard.isDown("d") and world.posx<world.width-player.vely-player.width and ((not(world.posx==535 ))or (world.scene==2))then
+    if (input.isDown("d") or input.isGamepadDown("dpright")) and world.posx<world.width-player.vely-player.width and ((not(world.posx==535 ))or (world.scene==2))then
       world.posx=world.posx+player.vely
       if changed then
         changed = false
@@ -161,7 +162,7 @@ function world.update()
         screen.parseAnimation("game/overworld/sprites/charjumpr.png", 46, 128, 3)
       end
       world.walking = true
-    elseif love.keyboard.isDown("a") and world.posx>player.vely and( (not(world.posx==645) )or (world.scene==2))then
+    elseif (input.isDown("a") or input.isGamepadDown("dpleft")) and world.posx>player.vely and( (not(world.posx==645) )or (world.scene==2))then
       world.posx=world.posx-player.vely
       if not changed then
         changed = true

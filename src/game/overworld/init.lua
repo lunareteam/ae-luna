@@ -32,8 +32,8 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
   audio.startBGM("game/text_txt/bgm/main.xm")
 
   text.initialize()
-  player.initialize(screenObj, world, audio)
-  world.initialize(screenObj, player, text, endedNow)
+  player.initialize(screenObj, world, audio, input)
+  world.initialize(screenObj, player, input, text, endedNow)
 
   text.parser("game/overworld/script1.txt", 1)
 
@@ -57,7 +57,7 @@ end
 function init.update()
   if not endedNow then
     -- Action to go to next scene with delay --arrumar issovvvvvvvvv
-    if input.getKey("return") or input.getClick() or input.toggle("lctrl") then
+    if input.getKey("return") or input.getGamepadKey("a") or input.getClick() or input.toggle("lctrl") or input.toggleGamepad("rightshoulder") then
       -- Ends game when script ends, else goes to next scene --
       if text.ended(1,sceneNof) then
         input.toggled = false

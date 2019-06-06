@@ -1,9 +1,10 @@
 local world = {}
 
 -- Initializer --
-function world.initialize(screenObj,playerObj,gooseObj)
+function world.initialize(screenObj,playerObj, inputObj,gooseObj)
   screen = screenObj
   player = playerObj
+  input = inputObj
   goose = gooseObj
   player.z=0
   -- world pos --
@@ -28,17 +29,14 @@ function world.initialize(screenObj,playerObj,gooseObj)
   set = false
   time = 0
   floorImg = love.graphics.newImage("game/sprites/floor.png")
+  bgImg = love.graphics.newImage("game/sprites/sky.png")
 
 end
   
 -- Function to draw score --
 function world.draw()
  -- screen.drawAnimation(8, 0, 0)
-  -- Blue sky --
-  love.graphics.setColor( 0,255,230,255)
-  love.graphics.rectangle("fill", 0, 0, 800, 600)
-
-  -- Normal colors --
+  love.graphics.draw(bgImg, 0, -200+player.z/4)
   
   love.graphics.setColor( 255,255,255,255)
   love.graphics.setColor( 255,255,255,255)
@@ -102,7 +100,7 @@ function world.update()
     --print(screen.getLoop(5))
 
 
-    if love.keyboard.isDown("d") and world.posx<400-46 and world.posx<800-player.vely-player.width then
+    if input.isDown("d") and world.posx<400-46 and world.posx<800-player.vely-player.width then
       world.posx=world.posx+player.vely
       if changed then
         changed = false
@@ -111,7 +109,7 @@ function world.update()
         screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 3)
       end
       world.walking = true
-    elseif love.keyboard.isDown("a") and world.posx>player.vely then
+    elseif input.isDown("a") and world.posx>player.vely then
       world.posx=world.posx-player.vely
       if not changed then
         changed = true

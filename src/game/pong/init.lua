@@ -20,7 +20,7 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
   tree1Img = love.graphics.newImage("game/sprites/tree1.png")
   tree2Img = love.graphics.newImage("game/sprites/tree2.png")
   skyImg = love.graphics.newImage("game/sprites/sky.png")
-  player.initialize(screen, bar, ball)
+  player.initialize(screen, input, bar, ball)
   bar.initialize(screenObj, player)
   ball.initialize(screenObj, bar, player, audio)
 

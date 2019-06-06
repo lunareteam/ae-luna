@@ -2,11 +2,12 @@
 -- Makes itself an object --
 local player = {}
 -- Initializer --
-function player.initialize(screenObj,worldObj, audioObj,gooseObj,nof)
+function player.initialize(screenObj,worldObj, audioObj, inputObj, gooseObj, nof)
   screen = screenObj
   world = worldObj
   audio = audioObj
   goose = gooseObj
+  input = inputObj
 
   -- Player pos --
   floor=160
@@ -30,6 +31,9 @@ function player.initialize(screenObj,worldObj, audioObj,gooseObj,nof)
   end
   player.score2=5
   player.jumping = false
+
+  bulletPlayer = {nil, nil, nil, nil, nil, nil}
+  n=1
 
   screen.parseAnimation("game/overworld/sprites/stillR.png", 46, 126, 1)
   screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 2)
@@ -101,6 +105,13 @@ function paokill()
           end
       end
   end
+
+  for i=1, #bulletPlayer do
+    --print("player",i, bulletPlayer[i])
+    if bulletPlayer[i] ~= nil then
+      bulletPlayer[i].draw()
+    end
+  end
 end
 
 function paoSpawn(paes)
@@ -124,7 +135,6 @@ function paocont(paes)
   return paes
 end
 function player.update()
-  
   paokill()
   
   if input.getKey("return") then
@@ -145,11 +155,11 @@ function player.update()
   elseif world.posx>400 then
     player.posx=800-(800-world.posx)
   end
-  if love.keyboard.isDown("w")then
+  if input.isDown("w")then
     if player.posy-10 >= player.height then
       player.posy = player.posy - 10
     end
-  elseif (love.keyboard.isDown("s")) then
+  elseif (input.isDown("s")) then
     if player.posy+15 <= 600-floor then
       player.posy = player.posy + 10
       if player.posy==306 then

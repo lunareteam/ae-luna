@@ -39,13 +39,14 @@ function loader.loadGame()
     game  = string.sub(save, gamePos+5, nofPos-2)
     nof   = string.sub(save, nofPos+4, scenePos-2)
     scene = string.sub(save, scenePos+6, save:len()-1)
-    if nof == "\n" then
+    --[[if nof == "nil" then
       loader.changeGame(game)
-    elseif scene == "\n"  then
+    elseif scene == "nil"  then
       loader.changeGame(game, nof)
-    else
+    else]]
+      print(nof)
       loader.changeGame(game, nof, scene)
-    end
+    --end
   end
 end
 
@@ -75,10 +76,10 @@ function loader.saveGame(name, nof, scene)
   if not(name == "menu") then
     if nof == nil or nof == "0" then
       if not(nof == "0") then
-        love.filesystem.write("save", "game=" .. name .. "\nnof=" .. "nil" .. "\nscene=" .. "nil")
+        love.filesystem.write("save", "game=" .. name .. "\nnof=nil" .. "\nscene=nil")
       end
     elseif scene == nil then 
-      love.filesystem.write("save", "game=" .. name .. "\nnof=" .. nof .. "\nscene=" .. "nil")
+      love.filesystem.write("save", "game=" .. name .. "\nnof=" .. nof .. "\nscene=nil")
     else
       love.filesystem.write("save", "game=" .. name .. "\nnof=" .. nof .. "\nscene=" .. scene)
     end
@@ -92,16 +93,16 @@ function loader.changeGame(name, nof, scene)
   end  
   loader.game = name
   game = require(loader.gamePath())
-  if scene == nil then
+  --[[if scene == nil then
     loader.saveGame(name,nof)
     game.initialize(screen, audio, input, loader, nof)
   elseif nof == nil then
     loader.saveGame(name)
     game.initialize(screen, audio, input, loader)
-  else
+  else]]
     loader.saveGame(name,nof,scene)
     game.initialize(screen, audio, input, loader, nof, scene)
-  end
+  --end
 end
 
 -- Game's draw function --

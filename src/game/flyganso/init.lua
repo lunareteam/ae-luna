@@ -7,6 +7,7 @@ local init = {}
 local player = require("game.flyganso.player")
 local world = require("game.flyganso.world")
 local goose = require("game.flyganso.goose")
+local object = require("objects.object")
 
 -- Initializer --
 function init.initialize(screenObj, audioObj, inputObj, loaderObj,nof)
@@ -17,10 +18,9 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj,nof)
   input = inputObj
   audio.startBGM("game/text_txt/bgm/main.xm")
 
-  player.initialize(screenObj, world, audio,goose,nof)
-  world.initialize(screenObj, player,goose)
+  player.initialize(screenObj, world, audio, input, goose, nof)
+  world.initialize(screenObj, player, input, goose)
   goose.initialize(screenObj, player,world)
-
 
   treeImg = love.graphics.newImage("game/sprites/tree1.png")
   screen.parseAnimation("game/sprites/cloud.png", 512, 512, 4)
@@ -29,12 +29,6 @@ end
 
 -- Drawer --
 function init.draw()
-    -- Blue sky --
-    love.graphics.setColor( 0,255,230,255)
-    love.graphics.rectangle("fill", 0, 0, 800, 600)
-
-    -- Normal colors --
-
   world.draw()
   player.draw()
   goose.draw()

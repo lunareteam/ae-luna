@@ -1,6 +1,7 @@
 local goose = {}
 local bullet = {}
 -- Initializer --
+
 function goose.initialize(screenObj,playerObj,worldObj)  
     screen.parseAnimation("game/flyganso/sprites/pena.png", 32,20, 10)
     goose.vely=2
@@ -10,10 +11,12 @@ function goose.initialize(screenObj,playerObj,worldObj)
     player = playerObj
     world = worldObj
     pow=false
+
     goose.action=0
     goose.died=false
     goose.posx=800 - (35 + 46)
     goose.posy=600-160-128
+
     goose.height=70
     goose.width=70
     bullets = {}
@@ -22,6 +25,7 @@ function goose.initialize(screenObj,playerObj,worldObj)
     end
 
   end
+
   -- Function to draw score --
 function goose.draw()
     for i=1,5,1 do
@@ -39,6 +43,12 @@ function goose.draw()
                 goose.posy=goose.posy+goose.vely
             end
                 
+        end
+        --print(#bulletGoose)
+        for i=1, #bulletGoose do
+            if bulletGoose[i] ~= nil and bulletGoose[i] ~= 1 then
+                bulletGoose[i].draw()
+            end
         end
     end
 end
@@ -89,6 +99,7 @@ function goose.update()
     end
    -- print(goose.posy,goose.action)
 
+    --print(goose.posx,goose.posy,goose.ang)
 end
 
 return goose
