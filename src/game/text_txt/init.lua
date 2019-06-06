@@ -31,6 +31,8 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, file)
 
   if file == 1 then
     bgImg = love.graphics.newImage("game/text_txt/bg/room.png")
+  else
+    bgImg = nil
   end
 
   -- Initializes script reader --
@@ -40,7 +42,9 @@ end
 
 -- VN's draw function --
 function vn.draw()
-  love.graphics.draw(bgImg, 0, 0)
+  if bgImg ~= nil then
+    love.graphics.draw(bgImg, 0, 0)
+  end
 
   --[[ Draws characters ]]--
   -- Draw Chars --
