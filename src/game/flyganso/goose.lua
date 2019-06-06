@@ -44,12 +44,6 @@ function goose.draw()
             end
                 
         end
-        --print(#bulletGoose)
-        for i=1, #bulletGoose do
-            if bulletGoose[i] ~= nil and bulletGoose[i] ~= 1 then
-                bulletGoose[i].draw()
-            end
-        end
     end
 end
   function bulletSpawn()
@@ -61,7 +55,7 @@ end
     for i=1,5,1 do
         if bullets[i].x~=nil and bullets[i].y~= nil then
             bullets[i].x=bullets[i].x-5
-            bullets[i].y=((bullets[i].x*20*(3-i)-14380*(3-i))/80+goose.posy-8)*1.20-math.random(1,30)
+            bullets[i].y=((bullets[i].x*20*(3-i)-14380*(3-i))/80+goose.posy-8)*1.20-math.random(1,20)
         end
     end
   end

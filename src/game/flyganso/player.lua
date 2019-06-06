@@ -137,11 +137,11 @@ end
 function player.update()
   paokill()
   
-  if input.getKey("return") then
+  if input.getKey("return") or input.getGamepadKey("a") then
     paes=paocont(paes)
-    print(paes)
+    --print (paes)
     paoSpawn(paes)
-  elseif( not love.keyboard.isDown("return") or paes==3 )and screen.getLoop(3)==1 then
+  elseif( (not love.keyboard.isDown("return") or input.getGamepadKey("a")) or paes==3 )and screen.getLoop(3)==1 then
     screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 3)
   end
 
@@ -155,11 +155,11 @@ function player.update()
   elseif world.posx>400 then
     player.posx=800-(800-world.posx)
   end
-  if input.isDown("w")then
+  if input.isDown("w") or input.isGamepadDown("dpup") then
     if player.posy-10 >= player.height then
       player.posy = player.posy - 10
     end
-  elseif (input.isDown("s")) then
+  elseif (input.isDown("s") or input.isGamepadDown("dpdown")) then
     if player.posy+15 <= 600-floor then
       player.posy = player.posy + 10
       if player.posy==306 then

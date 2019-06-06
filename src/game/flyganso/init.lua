@@ -7,7 +7,6 @@ local init = {}
 local player = require("game.flyganso.player")
 local world = require("game.flyganso.world")
 local goose = require("game.flyganso.goose")
-local object = require("objects.object")
 
 -- Initializer --
 function init.initialize(screenObj, audioObj, inputObj, loaderObj,nof)
