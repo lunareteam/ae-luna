@@ -72,6 +72,7 @@ function world.draw()
 end
   
 function world.update()
+  
   if goose.died==true then
     if floor>0 then
       floor=floor-1

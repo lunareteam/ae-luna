@@ -1,35 +1,48 @@
 local goose = {}
-
+local bullet = {}
 -- Initializer --
-function goose.initialize(screenObj,playerObj,worldObj, objectObj)  
-    goose.vely=6
+
+function goose.initialize(screenObj,playerObj,worldObj)  
+    screen.parseAnimation("game/flyganso/sprites/pena.png", 32,20, 10)
+    goose.vely=2
     goose.velx=6
     goose.ang=1.5
     screen = screenObj
     player = playerObj
     world = worldObj
-    object = objectObj
+    pow=false
+
     goose.action=0
     goose.died=false
     goose.posx=800 - (35 + 46)
     goose.posy=600-160-128
-    goose.width=70
+
     goose.height=70
+    goose.width=70
+    bullets = {}
+    for i=1,5,1 do
+        bullets[i]={x=nil,y=nil}
+    end
 
-    bulletGoose = {1, 1, 1, 1, 1, 1}
+  end
 
-    timer = 0
-end
   -- Function to draw score --
 function goose.draw()
+    for i=1,5,1 do
+        if bullets[i].x ~= nil and bullets[i].y~=nil then
+            screen.drawAnimation(10, bullets[i].x, bullets[i].y)
+        end
+    end
     if goose.died==true then
         if goose.action==0 then
-            if goose.posy>100 and goose.posy < 500 then
-            goose.posy=math.floor(goose.posy-goose.vely*math.sin(goose.ang)+0.5)
-                if goose.posy>400 and goose.posy<700 then
-                    goose.posx=math.floor(goose.posx+goose.velx*math.cos(goose.ang)+0.5)
-                end
+            if goose.posy>100 then
+            goose.posy=goose.posy-goose.vely
             end
+        elseif goose.action==1 then
+            if goose.posy < 500 then
+                goose.posy=goose.posy+goose.vely
+            end
+                
         end
         --print(#bulletGoose)
         for i=1, #bulletGoose do
@@ -39,30 +52,52 @@ function goose.draw()
         end
     end
 end
-  
-function goose.update()
-    print(#bulletGoose)
-    for i=1, #bulletGoose do
-        print("goose", i,bulletGoose[i])
-        if bulletGoose[i] == nil or bulletGoose[i] == 1 then
-            rand = love.math.random(1,10)
-            if (rand == 1 or rand == 2 or rand == 3 or rand == 4 or rand == 5 or rand == 6 or rand == 7) and love.timer.getTime() > timer+2 then
-                bulletGoose[i] = require("game.flyganso.bullet")
-                bulletGoose[i].initialize("goose", goose, player)
-                timer = love.timer.getTime()
-            end
-        else
-            bulletGoose[i].update()
-
-            if bulletGoose[i].hit() then
-                player.score1 = player.score1-1
-            end
-
-            if bulletGoose[i].hit() or bulletGoose[i].outOfBounds() then
-                bulletGoose[i] = nil
+  function bulletSpawn()
+    for i=1,5,1 do
+        bullets[i]={x=goose.posx,y=goose.posy+70}
+    end
+  end
+  function bulletMovement()
+    for i=1,5,1 do
+        if bullets[i].x~=nil and bullets[i].y~= nil then
+            bullets[i].x=bullets[i].x-5
+            bullets[i].y=((bullets[i].x*20*(3-i)-14380*(3-i))/80+goose.posy-8)*1.20-math.random(1,30)
+        end
+    end
+  end
+  function bulletkill()
+    for i=1,5,1 do
+        if bullets[i].x~=nil and bullets[i].y~= nil then
+            if bullets[i].x<0  or bullets[i].y>600 or  bullets[i].y<0 then
+                bullets[i].x=nil
+                bullets[i].y=nil
+            elseif bullets[i].x<player.posx+player.width and bullets[i].x<player.posx and bullets[i].y>player.posy-player.height and  bullets[i].y<player.posy then
+                player.score1=player.score1-1
+                bullets[i].x=nil
+                bullets[i].y=nil
             end
         end
     end
+  end
+  
+
+function goose.update()
+    --print(goose.posx,goose.posy,goose.ang)
+    bulletMovement()
+    bulletkill()
+    if goose.posy==96 then
+        goose.action=1
+        bulletSpawn()
+    elseif goose.posy==500 then
+        goose.action=0
+
+        bulletSpawn()
+
+    elseif goose.posy==100 then
+        goose.action=1
+        bulletSpawn()
+    end
+   -- print(goose.posy,goose.action)
 
     --print(goose.posx,goose.posy,goose.ang)
 end
