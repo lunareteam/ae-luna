@@ -10,6 +10,7 @@ function world.initialize(screenObj,playerObj)
   jogo=1
   world.width=1600
   world.scene=1
+  clker=0
   shoes=0
 
   world.walking = false
@@ -62,34 +63,10 @@ function world.draw()
     end
   end
 end
-  
 function world.update()
-  world.walking = false
-  if scene==1 then
-    if love.keyboard.isDown("return")--[[input.getKey("return") --[[and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 ]] then
-      --[[if not pressed then
-       --[[ screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
-        audio.playSFX("game/overworld/sfx/quak.ogg")
-          --pressed = true
-      end]]
 
-      if world.posx>=460 and world.posx<= 520  then
-        scene=2
-        world.posx=0
-        player.posx=0
-        world.width=800
-      end
-    end
-  elseif scene==2 then
-    if input.getKey("return") then
-      if world.posx<90 and world.posx>0 then
-        scene=1
-        world.posx=445
-        player.posx=395
-        world.width=1600
-      end
-    end
-  end
+  world.walking = false
+
   if screen.getLoop(5) == 1 and pressed and jogo==0 then
         loader.changeGame("pong")
         closer=1
@@ -101,7 +78,7 @@ function world.update()
       if love.keyboard.isDown("return")--[[input.getKey("return") --[[and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 ]] then
         if world.posx>=460 and world.posx<= 520  then
           world.scene=2
-          world.posx=0
+          world.posx=90
           player.posx=0
           world.width=800
         elseif world.posx>=645 and world.posx<= 690 then
@@ -113,7 +90,7 @@ function world.update()
       end
     elseif world.scene==2 then
       if love.keyboard.isDown("return") then
-        if world.posx<90 and world.posx>0 then
+        if world.posx<90 then
           world.scene=1
           world.posx=445
           player.posx=395
@@ -155,6 +132,7 @@ function world.update()
       world.walking = true
     end
   end
+ -- print(scene)
 end
 
 return world

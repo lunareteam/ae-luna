@@ -34,7 +34,7 @@ function text.parser(string, nof)
     else
       table.insert(file[nof].scriptText, string.sub(file[nof].scriptAll[i], 1) )
     end
-    --print(file[nof].scriptText[i])
+
   end
 end
 
@@ -51,8 +51,10 @@ function text.textScr(nof, nof2)
 end
 
 function text.ended(nof,line)
+
   print(#file[nof].scriptAll, line)
   if #file[nof].scriptText == line+1 then
+
     return true
   end
   return false
@@ -71,7 +73,9 @@ function text.draw(line, nof, up)
   -- Draws vn text --
   if not (file[nof].scriptNames[line] == "nil") then
     love.graphics.print({{255, 0, 0,alpha},file[nof].scriptNames[line]}, 800*0.075, 600/2/2*pos-10, 0, 0.3)
+
   end
+
   love.graphics.printf({{0, 0, 0,alpha}, file[nof].scriptText[line]}, 800*0.25, 600/2/2*pos-10, 1400, "center", 0, 0.3)
 
   text.fadeIn()

@@ -3,10 +3,11 @@
 local player = {}
 
 -- Initializer --
-function player.initialize(screenObj,worldObj, audioObj)
+function player.initialize(screenObj,worldObj, audioObj,gooseObj)
   screen = screenObj
   world = worldObj
   audio = audioObj
+  goose = gooseObj
 
   -- Player pos --
   floor=160
@@ -17,11 +18,12 @@ function player.initialize(screenObj,worldObj, audioObj)
   player.j=0
   player.posx= 400
   player.posy = 600-160-10
-
+  player.score1=5
+  player.score2=5
   player.jumping = false
 
   screen.parseAnimation("game/overworld/sprites/stillR.png", 46, 126, 1)
-  screen.parseAnimation("game/overworld/sprites/andandor.png", 46, 128, 2)
+  screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 2)
   screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 3)
 end
 
@@ -42,20 +44,11 @@ function player.update()
   elseif world.posx>400 then
     player.posx=800-(800-world.posx)
   end
-  if love.keyboard.isDown("w")and player.posy==600-floor-10 then
-    player.direction1=1
-  elseif not(love.keyboard.isDown("w")) or player.posy<=player.height then
-    player.direction1=0
-  end
-  if player.direction1==1  then
-    -- This condition makes the player not pass the border limits --
-    if player.posy-10 >= 0 then
+  if love.keyboard.isDown("w")then
+    if player.posy-10 >= player.height then
       player.posy = player.posy - 10
     end
-
-  -- l to go down as player 2 --
-  else --player.direction2==0  then
-    -- This condition makes the player not pass the border limits --
+  elseif (love.keyboard.isDown("s")) then
     if player.posy+15 <= 600-floor then
       player.posy = player.posy + 10
       if player.posy==306 then
@@ -63,7 +56,6 @@ function player.update()
       end
     end
   end
-  
 end
 
 return player
