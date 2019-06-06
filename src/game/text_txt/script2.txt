@@ -1,15 +1,15 @@
-Você:Mano que merda foi essa de eu lutar com um ganso, o designer tá maluco?:char1_happy,nil
-Designer 1:...:char1_happy,nil
-Designer 2:Mano desculpa tá, é culpa das drogas no RU:char1_happy,nil
-Roteirista:KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK:char1_happy,nil
-Você:Tá bom, agora continuando...:char1_happy,nil
-Você:Cadê meu harem, amigo?:char1_happy,nil
-Você:Que isekai sem graça, pior que o do smartphone:char1_happy,nil
-nil:Você anda pelo mapa inicial, à procura da pessoa que te trouxe pra cá e seu poder cheat:char1_happy,nil
-nil:Por não ter muito condicionamento físico por causa do seu estado NEET, você resolve descansar daquela luta perto do poço:char1_happy,nil
-Você:Mano, nem tem gente aqui, como pode ser um mundo alternativo se não tem gente?:char1_happy,nil
-Você:AAAAAAAAAAAAAAAAAAAAAAA, DROGA DE ISEKAI!:char1_happy,nil
-nil:Ao dizer isso você se desequilibra e cai no poço:char1_happy,nil
-nil:Não há como seu dia piorar:char1_happy,nil
-nil:CONTINUA:char1_happy,nil
+Você:Mano que merda foi essa de eu lutar com um ganso, o designer tá maluco?:char1_verymad,nil
+Designer 1:...:char1_verymad,nil
+Designer 2:Mano desculpa tá, é culpa das drogas no RU:char1_verymad,nil
+Roteirista:KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK:char1_verymad,nil
+Você:Tá bom, agora continuando...:char1_neutral,nil
+Você:Cadê meu harem, amigo?:char1_neutral,nil
+Você:Que isekai sem graça, pior que o do smartphone:char1_mad,nil
+nil:Você anda pelo mapa inicial, à procura da pessoa que te trouxe pra cá e seu poder cheat:char1_mad,nil
+nil:Por não ter muito condicionamento físico por causa do seu estado NEET, você resolve descansar daquela luta perto do poço:char1_mad,nil
+Você:Mano, nem tem gente aqui, como pode ser um mundo alternativo se não tem gente?:char1_verymad,nil
+Você:AAAAAAAAAAAAAAAAAAAAAAA, DROGA DE ISEKAI!:char1_verymad,nil
+nil:Ao dizer isso você se desequilibra e cai no poço:char1_verymad,nil
+nil:Não há como seu dia piorar:char1_verymad,nil
+nil:CONTINUA:char1_verymad,nil
 loader.changeGame("menu")

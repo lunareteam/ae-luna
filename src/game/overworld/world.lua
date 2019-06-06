@@ -23,7 +23,8 @@ function world.initialize(screenObj,playerObj, textObj, ended)
   world.walking = false
   floorImg = love.graphics.newImage("game/sprites/floor.png")
   houseImg = love.graphics.newImage("game/overworld/sprites/house.png")
-  treeImg = love.graphics.newImage("game/sprites/tree.png")
+  tree1Img = love.graphics.newImage("game/sprites/tree1.png")
+  tree2Img = love.graphics.newImage("game/sprites/tree2.png")
   sunImg = love.graphics.newImage("game/sprites/sun.png")
   cloudImg = love.graphics.newImage("game/sprites/cloud.png")
   skyImg = love.graphics.newImage("game/sprites/sky.png")
@@ -53,6 +54,12 @@ function world.draw()
 
     screen.drawAnimation(6, 650-world.posx*0.3, -160)
     for i=0, 20 do
+      if i == 1 or i == 2 or i == 5 or i == 9 or i == 10 or i == 11 or i == 15 or i == 17 or i == 18 or i == 20 then
+        treeImg = tree1Img
+      else
+        treeImg = tree2Img
+      end
+
       love.graphics.draw(treeImg, i*100-world.posx, 600-floor-260)
     end
     love.graphics.draw(houseImg,800-world.posx,600-floor-(houseImg:getHeight()*scaleHouse)+(scaleHouse*90), 0, scaleHouse)

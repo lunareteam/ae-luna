@@ -4,22 +4,22 @@ nil:Infelizmente em uma época em que o mundo não havia sido bom com você:nil,
 nil:Por isso você passa os dias como NEET, jogando vários jogos, até um canal no youtube foi aberto com suas jogatinas:nil,nil
 nil:Não que ele fosse bom o suficiente para te proporcionar dinheiro para viver, você ainda usa o dinheiro de seus pais:nil,nil
 nil:Não saindo de casa a menos que fosse necessário assinar os papeis de suas encomendas de jogos importados, um dia enquanto você escolhia um jogo:nil,nil
-Você:Argh, esses anuncios estão mais irritantes que o normal hoje:char1_happy,nil
-Você:Pena que é um mal necessário pra achar algum jogo pra hoje:char1_happy,nil
+Você:Argh, esses anuncios estão mais irritantes que o normal hoje:char1_mad,nil
+Você:Pena que é um mal necessário pra achar algum jogo pra hoje:char1_neutral,nil
 Você:Após me deliciar com 'fique a noite/destino' e todas suas rotas, vou pegar um kusoge muito bom em algum site aleatório:char1_happy,nil
 nil:Mais uma aventura por canais de pirataria online parecia se aproximar:char1_happy,nil
-Você:Oh god, olha esse ad horrivel que apareceu, seria isso um jogo de rede social? lmao:char1_happy,nil
+Você:Oh god, olha esse ad horrivel que apareceu, seria isso um jogo de rede social? lmao:char1_neutral,nil
 Você:Como se eu fosse clicar, ha, você perdeu hoje jogo aleatório da internet:char1_happy,nil
-nil:Após hesitar 0.2ms depois de dizer isso você acaba clicando no ad:char1_happy,nil
-Você:Mas o que.. O jogo é para consoles?:char1_happy,nil
-Você:Que empresa sem principios é essa que aprovou isso?:char1_happy,nil
-nil:Como você tem o item 'console que esse jogo foi lançado' com habilidades secretas você baixa a 'demonstração' completa do jogo e coloca nele:char1_happy,nil
-nil:Ao bootar o jogo seu console começa a fazer barulho, como se algo estivesse travado dentro do console:char1_happy,nil
-Você:Mas não tem disco nesse console, ele é nas nuvens meuamigo, será esse um daqueles homebrew que bricka o sistema? Surpreendente:char1_happy,nil
-nil:Você já começa a pensar o que deveria fazer ao perder seu precioso amigo, porém, algo acontece:char1_happy,nil
-nil:O console começa a brilhar e lhe avisa:char1_happy,nil
-Console:INICIO DO JOGO:char1_happy,nil
-Console:ENVIANDO PARA O MUNDO NOVO:char1_happy,nil
-Você:Só pode ser brincadeira, alguém anda assistindo muita viagem pra outro mundo:char1_happy,nil
-nil:E assim começa o 'jogo':char1_happy,nil
+nil:Após hesitar 0.2ms depois de dizer isso você acaba clicando no ad:char1_neutral,nil
+Você:Mas o que.. O jogo é para consoles?:char1_mad,nil
+Você:Que empresa sem principios é essa que aprovou isso?:char1_mad,nil
+nil:Como você tem o item 'console que esse jogo foi lançado' com habilidades secretas você baixa a 'demonstração' completa do jogo e coloca nele:char1_mad,nil
+nil:Ao bootar o jogo seu console começa a fazer barulho, como se algo estivesse travado dentro do console:char1_mad,nil
+Você:Mas não tem disco nesse console, ele é nas nuvens meuamigo, será esse um daqueles homebrew que bricka o sistema? Surpreendente:char1_confused,nil
+nil:Você já começa a pensar o que deveria fazer ao perder seu precioso amigo, porém, algo acontece:char1_neutral,nil
+nil:O console começa a brilhar e lhe avisa:char1_neutral,nil
+Console:INICIO DO JOGO:char1_neutral,nil
+Console:ENVIANDO PARA O MUNDO NOVO:char1_neutral,nil
+Você:Só pode ser brincadeira, alguém anda assistindo muita viagem pra outro mundo:char1_verymad,nil
+nil:E assim começa o 'jogo':char1_verymad,nil
 loader.changeGame("overworld");game1=1;

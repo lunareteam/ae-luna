@@ -17,7 +17,8 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
 
   audio.startBGM("game/pong/bgm/maintheme.wav")
 
-  treeImg = love.graphics.newImage("game/sprites/tree.png")
+  tree1Img = love.graphics.newImage("game/sprites/tree1.png")
+  tree2Img = love.graphics.newImage("game/sprites/tree2.png")
   skyImg = love.graphics.newImage("game/sprites/sky.png")
   player.initialize(screen, bar, ball)
   bar.initialize(screenObj, player)
@@ -34,6 +35,12 @@ function init.draw()
   screen.drawAnimation(5, 400, 5)
   screen.drawAnimation(4, 350, -160)
   for i=0, 5 do
+    if i == 1 or i == 3 or i == 5 then
+      treeImg = tree1Img
+    else
+      treeImg = tree2Img
+    end
+
     love.graphics.draw(treeImg, i*100, 600-floor-260)
   end
   bar.draw()
