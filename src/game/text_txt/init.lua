@@ -29,6 +29,10 @@ function vn.initialize(screenObj, audioObj, inputObj, loaderObj, file)
     audio.playSFX("game/text_txt/va/"..file.."/"..scene..".ogg")
   end
 
+  if file == 1 then
+    bgImg = love.graphics.newImage("game/text_txt/bg/room.png")
+  end
+
   -- Initializes script reader --
   text.initialize()
   text.parser("game/text_txt/script".. file ..".txt", 1)
@@ -36,20 +40,15 @@ end
 
 -- VN's draw function --
 function vn.draw()
-  -- Blue sky --
-  love.graphics.setColor( 0,255,230,255)
-  love.graphics.rectangle("fill", 0, 0, 800, 600)
-
-  -- Normal colors --
-  love.graphics.setColor( 255,255,255,255)
+  love.graphics.draw(bgImg, 0, 0)
 
   --[[ Draws characters ]]--
   -- Draw Chars --
   if not(char1 == nil) then
-    love.graphics.draw(char1, 800/2/2/2/2 , 600/2/2/2, 0, 0.3)
+    love.graphics.draw(char1, 800/2/2/2/2-130 , 600/2/2/2-130, 0, 0.5)
   end
   if not(char2 == nil) then
-    love.graphics.draw(char2, 800/2/2/2*2+800/2/2/2/2 , 600/2/2/2, 0, 0.3)
+    love.graphics.draw(char2, 800/2/2/2*2+800/2/2/2/2+130 , 600/2/2/2-130, 0, 0.5, -0.5)
   end
 
   text.draw(scene, 1)
