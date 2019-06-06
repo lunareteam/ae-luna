@@ -14,7 +14,7 @@ function world.initialize(screenObj,playerObj,gooseObj)
   world.walking = false
   floorImg = love.graphics.newImage("game/sprites/floor.png")
   houseImg = love.graphics.newImage("game/overworld/sprites/house.png")
-  treeImg = love.graphics.newImage("game/sprites/tree.png")
+  treeImg = love.graphics.newImage("game/sprites/tree1.png")
   sunImg = love.graphics.newImage("game/sprites/sun.png")
   cloudImg = love.graphics.newImage("game/sprites/cloud.png")
   screen.parseAnimation("game/overworld/sprites/well.png", 80, 200, 4)
@@ -74,6 +74,7 @@ function world.draw()
 end
   
 function world.update()
+  
   if goose.died==true then
     if floor>0 then
       floor=floor-1

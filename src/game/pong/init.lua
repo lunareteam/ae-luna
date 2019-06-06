@@ -52,7 +52,8 @@ end
 function init.update()
   if player.score1 == 5 or love.keyboard.isDown('l') then
     player.score1 = 5
-    loader.changeGame("text_txt", 2)
+  --  loader.changeGame("text_txt", 2)
+  loader.changeGame("flyganso",5-player.score2)
   elseif player.score2 == 5 or love.keyboard.isDown('k') then
     player.score2 = 5
     loader.gameover()

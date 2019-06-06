@@ -17,12 +17,12 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj,nof)
   input = inputObj
   audio.startBGM("game/text_txt/bgm/main.xm")
 
-  player.initialize(screenObj, world, audio,goose)
+  player.initialize(screenObj, world, audio,goose,nof)
   world.initialize(screenObj, player,goose)
   goose.initialize(screenObj, player,world)
 
 
-  treeImg = love.graphics.newImage("game/sprites/tree.png")
+  treeImg = love.graphics.newImage("game/sprites/tree1.png")
   screen.parseAnimation("game/sprites/cloud.png", 512, 512, 4)
   screen.parseAnimation("game/sprites/sun.png", 96, 96, 6)
 end
@@ -47,6 +47,14 @@ end
 
 -- Pong Updater --
 function init.update()
+  --print(player.score1,player.score2)
+  if player.score2 == 0 or love.keyboard.isDown('l') then
+  --  loader.changeGame("text_txt", 2)
+  loader.changeGame("text_txt",2)
+  elseif player.score1 == 0 or love.keyboard.isDown('k') then
+    player.score1 = 0
+    loader.gameover()
+  end
   goose.update()
   player.update()
   world.update()
