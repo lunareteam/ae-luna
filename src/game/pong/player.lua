@@ -3,8 +3,9 @@
 local player = {}
 
 -- Initializer --
-function player.initialize(screenObj, barObj, ballObj)
+function player.initialize(screenObj, inputObj, barObj, ballObj)
   screen = screenObj
+  input = inputObj
   bar = barObj
   ball = ballObj
 
@@ -54,10 +55,10 @@ function player.update()
     -- w to go up as player 1 --
 
       -- This condition makes the bar not pass the border limits --
-
-      if love.keyboard.isDown("w") and player.pos1>=600-bar.height-floor then
+      
+      if (input.isDown("w") or input.isGamepadDown("a")) and player.pos1>=600-bar.height-floor then
           player.direction1=1
-      elseif ((player.deltat>0 and (ball.posx<=ball.size/2+bar.pos1+bar.width+5)) or player.pos1 <= ball.size/2 )or(not love.keyboard.isDown("w") )then
+      elseif ((player.deltat>0 and (ball.posx<=ball.size/2+bar.pos1+bar.width+5)) or player.pos1 <= ball.size/2 )or(not input.isDown("w") and not input.isGamepadDown("a"))then
           player.direction1=0
           
       end
@@ -129,7 +130,7 @@ function player.update()
         player.direction2=0
       end
     end
-    if love.keyboard.isDown("r")then
+    if input.isDown("r")then
       -- This condition makes the bar not pass the border limits --
       player.score1=0
       player.score2=0

@@ -4,20 +4,59 @@ local input = {}
 
 -- Initializer function --
 function input.initialize()
+    local joysticks = love.joystick.getJoysticks()
+    joystick = joysticks[1]
+
     -- Key press variables --
     press = 0
     input.pressed = false
     input.toggled = false
 end
 
+function input.isGamepadDown(string)
+    if joystick ~= nil then
+        if joystick:isGamepadDown(string) then
+            return true
+        end
+    end
+
+    return false
+end
+
+function input.isDown(string)
+    if love.keyboard.isDown(string) then
+        return true
+    end
+
+    return false
+end
+
 -- Toggles keypress --
 function input.toggle(string)
     -- Gets string --
-    if love.keyboard.isDown(string) and input.pressed==false and input.toggled then
+    if (input.isDown(string)) and input.pressed==false and input.toggled then
         input.toggled = false
         input.pressed = true
         press = love.timer.getTime()
-    elseif (love.keyboard.isDown(string) and input.pressed==false) or input.toggled then
+    elseif (input.isDown(string) and input.pressed==false) or input.toggled then
+        -- Return was pressed,so it is unable to be pressed again --
+        input.pressed = true
+        press = love.timer.getTime()
+        input.toggled = true
+
+        return true
+    end
+
+    return false
+end
+
+function input.toggleGamepad(string)
+    -- Gets string --
+    if (input.getGamepadKey(string)) and input.pressed==false and input.toggled then
+        input.toggled = false
+        input.pressed = true
+        press = love.timer.getTime()
+    elseif (input.getGamepadKey(string) and input.pressed==false) or input.toggled then
         -- Return was pressed,so it is unable to be pressed again --
         input.pressed = true
         press = love.timer.getTime()
@@ -32,7 +71,20 @@ end
 -- Function to get key easier --
 function input.getKey(string)
     -- Gets string --
-    if love.keyboard.isDown(string) and input.pressed==false then
+    if input.isDown(string) and input.pressed==false then
+        -- Return was pressed,so it is unable to be pressed again --
+        input.pressed = true
+        press = love.timer.getTime()
+
+        return true
+    end
+
+    return false
+end
+
+function input.getGamepadKey(string)
+    -- Gets string --
+    if input.isGamepadDown(string) and input.pressed==false then
         -- Return was pressed,so it is unable to be pressed again --
         input.pressed = true
         press = love.timer.getTime()

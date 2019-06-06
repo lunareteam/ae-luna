@@ -80,7 +80,7 @@ function screen.update(dt)
 
   if not (loader.game == "menu") then
     -- Goes back to menu --
-    if input.getKey("escape") then
+    if input.getKey("escape") or input.getGamepadKey("start") then
       audio.stopBGM()
       loader.changeGame("menu")
     end
