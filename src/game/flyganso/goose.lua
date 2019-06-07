@@ -1,5 +1,5 @@
 local goose = {}
-local bullet = {}
+local bullets = {}
 -- Initializer --
 
 function goose.initialize(screenObj,playerObj,worldObj)  
@@ -11,7 +11,7 @@ function goose.initialize(screenObj,playerObj,worldObj)
     player = playerObj
     world = worldObj
     pow=false
-
+    bulletss=0
     goose.action=0
     goose.died=false
     goose.posx=800 - (35 + 46)
@@ -36,39 +36,33 @@ function goose.draw()
     if goose.died==true then
         if goose.action==0 then
             if goose.posy>100 then
-            goose.posy=goose.posy-goose.vely
+            goose.posy=goose.posy-goose.vely*2
             end
         elseif goose.action==1 then
             if goose.posy < 500 then
-                goose.posy=goose.posy+goose.vely
+                goose.posy=goose.posy+goose.vely*2
             end
                 
         end
-        --print(#bulletGoose)
-        for i=1, #bulletGoose do
-            if bulletGoose[i] ~= nil and bulletGoose[i] ~= 1 then
-                bulletGoose[i].draw()
-            end
-        end
+
     end
 end
-  function bulletSpawn()
+  function bulletspawn()
     for i=1,5,1 do
         bullets[i]={x=goose.posx,y=goose.posy+70}
     end
   end
-  function bulletMovement()
+  function bulletsMovement(z)
     for i=1,5,1 do
         if bullets[i].x~=nil and bullets[i].y~= nil then
-            bullets[i].x=bullets[i].x-5
-            bullets[i].y=((bullets[i].x*20*(3-i)-14380*(3-i))/80+goose.posy-8)*1.20-math.random(1,30)
-        end
+            bullets[i].x=bullets[i].x-6
+            bullets[i].y=(((bullets[i].x)*20*(3-i)-14380*(3-i))/80+z-8)*1.30-math.random(1,10)        end
     end
   end
-  function bulletkill()
+  function bulletskill()
     for i=1,5,1 do
         if bullets[i].x~=nil and bullets[i].y~= nil then
-            if bullets[i].x<0  or bullets[i].y>600 or  bullets[i].y<0 then
+            if bullets[i].x<-32  or bullets[i].y>600 or  bullets[i].y<0 then
                 bullets[i].x=nil
                 bullets[i].y=nil
             elseif bullets[i].x<player.posx+player.width and bullets[i].x<player.posx and bullets[i].y>player.posy-player.height and  bullets[i].y<player.posy then
@@ -80,23 +74,37 @@ end
     end
   end
   
-
+function bulletscont(bulletss)
+    bulletss=0
+    for i=1,5,1 do
+   
+      if bullets[i].x~=nil or bullets[i].y~= nil then
+         bulletss=bulletss+1
+          
+      end
+    end
+    return bulletss
+end
 function goose.update()
+
     --print(goose.posx,goose.posy,goose.ang)
-    bulletMovement()
-    bulletkill()
+    bulletskill()
     if goose.posy==96 then
         goose.action=1
-        bulletSpawn()
     elseif goose.posy==500 then
         goose.action=0
-
-        bulletSpawn()
-
+        if bulletscont(bulletss)==0 then
+            bulletspawn()
+        end
     elseif goose.posy==100 then
         goose.action=1
-        bulletSpawn()
     end
+
+    if bulletscont(bulletss)==0 then
+        bulletspawn()
+        z=goose.posy
+    end
+    bulletsMovement(z)
    -- print(goose.posy,goose.action)
 
     --print(goose.posx,goose.posy,goose.ang)

@@ -46,7 +46,7 @@ end
 function player.update()
     ---delay
     player.delay=player.delay+1
-    if player.delay>7 then
+    if player.delay>11 then
       player.delay=0
     end
     player.deltat=( (bar.pos2-ball.posx)/(ball.velx*(math.cos(ball.ang))))-5

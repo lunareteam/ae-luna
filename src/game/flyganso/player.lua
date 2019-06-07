@@ -139,7 +139,7 @@ function player.update()
   
   if input.getKey("return") then
     paes=paocont(paes)
-    print(paes)
+    --print(paes)
     paoSpawn(paes)
   elseif( not love.keyboard.isDown("return") or paes==3 )and screen.getLoop(3)==1 then
     screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 3)
@@ -147,7 +147,7 @@ function player.update()
 
   for i=1,3,1 do
     if pao[i].x~=nil and pao[i].y~= nil then
-        pao[i].x=pao[i].x+5
+        pao[i].x=pao[i].x+10
     end
   end
   if world.posx<400 then

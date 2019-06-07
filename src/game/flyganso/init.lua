@@ -7,7 +7,7 @@ local init = {}
 local player = require("game.flyganso.player")
 local world = require("game.flyganso.world")
 local goose = require("game.flyganso.goose")
-local object = require("objects.object")
+
 
 -- Initializer --
 function init.initialize(screenObj, audioObj, inputObj, loaderObj,nof)
@@ -17,6 +17,7 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj,nof)
   audio = audioObj
   input = inputObj
   audio.startBGM("game/text_txt/bgm/main.xm")
+
 
   player.initialize(screenObj, world, audio, input, goose, nof)
   world.initialize(screenObj, player, input, goose)
@@ -41,6 +42,7 @@ end
 
 -- Pong Updater --
 function init.update()
+  
   --print(player.score1,player.score2)
   if player.score2 == 0 or love.keyboard.isDown('l') then
   --  loader.changeGame("text_txt", 2)
