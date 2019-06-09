@@ -72,6 +72,7 @@ function world.draw()
 end
   
 function world.update()
+  
   if goose.died==true then
     if floor>0 then
       floor=floor-1
@@ -82,7 +83,7 @@ function world.update()
     
   end
     world.walking = false
-    if input.getKey("return") and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 then
+    if (input.getKey("return") or input.getGamepadKey("a")) and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 then
       if not pressed then
         screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
         audio.playSFX("game/overworld/sfx/quak.ogg")
@@ -99,7 +100,7 @@ function world.update()
     --print(screen.getLoop(5))
 
 
-    if input.isDown("d") and world.posx<400-46 and world.posx<800-player.vely-player.width then
+    if (input.isDown("d") or input.isGamepadDown("dpright")) and world.posx<400-46 and world.posx<800-player.vely-player.width then
       world.posx=world.posx+player.vely
       if changed then
         changed = false
@@ -108,7 +109,7 @@ function world.update()
         screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 3)
       end
       world.walking = true
-    elseif input.isDown("a") and world.posx>player.vely then
+    elseif (input.isDown("a") or input.isGamepadDown("dpleft")) and world.posx>player.vely then
       world.posx=world.posx-player.vely
       if not changed then
         changed = true
