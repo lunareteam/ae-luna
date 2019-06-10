@@ -83,7 +83,13 @@ function world.update(dt)
     
   end
     world.walking = false
-
+    if (input.getKey("return") or input.getGamepadKey("a")) and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 then
+      if not pressed then
+        screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
+        audio.playSFX("game/overworld/sfx/quak.ogg")
+        pressed = true
+      end
+    end
 
   if jogo==1 then
     --print(screen.getLoop(5))

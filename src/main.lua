@@ -30,7 +30,10 @@ end
 -- Main update function --
 function love.update(dt)
   screen.update(dt)
+
   audio.update(dt)
   input.update(dt)
+  input.getJoystick()
   loader.update(dt)
+
 end

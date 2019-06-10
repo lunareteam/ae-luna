@@ -57,7 +57,9 @@ end
                 player.score1=player.score1-1
                 bullets[i].x=nil
                 bullets[i].y=nil
+
             end
+                
         end
     end
   end

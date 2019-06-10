@@ -4,8 +4,7 @@ local input = {}
 
 -- Initializer function --
 function input.initialize()
-    local joysticks = love.joystick.getJoysticks()
-    joystick = joysticks[1]
+    local joysticks = nil
 
     -- Key press variables --
     press = 0
@@ -13,9 +12,27 @@ function input.initialize()
     input.toggled = false
 end
 
+function input.getJoystick()
+    joysticks = love.joystick.getJoysticks()
+    if joysticks[1]~=nil then
+        print(joysticks[1])
+        if input.joystick ~= joysticks[1] and joystick ~= nil then
+            screen.timer = love.timer.getTime()
+            input.joystickChanged = true
+        end
+        input.joystick = joysticks[1]
+    end
+
+    if input.joystick ~= nil then
+        return true
+    else
+        return false
+    end
+end
+
 function input.isGamepadDown(string)
-    if joystick ~= nil then
-        if joystick:isGamepadDown(string) then
+    if input.getJoystick() then
+        if input.joystick:isGamepadDown(string) then
             return true
         end
     end

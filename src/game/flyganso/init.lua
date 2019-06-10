@@ -8,7 +8,6 @@ local player = require("game.flyganso.player")
 local world = require("game.flyganso.world")
 local goose = require("game.flyganso.goose")
 
-
 -- Initializer --
 function init.initialize(screenObj, audioObj, inputObj, loaderObj,nof)
   -- Loads called objects --
@@ -17,7 +16,6 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj,nof)
   audio = audioObj
   input = inputObj
   audio.startBGM("game/text_txt/bgm/main.xm")
-
 
   player.initialize(screenObj, world, audio, input, goose, nof)
   world.initialize(screenObj, player, input, goose)
