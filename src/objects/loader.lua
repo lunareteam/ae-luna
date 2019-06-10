@@ -44,7 +44,7 @@ function loader.loadGame()
     elseif scene == "nil"  then
       loader.changeGame(game, nof)
     else]]
-      print(nof)
+     -- print(nof)
       loader.changeGame(game, nof, scene)
     --end
   end
