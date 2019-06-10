@@ -12,6 +12,8 @@ function screen.initialize(loaderObj, inputObj)
   loader = loaderObj
   input = inputObj
 
+  screen.timer=0
+
   screen.getDimensions()
 
   screen.fullscreen = false
@@ -40,6 +42,14 @@ end
 function screen.draw()
   -- Draws simple overlay --
   love.graphics.rectangle("line", 0, 0, 800, 600)
+
+  if input.joystickChanged and love.timer.getTime()<screen.timer+1.3 then
+    if input.joystick == nil then
+      love.graphics.print(input.joystick, 620, 20, 0, 0.3)
+    else
+      love.graphics.print("Joystick connected", 640, 20, 0, 0.3)
+    end
+  end
 
   love.graphics.print("Activate Windows\nGo to Settings to activate Windows", 535, 560, 0, 0.3)
 end
