@@ -41,7 +41,7 @@ function init.draw()
 end
 
 -- Pong Updater --
-function init.update()
+function init.update(dt)
   
   --print(player.score1,player.score2)
   if player.score2 == 0 or love.keyboard.isDown('l') then
@@ -51,9 +51,9 @@ function init.update()
     player.score1 = 0
     loader.gameover()
   end
-  goose.update()
-  player.update()
-  world.update()
+  goose.update(dt)
+  player.update(dt)
+  world.update(dt)
 
 end
 

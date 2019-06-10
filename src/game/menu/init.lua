@@ -40,8 +40,8 @@ function menu.draw()
 end
 
 -- Menu's update function --
-function menu.update()
-  options.update()
+function menu.update(dt)
+  options.update(dt)
 end
 
 -- Returns itself --

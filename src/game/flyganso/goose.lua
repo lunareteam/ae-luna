@@ -33,30 +33,18 @@ function goose.draw()
             screen.drawAnimation(10, bullets[i].x, bullets[i].y)
         end
     end
-    if goose.died==true then
-        if goose.action==0 then
-            if goose.posy>100 then
-            goose.posy=goose.posy-goose.vely*2
-            end
-        elseif goose.action==1 then
-            if goose.posy < 500 then
-                goose.posy=goose.posy+goose.vely*2
-            end
-                
-        end
 
-    end
 end
   function bulletspawn()
     for i=1,5,1 do
         bullets[i]={x=goose.posx,y=goose.posy+70}
     end
   end
-  function bulletsMovement(z)
+  function bulletsMovement(z,dt)
     for i=1,5,1 do
         if bullets[i].x~=nil and bullets[i].y~= nil then
-            bullets[i].x=bullets[i].x-6
-            bullets[i].y=(((bullets[i].x)*20*(3-i)-14380*(3-i))/80+z-8)*1.30-math.random(1,10)        end
+            bullets[i].x=bullets[i].x-math.random(5,20)*dt*50
+            bullets[i].y=((((bullets[i].x)*20*(3-i)-14380*(3-i))/80+z-8)*1.30)+math.random(1,10)/100        end
     end
   end
   function bulletskill()
@@ -85,13 +73,30 @@ function bulletscont(bulletss)
     end
     return bulletss
 end
-function goose.update()
+function goose.update(dt)
 
     --print(goose.posx,goose.posy,goose.ang)
+    if goose.died==true then
+        if goose.action==0 then
+            if goose.posy>100 then
+            goose.posy=math.floor(goose.posy-goose.vely*2*100*dt)
+            else 
+                goose.posy=101
+            end
+        elseif goose.action==1 then
+            if goose.posy < 500 then
+                goose.posy=math.floor(goose.posy+goose.vely*2*100*dt)
+            else 
+                goose.posy=499
+            end
+                
+        end
+
+    end
     bulletskill()
-    if goose.posy==96 then
+    if goose.posy<100 then
         goose.action=1
-    elseif goose.posy==500 then
+    elseif goose.posy>500 then
         goose.action=0
         if bulletscont(bulletss)==0 then
             bulletspawn()
@@ -104,7 +109,7 @@ function goose.update()
         bulletspawn()
         z=goose.posy
     end
-    bulletsMovement(z)
+    bulletsMovement(z,dt)
    -- print(goose.posy,goose.action)
 
     --print(goose.posx,goose.posy,goose.ang)
