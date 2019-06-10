@@ -37,6 +37,7 @@ function world.initialize(screenObj,playerObj, inputObj, textObj, ended)
   screen.parseAnimation("game/overworld/sprites/vitrine.png",32, 32, 9)
   screen.parseAnimation("game/overworld/sprites/seller.png", 126, 126, 10)
   screen.parseAnimation("game/sprites/transition.png",800,600,11)
+  screen.parseAnimation("game/overworld/sprites/uparrow.png", 32, 32, 12)
   scaleHouse = 1
   place = 160
   world.pong=0
@@ -70,12 +71,20 @@ function world.draw()
     for i=0, 14 do
       love.graphics.draw(floorImg, place*i-world.posx, 600-floor, 0, 0.38)
     end
+
+    if (world.posx>=460 and world.posx<= 520) or (world.posx>=645 and world.posx<= 690) then
+      screen.drawAnimation(12, player.posx+3, player.posy-160)
+    end
   elseif world.scene==2 then
     screen.drawAnimation(8,0,0)
     if shoes==0 then
       screen.drawAnimation(9,400-16,300)
     end
     screen.drawAnimation(10, 450, 600-floor-126)
+
+    if (world.posx<90) or (world.posx>=700 and world.posx<750) then
+      screen.drawAnimation(12, player.posx+3, player.posy-160)
+    end
   end
 end
 function world.update()

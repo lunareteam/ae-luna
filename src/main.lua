@@ -32,5 +32,6 @@ function love.update(dt)
   screen.update(dt)
   audio.update()
   input.update()
+  input.getJoystick()
   loader.update()
 end
