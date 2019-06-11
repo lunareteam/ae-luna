@@ -172,7 +172,7 @@ function world.update(dt)
     end
 
     if player.pause==0 and((input.isDown("d") or input.isGamepadDown("dpright")) and world.posx<world.width-player.vely-player.width and ((not(world.posx==535 ))or (world.scene==2)))and not(world.pong=='0' and world.posx==705 and shoes==1 and world.scene==1 )then
-      world.posx=math.floor(world.posx+player.vely*dt*60)
+      world.posx=world.posx+player.vely*dt*60
       if changed then
         changed = false
         screen.parseAnimation("game/overworld/sprites/andandor.png", 46, 126, 2)
@@ -181,7 +181,7 @@ function world.update(dt)
       end
       world.walking = true
     elseif player.pause==0 and ((input.isDown("a") or input.isGamepadDown("dpleft")) and ((world.posx>player.vely and( (not(world.posx==630) )or (world.scene==2)))or (world.scene==2)and not(world.pong=='0' and world.posx==705 and shoes==1 and world.scene==1 ))) then
-      world.posx=math.floor(world.posx-player.vely*dt*60)
+      world.posx=world.posx-player.vely*dt*60
       if not changed then
         changed = true
         screen.parseAnimation("game/overworld/sprites/andandol.png", 46, 126, 2)

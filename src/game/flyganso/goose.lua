@@ -81,13 +81,13 @@ function goose.update(dt)
     if goose.died==true then
         if goose.action==0 then
             if goose.posy>100 then
-            goose.posy=math.floor(goose.posy-goose.vely*2*100*dt)
+            goose.posy=goose.posy-goose.vely*2*100*dt
             else 
                 goose.posy=101
             end
         elseif goose.action==1 then
             if goose.posy < 500 then
-                goose.posy=math.floor(goose.posy+goose.vely*2*100*dt)
+                goose.posy=goose.posy+goose.vely*2*100*dt
             else 
                 goose.posy=499
             end

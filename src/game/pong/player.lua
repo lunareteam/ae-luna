@@ -46,12 +46,12 @@ end
 function player.update(dt)
   
     ---delay
-    player.delay=math.floor(player.delay+dt)
+    player.delay=player.delay+dt
 
     if player.delay>10 then
       player.delay=0
     end
-    player.deltat=math.floor(( (bar.pos2-ball.posx)/(ball.velx*dt*75*(math.cos(ball.ang)))))
+    player.deltat=( (bar.pos2-ball.posx)/(ball.velx*dt*75*(math.cos(ball.ang))))
     --print(ball.posy+math.sin(ball.ang)*ball.vely*dt*75*player.deltat<=player.pos2+bar.height/2-10*75*dt,player.pos2-10*dt*75 >= 0,player.direction2, player.deltat<0)
    -- print(ball.posx>300 and player.delay==1)
     --[[Player movement]]--

@@ -148,8 +148,8 @@ function ball.update(dt)
 
     -- Ball movement --
   --
-    ball.posx = math.floor(ball.posx + math.cos(ball.ang)*ball.velx*50*dt)
-    ball.posy = math.floor(ball.posy + math.sin(ball.ang)*ball.vely*50*dt)
+    ball.posx = ball.posx + math.cos(ball.ang)*ball.velx*50*dt
+    ball.posy = ball.posy + math.sin(ball.ang)*ball.vely*50*dt
     -- Makes the ball go back when hit --
     if ((ball.posx+ball.velx*math.cos(ball.ang)-ball.size <= bar.pos1+bar.width) and
       ((ball.posy<=player.pos1+bar.height+ball.size) and (ball.posy>=player.pos1-ball.size)))

@@ -58,13 +58,13 @@ function player.update(dt)
     -- This condition makes the player not pass the border limits --
 
     if player.posy>=600-floor-player.height then
-      player.posy = math.floor(player.posy - 500*dt)
+      player.posy = player.posy - 500*dt
     end
     -- l to go down as player 2 --
   else 
 
       if player.posy<=435 then
-        player.posy = math.floor(player.posy + 500*dt)
+        player.posy = player.posy + 500*dt
         if player.posy>435 then
           player.posy=435
         end
