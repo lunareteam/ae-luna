@@ -61,7 +61,7 @@ function options.draw()
 end
 
 -- Options update function --
-function options.update()
+function options.update(dt)
   -- Loads action --
   currentAction = loadstring(options.optActions[options.selected])
 

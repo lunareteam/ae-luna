@@ -14,8 +14,8 @@ function player.initialize(screenObj, inputObj, barObj, ballObj)
   player.score2 = 0
 
   -- Player pos --
-  player.pos1 = nil
-  player.pos2 = nil
+  player.pos1 = 320
+  player.pos2 = 320
   player.direction1=0
   player.direction2=0
   player.delay=0
@@ -43,13 +43,17 @@ function player.draw()
   end
 end
 
-function player.update()
+function player.update(dt)
+  
     ---delay
-    player.delay=player.delay+1
-    if player.delay>7 then
+    player.delay=math.floor(player.delay+dt)
+
+    if player.delay>10 then
       player.delay=0
     end
-    player.deltat=( (bar.pos2-ball.posx)/(ball.velx*(math.cos(ball.ang))))-5
+    player.deltat=math.floor(( (bar.pos2-ball.posx)/(ball.velx*dt*75*(math.cos(ball.ang)))))
+    --print(ball.posy+math.sin(ball.ang)*ball.vely*dt*75*player.deltat<=player.pos2+bar.height/2-10*75*dt,player.pos2-10*dt*75 >= 0,player.direction2, player.deltat<0)
+   -- print(ball.posx>300 and player.delay==1)
     --[[Player movement]]--
 
     -- w to go up as player 1 --
@@ -63,7 +67,7 @@ function player.update()
           
       end
 
-      if player.pos1==312 then
+      if player.pos1==320 then
         if changed then
           changed = false
           screen.parseAnimation("game/pong/sprites/charbar.png", 46, 128, 1)
@@ -74,7 +78,7 @@ function player.update()
           screen.parseAnimation("game/pong/sprites/charjump.png", 46, 128, 1)
         end
       end
-      if player.pos2==312 then
+      if player.pos2==320 then
         if changed2 then
           changed2 = false
           screen.parseAnimation("game/pong/sprites/gansostop.png", 46, 128, 3)
@@ -89,42 +93,42 @@ function player.update()
       -- Player 2 "A.I." --
       if player.direction2==1 then
         -- This condition makes the bar not pass the border limits --
-        if player.pos2-10 >= 0 then
-          player.pos2 = player.pos2 - 10
+        if player.pos2-10*dt*75 >= 0 then
+          player.pos2 = player.pos2 - 10*dt*75
         end
 
       -- l to go down as player 2 --
       else 
         -- This condition makes the bar not pass the border limits --
-        if player.pos2+bar.height+10 <= 600-floor then
-          player.pos2 = player.pos2 + 10
-          if player.pos2==306 then
-            player.pos2=312
+        if player.pos2<= 320 then
+          player.pos2 = player.pos2 + 10*dt*75
+          if player.pos2>320 then
+            player.pos2=320
           end
         end
     end
 
     if player.direction1==1 then
       -- This condition makes the bar not pass the border limits --
-      if player.pos1-10 >= 0 then
-        player.pos1 = player.pos1 - 10
+      if player.pos1-10*dt*75 >= 0 then
+        player.pos1 = player.pos1 - 10*dt*75
       end
 
     -- l to go down as player 2 --
     else --player.direction2==0  then
       -- This condition makes the bar not pass the border limits --
-      if player.pos1+bar.height+10 <= 600-floor then
-        player.pos1 = player.pos1 + 10
-        if player.pos1==306 then
-          player.pos1=312
+      if player.pos1 <= 320 then
+        player.pos1 = player.pos1 + 10*dt*75
+        if player.pos1>320 then
+          player.pos1=320
         end
       end
     end
 
-    if ball.posx>300 and player.delay==1  then
+    if ball.posx>300 and player.delay==0  then
       if player.deltat<0 then
         player.direction2=0
-      elseif ball.posy+math.sin(ball.ang)*ball.vely*player.deltat<player.pos2+bar.height/2-10*player.deltat then
+      elseif player.pos2>=320 and ((player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy<=player.pos2+bar.height/2-player.deltat*10*80*dt and player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy>100)or (player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy<=player.pos2-(player.deltat+5)*10*80*dt and player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy<100 ))then
         player.direction2=1
       elseif player.pos2<ball.size/2  then-- ball.posy-math.abs(ball.vely)>player.pos2+bar.height*0.6 then
         player.direction2=0

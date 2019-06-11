@@ -1,7 +1,7 @@
 local world = {}
 
 -- Initializer --
-function world.initialize(screenObj,playerObj, inputObj, textObj, ended)
+function world.initialize(screenObj,playerObj, inputObj, textObj, ended,nof)
   screen = screenObj
   player = playerObj
   input = inputObj
@@ -15,6 +15,7 @@ function world.initialize(screenObj,playerObj, inputObj, textObj, ended)
   clker=0
   shoes=0
   endedNow = ended
+  player.pause=0
 
   world.awake = false
   world.drawTransition = false
@@ -40,7 +41,7 @@ function world.initialize(screenObj,playerObj, inputObj, textObj, ended)
   screen.parseAnimation("game/overworld/sprites/uparrow.png", 32, 32, 12)
   scaleHouse = 1
   place = 160
-  world.pong=0
+  world.pong=nof
   set = false
   time = 0
   pressed = false
@@ -87,8 +88,7 @@ function world.draw()
     end
   end
 end
-function world.update()
-
+function world.update(dt)
   world.walking = false
 
   if screen.getLoop(5) == 1 and pressed and jogo==0 then
@@ -100,8 +100,14 @@ function world.update()
   end
 
   if jogo==1 then
-    world.walking = false
+    world.walking = false 
     if world.scene==1 then
+      if world.posx<590 and world.posx>535 then
+        world.posx=535
+      elseif world.posx<630 and world.posx>550 then
+        world.posx=630
+
+      end
       if input.isDown("return") or input.isGamepadDown("dpup") or input.getAxis(2)<0--[[input.getKey("return") --[[and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 ]] then
         if world.posx>=460 and world.posx<= 520  then
           world.changeScene(2)
@@ -110,32 +116,34 @@ function world.update()
           world.width=800
         elseif world.posx>=645 and world.posx<= 690 then
           world.changeScene(2)
-          world.posx=750
-          player.posx=750
+          world.posx=700
           world.width=800
         end
       end
-      if screen.getLoop(5) == 1 and player.posx>404 then
-        screen.parseAnimation("game/pong/sprites/gansostop.png",46,128,5)
-        audio.playSFX("game/overworld/sfx/quak.ogg")
-        pressed = true
-        jogo=0
-
-        if not changedScene then
-          text.initialize()
-          text.parser("game/overworld/script3.txt", 1)
-          endedNow = false
-          changedScene = true
-        end
-      end
+          if screen.getLoop(5) == 1 and player.posx>404 then
+            player.pause=1
+            screen.parseAnimation("game/pong/sprites/gansostop.png",46,128,5)
+            audio.playSFX("game/overworld/sfx/quak.ogg")
+            pressed = true
+            jogo=0
+    
+            if not changedScene then
+              text.initialize()
+              text.parser("game/overworld/script3.txt", 1)
+              endedNow = false
+              changedScene = true
+            end
+          end
     elseif world.scene==2 then
-      if shoes == 0 and changedScene == false then
+      if shoes == 0 and changedScene == false and world.posx>300 then
+        player.pause=1
         text.initialize()
         text.parser("game/overworld/script2.txt", 1)
         endedNow = false
         changedScene = true
-      elseif shoes==0 --[[and player.posx == 300-30]] then
+      elseif shoes==0 --[[and player.posx == 300-30]] and world.posx>300 then
         shoes = 1
+        player.pause=0
       end
 
       if input.isDown("return") or input.getGamepadKey("dpup") or input.getAxis(2)<0 then
@@ -144,13 +152,14 @@ function world.update()
           world.posx=445
           player.posx=395
           world.width=1600
-        elseif world.posx>=700 and world.posx<750 then
+        elseif world.posx>700  then
           world.changeScene(1)
 
           world.posx=705
           player.posx=405
           world.width=1600
-          if world.pong==0 then
+          if world.pong=='0' or world.pong==0 then
+            player.pause=1
             if not pressed then
               world.awake = true
 
@@ -162,8 +171,8 @@ function world.update()
       end
     end
 
-    if (input.isDown("d") or input.isGamepadDown("dpright") or input.getAxis(1)>0) and world.posx<world.width-player.vely-player.width and ((not(world.posx==535 ))or (world.scene==2))then
-      world.posx=world.posx+player.vely
+    if player.pause==0 and((input.isDown("d") or input.isGamepadDown("dpright") or input.getAxis(1)>0) and world.posx<world.width-player.vely-player.width and ((not(world.posx==535 ))or (world.scene==2)))and not(world.pong=='0' and world.posx==705 and shoes==1 and world.scene==1 )then
+      world.posx=math.floor(world.posx+player.vely*dt*60)
       if changed then
         changed = false
         screen.parseAnimation("game/overworld/sprites/andandor.png", 46, 126, 2)
@@ -171,8 +180,8 @@ function world.update()
         screen.parseAnimation("game/overworld/sprites/charjumpr.png", 46, 128, 3)
       end
       world.walking = true
-    elseif (input.isDown("a") or input.isGamepadDown("dpleft") or input.getAxis(1)<0) and world.posx>player.vely and( (not(world.posx==645) )or (world.scene==2))then
-      world.posx=world.posx-player.vely
+    elseif player.pause==0 and ((input.isDown("a") or input.isGamepadDown("dpleft") or input.getAxis(1)<0) and ((world.posx>player.vely and( (not(world.posx==630) )or (world.scene==2)))or (world.scene==2)and not(world.pong=='0' and world.posx==705 and shoes==1 and world.scene==1 ))) then
+      world.posx=math.floor(world.posx-player.vely*dt*60)
       if not changed then
         changed = true
         screen.parseAnimation("game/overworld/sprites/andandol.png", 46, 126, 2)

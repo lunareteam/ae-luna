@@ -22,4 +22,4 @@ Console:INICIO DO JOGO:char1_neutral,nil
 Console:ENVIANDO PARA O MUNDO NOVO:char1_neutral,nil
 Você:Só pode ser brincadeira, alguém anda assistindo muita viagem pra outro mundo:char1_verymad,nil
 nil:E assim começa o 'jogo':char1_verymad,nil
-loader.changeGame("overworld");game1=1;
+loader.changeGame("overworld",0);game1=1;

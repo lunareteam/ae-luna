@@ -17,7 +17,7 @@ function player.initialize(screenObj,worldObj, audioObj, inputObj)
   player.width = 46
   player.j=0
   player.posx= 400
-  player.posy = 600-160-10
+  player.posy = 435
 
   player.jumping = false
 
@@ -37,15 +37,15 @@ function player.draw()
   end
 end
 
-function player.update()
-
+function player.update(dt)
+  --print(world.posx)
   if world.posx<400 then
     player.posx=world.posx
   elseif world.posx>world.width-400  then
     player.posx=800-(world.width-world.posx)
   end
 
-  if (input.isDown("w") or input.isGamepadDown("a"))and player.posy>=430 then
+  if (input.isDown("w") or input.isGamepadDown("a"))and player.posy>=435 then
     player.direction1=1
     player.jumping = true
   elseif player.posy<=320 then
@@ -57,14 +57,17 @@ function player.update()
   if player.direction1==1 then
     -- This condition makes the player not pass the border limits --
 
-    if player.posy>=600-floor+10-player.height then
-      player.posy = player.posy - 10
+    if player.posy>=600-floor-player.height then
+      player.posy = math.floor(player.posy - 500*dt)
     end
     -- l to go down as player 2 --
   else 
 
-      if player.posy<=430-10 then
-        player.posy = player.posy + 10
+      if player.posy<=435 then
+        player.posy = math.floor(player.posy + 500*dt)
+        if player.posy>435 then
+          player.posy=435
+        end
   
       end
 

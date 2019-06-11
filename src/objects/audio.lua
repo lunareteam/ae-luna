@@ -41,7 +41,7 @@ function audio.toggleSound()
 end
 
 -- Main audio update function --
-function audio.update()
+function audio.update(dt)
   if audio.sfx then
     audio.sfx:setVolume(audio.volume)
   end

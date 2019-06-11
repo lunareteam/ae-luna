@@ -20,6 +20,7 @@ function player.initialize(screenObj,worldObj, audioObj, inputObj, gooseObj, nof
   player.posy = 600-160-10
   pao = {}
   paes = 0
+  fire=0
   for i=1,3,1 do
     pao[i]={x=nil,y=nil}
   end
@@ -114,13 +115,15 @@ function paokill()
   end
 end
 
-function paoSpawn(paes)
-  if paes<4 then
+function paoSpawn(paes, fire)
+  if paes<4 and fire==0 then
         pao[paes]={x=player.posx+player.width,y=player.posy-80}
 
           screen.parseAnimation("game/flyganso/sprites/charpao.png", 46, 128, 3)
 
         --paes=paes+1
+  elseif screen.getLoop(3)==1 then
+    screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 3)
   end
 end
 function paocont(paes)
@@ -134,20 +137,23 @@ function paocont(paes)
   end
   return paes
 end
-function player.update()
+function player.update(dt)
   paokill()
-  
-  if input.getKey("return") or input.getGamepadKey("a") then
+  fire=fire+dt
+  if fire>0.8 then
+    fire=0
+  end
+  if love.keyboard.isDown("return")or input.isGamepadDown("a") then
     paes=paocont(paes)
-    --print (paes)
-    paoSpawn(paes)
-  elseif( (not love.keyboard.isDown("return") or input.getGamepadKey("a")) or paes==3 )and screen.getLoop(3)==1 then
+    --print(paes)
+    paoSpawn(paes,fire)
+  elseif( (not love.keyboard.isDown("return") or paes==3 )and fire~=0 )and screen.getLoop(3)==1 then
     screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 3)
   end
 
   for i=1,3,1 do
     if pao[i].x~=nil and pao[i].y~= nil then
-        pao[i].x=pao[i].x+5
+        pao[i].x=pao[i].x+30*dt*50
     end
   end
   if world.posx<400 then
@@ -155,16 +161,17 @@ function player.update()
   elseif world.posx>400 then
     player.posx=800-(800-world.posx)
   end
+  
   if input.isDown("w") or input.isGamepadDown("dpup") or input.getAxis(2)<0 then
-    if player.posy-10 >= player.height then
-      player.posy = player.posy - 10
+    if player.posy-10*dt*50 >= player.height then
+      player.posy = player.posy - 10*dt*50
     end
-  elseif (input.isDown("s") or input.isGamepadDown("dpdown") or input.getAxis(2)>0) then
-    if player.posy+15 <= 600-floor then
-      player.posy = player.posy + 10
-      if player.posy==306 then
-        player.posy=312
-      end
+  elseif (input.isDown("s")or input.isGamepadDown("dpdown") or input.getAxis(2)>0) then
+    if player.posy+10*dt*50+5 <= 600-floor then
+      player.posy = player.posy + 10*dt*50
+     --[[ if player.posy>=306 then
+        player.posy=320
+      end]]
     end
   end
 end
