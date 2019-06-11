@@ -44,10 +44,10 @@ function screen.draw()
   love.graphics.rectangle("line", 0, 0, 800, 600)
 
   if input.joystickChanged and love.timer.getTime()<screen.timer+1.3 then
-    if input.joystick == nil then
-      love.graphics.print(input.joystick, 620, 20, 0, 0.3)
-    else
+    if input.getJoystick() then
       love.graphics.print("Joystick connected", 640, 20, 0, 0.3)
+    else
+      love.graphics.print("Joystick disconnected", 620, 20, 0, 0.3)
     end
   end
 
