@@ -155,11 +155,11 @@ function player.update()
   elseif world.posx>400 then
     player.posx=800-(800-world.posx)
   end
-  if input.isDown("w") or input.isGamepadDown("dpup") then
+  if input.isDown("w") or input.isGamepadDown("dpup") or input.getAxis(2)<0 then
     if player.posy-10 >= player.height then
       player.posy = player.posy - 10
     end
-  elseif (input.isDown("s") or input.isGamepadDown("dpdown")) then
+  elseif (input.isDown("s") or input.isGamepadDown("dpdown") or input.getAxis(2)>0) then
     if player.posy+15 <= 600-floor then
       player.posy = player.posy + 10
       if player.posy==306 then

@@ -28,26 +28,14 @@ function input.getJoystick()
     end
 end
 
-function input.joystickIsOpen()
-    return joystick:isConnected()
-end
-
 function input.isGamepadDown(string)
     if input.getJoystick() then
-        if joystick:isGamepadDown(string) then
-            return true
-        end
+        return joystick:isGamepadDown(string)
     end
-
-    return false
 end
 
 function input.isDown(string)
-    if love.keyboard.isDown(string) then
-        return true
-    end
-
-    return false
+    return love.keyboard.isDown(string)
 end
 
 -- Toggles keypress --
@@ -71,11 +59,9 @@ end
 
 function input.toggleGamepad(string)
     -- Gets string --
-    if (input.getGamepadKey(string)) and input.pressed==false and input.toggled then
-        input.toggled = false
-        input.pressed = true
-        press = love.timer.getTime()
-    elseif (input.getGamepadKey(string) and input.pressed==false) or input.toggled then
+    if input.toggled then
+        return true
+    elseif (input.isGamepadDown(string)) and input.pressed==false then
         -- Return was pressed,so it is unable to be pressed again --
         input.pressed = true
         press = love.timer.getTime()
@@ -109,6 +95,34 @@ function input.getGamepadKey(string)
         press = love.timer.getTime()
 
         return true
+    end
+
+    return false
+end
+
+function input.getAxis(string)
+    if input.getJoystick() then
+        return joystick:getAxis(string)
+    end
+end
+
+function input.getSlowAxis(string, dir)
+    if dir == 1 then
+        if input.getAxis(string)>0 and input.pressed==false then
+            -- Return was pressed,so it is unable to be pressed again --
+            input.pressed = true
+            press = love.timer.getTime()
+
+            return true
+        end
+    else
+        if input.getAxis(string)<0 and input.pressed==false then
+            -- Return was pressed,so it is unable to be pressed again --
+            input.pressed = true
+            press = love.timer.getTime()
+
+            return true
+        end
     end
 
     return false

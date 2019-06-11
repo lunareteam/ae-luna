@@ -102,7 +102,7 @@ function world.update()
   if jogo==1 then
     world.walking = false
     if world.scene==1 then
-      if input.isDown("return") or input.isGamepadDown("dpup")--[[input.getKey("return") --[[and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 ]] then
+      if input.isDown("return") or input.isGamepadDown("dpup") or input.getAxis(2)<0--[[input.getKey("return") --[[and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 ]] then
         if world.posx>=460 and world.posx<= 520  then
           world.changeScene(2)
           world.posx=90
@@ -138,7 +138,7 @@ function world.update()
         shoes = 1
       end
 
-      if input.isDown("return") or input.getGamepadKey("dpup") then
+      if input.isDown("return") or input.getGamepadKey("dpup") or input.getAxis(2)<0 then
         if world.posx<90 then
           world.changeScene(1)
           world.posx=445
@@ -162,7 +162,7 @@ function world.update()
       end
     end
 
-    if (input.isDown("d") or input.isGamepadDown("dpright")) and world.posx<world.width-player.vely-player.width and ((not(world.posx==535 ))or (world.scene==2))then
+    if (input.isDown("d") or input.isGamepadDown("dpright") or input.getAxis(1)>0) and world.posx<world.width-player.vely-player.width and ((not(world.posx==535 ))or (world.scene==2))then
       world.posx=world.posx+player.vely
       if changed then
         changed = false
@@ -171,7 +171,7 @@ function world.update()
         screen.parseAnimation("game/overworld/sprites/charjumpr.png", 46, 128, 3)
       end
       world.walking = true
-    elseif (input.isDown("a") or input.isGamepadDown("dpleft")) and world.posx>player.vely and( (not(world.posx==645) )or (world.scene==2))then
+    elseif (input.isDown("a") or input.isGamepadDown("dpleft") or input.getAxis(1)<0) and world.posx>player.vely and( (not(world.posx==645) )or (world.scene==2))then
       world.posx=world.posx-player.vely
       if not changed then
         changed = true
