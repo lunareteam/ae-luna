@@ -14,25 +14,27 @@ end
 
 function input.getJoystick()
     joysticks = love.joystick.getJoysticks()
-    if joysticks[1]~=nil then
-        print(joysticks[1])
-        if input.joystick ~= joysticks[1] and joystick ~= nil then
-            screen.timer = love.timer.getTime()
-            input.joystickChanged = true
-        end
-        input.joystick = joysticks[1]
+
+    if joystick ~= joysticks[1] then
+        joystick = joysticks[1]
+        screen.timer = love.timer.getTime()
+        input.joystickChanged = true
     end
 
-    if input.joystick ~= nil then
-        return true
+    if joystick ~= nil then
+        return joystick:isConnected()
     else
         return false
     end
 end
 
+function input.joystickIsOpen()
+    return joystick:isConnected()
+end
+
 function input.isGamepadDown(string)
     if input.getJoystick() then
-        if input.joystick:isGamepadDown(string) then
+        if joystick:isGamepadDown(string) then
             return true
         end
     end
