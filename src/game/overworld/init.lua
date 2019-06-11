@@ -57,7 +57,7 @@ end
 function init.update(dt)
   if not endedNow then
     -- Action to go to next scene with delay --arrumar issovvvvvvvvv
-    if input.getKey("return") or input.getGamepadKey("a") or input.getClick() or input.toggle("lctrl") or input.toggleGamepad("rightshoulder") then
+    if input.getKey("return") or input.getGamepadKey("a") or input.getClick() or input.toggle("lctrl") or input.toggleGamepad("x") then
       -- Ends game when script ends, else goes to next scene --
       if text.ended(1,sceneNof) then
         input.toggled = false

@@ -63,7 +63,7 @@ end
 -- VN's update function --
 function vn.update(dt)
   -- Action to go to next scene with delay --
-  if input.getKey("return") or input.getClick() or input.toggle("lctrl") or input.toggleGamepad("rightshoulder") or input.getGamepadKey("a") then
+  if input.getKey("return") or input.getClick() or input.toggle("lctrl") or input.toggleGamepad("x") or input.getGamepadKey("a") then
     -- Ends game when script ends, else goes to next scene --
     if text.endedVN(1,scene) then
       input.toggled = false

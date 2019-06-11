@@ -89,7 +89,7 @@ function world.update(dt)
     --print(screen.getLoop(5))
 
 
-    if( input.isDown("d")or input.isGamepadDown("dpright"))and world.posx<400-46 and world.posx<800-player.vely-player.width then
+    if( input.isDown("d")or input.isGamepadDown("dpright") or input.getAxis(1)>0)and world.posx<400-46 and world.posx<800-player.vely-player.width then
       world.posx=world.posx+player.vely*50*dt
       if changed then
         changed = false
@@ -98,7 +98,7 @@ function world.update(dt)
         screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 3)
       end
       world.walking = true
-    elseif (input.isDown("a") or input.isGamepadDown("dpleft"))and world.posx>player.vely then
+    elseif (input.isDown("a") or input.isGamepadDown("dpleft") or input.getAxis(1)<0)and world.posx>player.vely then
       world.posx=world.posx-player.vely*50*dt
       if not changed then
         changed = true

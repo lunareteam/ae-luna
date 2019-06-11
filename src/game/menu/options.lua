@@ -72,7 +72,7 @@ function options.update(dt)
   end
 
   -- Move menu left --
-  if input.getKey("a") or input.getGamepadKey("dpleft")  then
+  if input.getKey("a") or input.getGamepadKey("dpleft") or input.getSlowAxis(1, 2) then
     released=1
     if options.selected == options.min then
       options.selected = options.max
@@ -82,7 +82,7 @@ function options.update(dt)
   end
 
   -- Move menu right --
-  if input.getKey("d") or input.getGamepadKey("dpright") then
+  if input.getKey("d") or input.getGamepadKey("dpright") or input.getSlowAxis(1, 1) then
     released=1
     if options.selected == options.max then
       options.selected = options.min
