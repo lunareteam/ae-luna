@@ -133,7 +133,7 @@ function input.reset()
 end
 
 -- Update function --
-function input.update()
+function input.update(dt)
     -- Reset press bool --
     if (love.timer.getTime() >= press+0.3) and input.pressed == true then
         input.reset()

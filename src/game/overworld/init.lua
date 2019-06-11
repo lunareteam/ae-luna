@@ -12,7 +12,7 @@ local text= require("calls.text")
 local text = require("calls.text")
 
 -- Initializer --
-function init.initialize(screenObj, audioObj, inputObj, loaderObj)
+function init.initialize(screenObj, audioObj, inputObj, loaderObj,nof)
   text = {}
   -- Calls objects --
   text = require("calls.text")
@@ -23,7 +23,7 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
   audio = audioObj
   input = inputObj
   inFile = file
-  
+  pong=nof
   endedNow = false
 
   file = fileName
@@ -33,7 +33,7 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj)
 
   text.initialize()
   player.initialize(screenObj, world, audio, input)
-  world.initialize(screenObj, player, input, text, endedNow)
+  world.initialize(screenObj, player, input, text, endedNow,pong)
 
   text.parser("game/overworld/script1.txt", 1)
 
@@ -54,7 +54,7 @@ function init.draw()
 end
 
 -- Pong Updater --
-function init.update()
+function init.update(dt)
   if not endedNow then
     -- Action to go to next scene with delay --arrumar issovvvvvvvvv
     if input.getKey("return") or input.getGamepadKey("a") or input.getClick() or input.toggle("lctrl") or input.toggleGamepad("rightshoulder") then
@@ -72,8 +72,8 @@ function init.update()
       endedNow = true
     end
   else
-    player.update()
-    world.update()
+    player.update(dt)
+    world.update(dt)
   end
 end
 

@@ -71,37 +71,26 @@ function world.draw()
 
 end
   
-function world.update()
+function world.update(dt)
   
   if goose.died==true then
     if floor>0 then
-      floor=floor-1
+      floor=floor-dt*50
     end
     if  player.z<450 then
-      player.z=player.z+1
+      player.z=player.z+dt*50
     end
     
   end
     world.walking = false
-    if (input.getKey("return") or input.getGamepadKey("a")) and 800-world.posx+400 < player.posx+150+46 and 800-world.posx+400 > player.posx-150 then
-      if not pressed then
-        screen.parseAnimation("game/overworld/sprites/gansoawaking.png", 46, 128, 5)
-        audio.playSFX("game/overworld/sfx/quak.ogg")
-        pressed = true
 
-      end
-      jogo=0
-    end
-  if screen.getLoop(5) == 1 and pressed and jogo==0 then
-      loader.changeGame("pong")
-      closer=1
-  end
+
   if jogo==1 then
     --print(screen.getLoop(5))
 
 
-    if (input.isDown("d") or input.isGamepadDown("dpright")) and world.posx<400-46 and world.posx<800-player.vely-player.width then
-      world.posx=world.posx+player.vely
+    if( input.isDown("d")or input.isGamepadDown("dpright"))and world.posx<400-46 and world.posx<800-player.vely-player.width then
+      world.posx=world.posx+player.vely*50*dt
       if changed then
         changed = false
         screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 126, 2)
@@ -109,8 +98,8 @@ function world.update()
         screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 128, 3)
       end
       world.walking = true
-    elseif (input.isDown("a") or input.isGamepadDown("dpleft")) and world.posx>player.vely then
-      world.posx=world.posx-player.vely
+    elseif (input.isDown("a") or input.isGamepadDown("dpleft"))and world.posx>player.vely then
+      world.posx=world.posx-player.vely*50*dt
       if not changed then
         changed = true
         screen.parseAnimation("game/flyganso/sprites/charjumpr.png", 46, 126, 2)

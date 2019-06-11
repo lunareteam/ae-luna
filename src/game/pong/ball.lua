@@ -114,7 +114,7 @@ function ball.angleMaker(pos)
 
 end
 
-function ball.update()
+function ball.update(dt)
   if jogo==0 then
     if scored1>30 then
       scored1=0
@@ -148,8 +148,8 @@ function ball.update()
 
     -- Ball movement --
   --
-    ball.posx = ball.posx + math.cos(ball.ang)*ball.velx
-    ball.posy = ball.posy + math.sin(ball.ang)*ball.vely
+    ball.posx = math.floor(ball.posx + math.cos(ball.ang)*ball.velx*50*dt)
+    ball.posy = math.floor(ball.posy + math.sin(ball.ang)*ball.vely*50*dt)
     -- Makes the ball go back when hit --
     if ((ball.posx+ball.velx*math.cos(ball.ang)-ball.size <= bar.pos1+bar.width) and
       ((ball.posy<=player.pos1+bar.height+ball.size) and (ball.posy>=player.pos1-ball.size)))
@@ -191,23 +191,23 @@ function ball.update()
       ball.posy=ball.size + 1
       --bar vertical Collision1--
     elseif ball.posy>=player.pos1-ball.size and ball.posy<=player.pos1 and ball.posx<=bar.pos1+bar.width-1 then
-      ball.posy=player.pos1-ball.size-10
+      ball.posy=player.pos1-ball.size-10*50*dt
 
       ball.vely=-ball.vely
       ball.velx=-ball.velx
       shieldx=bar.pos1+bar.width+3
     elseif ball.posy<=player.pos1+bar.height+ball.size/2 and ball.posy>=player.pos1+bar.height and  ball.posx<=1+bar.pos1+bar.width-1 then
-      ball.posy=player.pos1+bar.height+ball.size/2+10
+      ball.posy=player.pos1+bar.height+ball.size/2+10*50*dt
       ball.vely=-ball.vely
       ball.velx=-ball.velx
       shieldx=bar.pos1+bar.width+3
     --bar2 vertical Collision--
     elseif ball.posy>=player.pos2-ball.size and ball.posy<=player.pos2 and ball.posx>=bar.pos2 then
-      ball.posy=player.pos2-ball.size-10
+      ball.posy=player.pos2-ball.size-10*50*dt
       ball.vely=-ball.vely
       ball.velx=-ball.velx
     elseif ball.posy<=player.pos2+bar.height+ball.size and ball.posy>=player.pos2+bar.height and ball.posx>=bar.pos2 then
-      ball.posy=player.pos2+bar.height+ball.size+10
+      ball.posy=player.pos2+bar.height+ball.size+10*50*dt
       ball.vely=-ball.vely
       ball.velx=-ball.velx
     end

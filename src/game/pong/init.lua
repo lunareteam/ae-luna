@@ -43,13 +43,14 @@ function init.draw()
 
     love.graphics.draw(treeImg, i*100, 600-floor-260)
   end
-  bar.draw()
+
   ball.draw()
   player.draw()
+  bar.draw()
 end
 
 -- Pong Updater --
-function init.update()
+function init.update(dt)
   if player.score1 == 5 or love.keyboard.isDown('l') then
     player.score1 = 5
   --  loader.changeGame("text_txt", 2)
@@ -60,9 +61,9 @@ function init.update()
   end
   
 
-  bar.update()
-  ball.update()
-  player.update()
+  bar.update(dt)
+  ball.update(dt)
+  player.update(dt)
 end
 
 -- Returns itself --

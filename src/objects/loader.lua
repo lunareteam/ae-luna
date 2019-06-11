@@ -111,8 +111,8 @@ function loader.draw()
 end
 
 -- Game's update function --
-function loader.update()
-  game.update()
+function loader.update(dt)
+  game.update(dt)
 end
 
 -- Returns itself --
