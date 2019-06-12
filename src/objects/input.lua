@@ -102,26 +102,32 @@ end
 
 function input.getAxis(string)
     if input.getJoystick() then
-        return joystick:getAxis(string)
+        if joystick:getAxis(string) ~= nil then
+            return joystick:getAxis(string)
+        end
     end
+
+    return 0
 end
 
 function input.getSlowAxis(string, dir)
-    if dir == 1 then
-        if input.getAxis(string)>0 and input.pressed==false then
-            -- Return was pressed,so it is unable to be pressed again --
-            input.pressed = true
-            press = love.timer.getTime()
+    if input.getAxis(string)~=nil then
+        if dir == 1 then
+            if input.getAxis(string)>0 and input.pressed==false then
+                -- Return was pressed,so it is unable to be pressed again --
+                input.pressed = true
+                press = love.timer.getTime()
 
-            return true
-        end
-    else
-        if input.getAxis(string)<0 and input.pressed==false then
-            -- Return was pressed,so it is unable to be pressed again --
-            input.pressed = true
-            press = love.timer.getTime()
+                return true
+            end
+        else
+            if input.getAxis(string)<0 and input.pressed==false then
+                -- Return was pressed,so it is unable to be pressed again --
+                input.pressed = true
+                press = love.timer.getTime()
 
-            return true
+                return true
+            end
         end
     end
 
