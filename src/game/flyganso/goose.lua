@@ -37,14 +37,16 @@ function goose.draw()
 
 end
   function bulletspawn()
-    for i=1,5,1 do
-        bullets[i]={x=goose.posx,y=goose.posy+70}
+    if goose.died==true  then
+        for i=1,5,1 do
+            bullets[i]={x=goose.posx,y=goose.posy+70}
+        end
     end
-  end
+end
   function bulletsMovement(z,dt)
     for i=1,5,1 do
         if bullets[i].x~=nil and bullets[i].y~= nil then
-            bullets[i].x=bullets[i].x-math.random(5,20)*dt*50
+            bullets[i].x=bullets[i].x-math.random(5,20)*dt*20
             bullets[i].y=((((bullets[i].x)*20*(3-i)-14380*(3-i))/80+z-8)*1.30)+math.random(1,10)/100        end
     end
   end

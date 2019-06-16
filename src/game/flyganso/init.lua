@@ -20,6 +20,7 @@ function init.initialize(screenObj, audioObj, inputObj, loaderObj,nof)
   player.initialize(screenObj, world, audio, input, goose, nof)
   world.initialize(screenObj, player, input, goose)
   goose.initialize(screenObj, player,world)
+  player.score2=10
 
   treeImg = love.graphics.newImage("game/sprites/tree1.png")
   screen.parseAnimation("game/sprites/cloud.png", 512, 512, 4)
@@ -34,7 +35,7 @@ function init.draw()
   love.graphics.setColor( 0,255,0,255)
   love.graphics.rectangle("fill",(800/2)/2-10-30-90, 30, 20*(player.score1), 20)
   love.graphics.setColor( 255,0,0,255)
-  love.graphics.rectangle( "fill", (800/2)+((800/2)/2)+50, 30, 20*(player.score2), 20 )
+  love.graphics.rectangle( "fill", (800/2)+((800/2)/2)+50, 30, 10*(player.score2), 20 )
   love.graphics.setColor( 255,255,255,255)
 end
 

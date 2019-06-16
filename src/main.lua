@@ -26,7 +26,10 @@ function love.draw()
   loader.draw()
   screen.draw()
 end
-
+function love.conf(t)
+             -- The LÖVE version this game was made for (string)
+             t.console = true
+end
 -- Main update function --
 function love.update(dt)
   screen.update(dt)
