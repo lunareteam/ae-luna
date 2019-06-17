@@ -12,6 +12,7 @@ function player.initialize(screenObj, inputObj, barObj, ballObj)
   -- Score vars --
   player.score1 = 0
   player.score2 = 0
+  player.deltat = nil
 
   -- Player pos --
   player.pos1 = 320
@@ -46,12 +47,14 @@ end
 function player.update(dt)
   
     ---delay
-    player.delay=math.floor(player.delay+dt)
+    player.delay=player.delay+dt
 
-    if player.delay>10 then
+    if player.delay>dt*10 then
       player.delay=0
     end
-    player.deltat=math.floor(( (bar.pos2-ball.posx)/(ball.velx*dt*75*(math.cos(ball.ang)))))
+    if ((ball.velx*dt*75*(math.cos(ball.ang)))) ~=0 then
+      player.deltat=math.floor(( (bar.pos2-ball.posx)/(ball.velx*dt*75*(math.cos(ball.ang)))))
+    end
     --print(ball.posy+math.sin(ball.ang)*ball.vely*dt*75*player.deltat<=player.pos2+bar.height/2-10*75*dt,player.pos2-10*dt*75 >= 0,player.direction2, player.deltat<0)
    -- print(ball.posx>300 and player.delay==1)
     --[[Player movement]]--
@@ -125,10 +128,10 @@ function player.update(dt)
       end
     end
 
-    if ball.posx>300 and player.delay==0  then
+    if ball.posx>400 and player.delay==0  then
       if player.deltat<0 then
         player.direction2=0
-      elseif player.pos2>=320 and ((player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy<=player.pos2+bar.height/2-player.deltat*10*80*dt and player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy>100)or (player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy<=player.pos2-(player.deltat+5)*10*80*dt and player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy<100 ))then
+      elseif player.pos2>=320 and ((player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy<=player.pos2+bar.height/2-player.deltat*10*80*dt and player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy>50)or (player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy<=player.pos2-(player.deltat+5)*10*80*dt and player.deltat*75*dt*ball.vely*math.sin(ball.ang)+ball.posy<50 ))then
         player.direction2=1
       elseif player.pos2<ball.size/2  then-- ball.posy-math.abs(ball.vely)>player.pos2+bar.height*0.6 then
         player.direction2=0

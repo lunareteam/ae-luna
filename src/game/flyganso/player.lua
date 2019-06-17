@@ -30,7 +30,7 @@ function player.initialize(screenObj,worldObj, audioObj, inputObj, gooseObj, nof
   else
     player.score1=nof
   end
-  player.score2=5
+
   player.jumping = false
 
   bulletPlayer = {nil, nil, nil, nil, nil, nil}
@@ -116,7 +116,7 @@ function paokill()
 end
 
 function paoSpawn(paes, fire)
-  if paes<4 and fire==0 then
+  if paes<2 and fire==0 and goose.died==true then
         pao[paes]={x=player.posx+player.width,y=player.posy-80}
 
           screen.parseAnimation("game/flyganso/sprites/charpao.png", 46, 128, 3)
@@ -137,10 +137,16 @@ function paocont(paes)
   end
   return paes
 end
+function love.keyreleased(key)
+  if key == "return" then
+     fire=0
+  end
+end
 function player.update(dt)
+
   paokill()
   fire=fire+dt
-  if fire>0.8 then
+  if fire>10 or input.getKey("return") then
     fire=0
   end
   if love.keyboard.isDown("return")or input.isGamepadDown("a") then

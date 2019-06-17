@@ -142,8 +142,8 @@ function ball.update(dt)
       shieldx=bar.pos1+bar.width+3
     end
     if ball.vely<=30 and ball.vely>=-30 then
-      ball.velx=ball.velx*ball.constVel
-      ball.vely=ball.vely*ball.constVel
+      ball.velx=ball.velx*(1+dt/10)
+      ball.vely=ball.vely*(1+dt/10)
     end
 
     -- Ball movement --

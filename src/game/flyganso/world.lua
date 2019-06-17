@@ -8,7 +8,7 @@ function world.initialize(screenObj,playerObj, inputObj,gooseObj)
   goose = gooseObj
   player.z=0
   -- world pos --
-
+  delay=0
   world.posx=0
   jogo=1
   world.width=90
@@ -56,14 +56,15 @@ function world.draw()
   end
   screen.drawAnimation(5, goose.posx,goose.posy)
   if  goose.died==false then
-
-    if (screen.getLoop(5))==1 then
+    if delay>=0 and delay<3 and (screen.getLoop(5))==1 then
+      screen.parseAnimation("game/flyganso/sprites/gansos.png",46,128, 5)
+    elseif (screen.getLoop(5))==1 then
       goose.died=true
       screen.parseAnimation("game/flyganso/sprites/gansoflyup.png", 70, 70, 5)
 
     end
   --  print((screen.getLoop(5)),goose.died)
-   
+
  
   else
 
@@ -72,7 +73,9 @@ function world.draw()
 end
   
 function world.update(dt)
-  
+  if delay>=0 and delay<3 then
+    delay=delay+dt
+  end
   if goose.died==true then
     if floor>0 then
       floor=floor-dt*50
